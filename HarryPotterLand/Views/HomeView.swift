@@ -12,19 +12,42 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewViewModel()
     
     var body: some View {
-        ZStack {
-            if let image = viewModel.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
+        ScrollView(showsIndicators: false) {
+            LazyVStack {
+                if let image = viewModel.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                }
+                Spacer(minLength: 25)
+                Text(Constants.titleMoviesCollection)
+                    .withCustomTitleTextFormatting()
+                Spacer(minLength: 25)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(0..<10) { index in
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(Color.gray)
+                                .frame(width: 150, height: 200)
+                                .shadow(radius: 10)
+                                .padding()
+                        }
+                    }
+                }
+            }
+            .onAppear {
+                Task {
+                    await viewModel.fetchHogwartsCastleImage()
+                }
             }
         }
-        .onAppear {
-            Task {
-                await viewModel.fetchHogwartsCastleImage()
-            }
-        }
+    }
+}
+
+extension View {
+    
+    func withCustomTitleTextFormatting(fontSize: Int = 28) -> some View {
+        modifier(CustomTitleTextModifier(fontSize: fontSize))
     }
 }
 

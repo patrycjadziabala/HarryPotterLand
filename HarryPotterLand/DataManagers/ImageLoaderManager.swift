@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 class ImageLoaderManager {
-//    let url = URL(string: "")!
-    let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")
     
     func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {
         guard
@@ -24,7 +22,7 @@ class ImageLoaderManager {
     }
     
     func fetchHogwartsCastleImage() async throws -> UIImage? {
-        guard let hogwartsCastleImage = hogwartsCastleImageUrl else {
+        guard let hogwartsCastleImage = Constants.hogwartsCastleImageUrl else {
             return nil
         }
         do {

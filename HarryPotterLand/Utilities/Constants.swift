@@ -11,8 +11,10 @@ struct Constants {
     
     // MARK: - Titles/Names
     static let titleHarryPotterLand = "Harry Potter Land"
+    static let titleMoviesCollection = "Movies Collection"
     
     // MARK: - Images
+    static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")
     
     // MARK: - Colors
     

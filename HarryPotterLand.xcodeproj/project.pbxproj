@@ -16,6 +16,7 @@
 		462640762BA0C14F00F5F22C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640752BA0C14F00F5F22C /* HomeView.swift */; };
 		462640792BA0C21B00F5F22C /* ImageLoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640782BA0C21B00F5F22C /* ImageLoaderManager.swift */; };
 		4626407C2BA0CCD900F5F22C /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626407B2BA0CCD900F5F22C /* HomeViewViewModel.swift */; };
+		4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		462640752BA0C14F00F5F22C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		462640782BA0C21B00F5F22C /* ImageLoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderManager.swift; sourceTree = "<group>"; };
 		4626407B2BA0CCD900F5F22C /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
+		4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		462640742BA0985900F5F22C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */,
 				462640722BA0977500F5F22C /* Constants.swift */,
 				4626406D2BA096A800F5F22C /* Fonts */,
 			);
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				462640792BA0C21B00F5F22C /* ImageLoaderManager.swift in Sources */,
+				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,
 				462640762BA0C14F00F5F22C /* HomeView.swift in Sources */,
 				4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */,
