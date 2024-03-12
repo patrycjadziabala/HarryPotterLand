@@ -62,9 +62,9 @@
 		4626405C2BA0949A00F5F22C /* HarryPotterLand */ = {
 			isa = PBXGroup;
 			children = (
+				462640772BA0C1E500F5F22C /* DataManagers */,
 				4626407D2BA0CCE600F5F22C /* Views */,
 				4626407A2BA0CCC600F5F22C /* ViewModels */,
-				462640772BA0C1E500F5F22C /* DataManagers */,
 				4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */,
 				462640742BA0985900F5F22C /* Utilities */,
 				462640612BA0949C00F5F22C /* Assets.xcassets */,
@@ -118,8 +118,8 @@
 		4626407D2BA0CCE600F5F22C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				462640752BA0C14F00F5F22C /* HomeView.swift */,
 				4626406B2BA095E700F5F22C /* WelcomeView.swift */,
+				462640752BA0C14F00F5F22C /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

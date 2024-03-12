@@ -9,16 +9,17 @@ import SwiftUI
 
 struct WelcomeView: View {
     var body: some View {
-        Text(Constants.titleHarryPotterLand)
-            .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
-            .kerning(2)
-            .multilineTextAlignment(.center)
-        Button {
-            ""
-        } label: {
-            Text("Enter")
+        VStack {
+            Text(Constants.titleHarryPotterLand)
+                .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
+                .kerning(2)
+                .multilineTextAlignment(.center)
+//            Button {
+//                HomeView()
+//            } label: {
+//                Text("Enter")
+//            }
         }
-
     }
 }
 

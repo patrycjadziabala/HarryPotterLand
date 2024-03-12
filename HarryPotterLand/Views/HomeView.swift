@@ -12,7 +12,19 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if let image = viewModel.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+            }
+        }
+        .onAppear {
+            Task {
+                await viewModel.fetchHogwartsCastleImage()
+            }
+        }
     }
 }
 

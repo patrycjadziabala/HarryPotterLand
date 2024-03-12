@@ -6,7 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 class HomeViewViewModel: ObservableObject {
     
+    @Published var image: UIImage? = nil
+    let imageLoader = ImageLoaderManager()
+    
+    func fetchHogwartsCastleImage() async {
+        let image = try? await imageLoader.fetchHogwartsCastleImage()
+        await MainActor.run {
+            self.image = image
+        }
+    }
 }
