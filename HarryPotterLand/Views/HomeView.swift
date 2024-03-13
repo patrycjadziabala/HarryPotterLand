@@ -7,33 +7,42 @@
 
 import SwiftUI
 
+struct CustomHorizontalGridView: View {
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(0..<10) { index in
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color.gray)
+                        .frame(width: 150, height: 200)
+                        .shadow(radius: 10)
+                        .padding()
+                }
+            }
+        }
+    }
+}
+
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewViewModel()
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            LazyVStack {
+            LazyVStack (spacing: 5) {
                 if let image = viewModel.image {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
+                        .padding(.bottom)
                 }
-                Spacer(minLength: 25)
                 Text(Constants.titleMoviesCollection)
                     .withCustomTitleTextFormatting()
-                Spacer(minLength: 25)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach(0..<10) { index in
-                            RoundedRectangle(cornerRadius: 25)
-                                .fill(Color.gray)
-                                .frame(width: 150, height: 200)
-                                .shadow(radius: 10)
-                                .padding()
-                        }
-                    }
-                }
+                CustomHorizontalGridView()
+                Text(Constants.titleCharacters)
+                    .withCustomTitleTextFormatting()
+                CustomHorizontalGridView()
             }
             .onAppear {
                 Task {
@@ -46,8 +55,8 @@ struct HomeView: View {
 
 extension View {
     
-    func withCustomTitleTextFormatting(fontSize: Int = 28) -> some View {
-        modifier(CustomTitleTextModifier(fontSize: fontSize))
+    func withCustomTitleTextFormatting(fontSize: Int = 28, alignment: Alignment = .leading) -> some View {
+        modifier(CustomTitleTextModifier(fontSize: fontSize, alignment: alignment))
     }
 }
 

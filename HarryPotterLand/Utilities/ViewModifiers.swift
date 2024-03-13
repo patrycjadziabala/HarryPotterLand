@@ -11,11 +11,13 @@ import SwiftUI
 struct CustomTitleTextModifier: ViewModifier {
     
     let fontSize: Int
+    let alignment: Alignment
     
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: alignment)
             .padding(.leading)
             .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
     }
 }
+
