@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ReusableDetailsView: View {
-    
     enum ViewType {
         case movie
         case character
@@ -25,57 +24,70 @@ struct ReusableDetailsView: View {
                 Text(title)
                     .withCustomTitleTextFormatting(fontSize: 40,
                                                    alignment: .top)
-                if viewType == .movie {
-                    if let image = image,
-                       let description = description {
-                        MovieDesctriptionViewGeneric(image: image,
-                                                     description: description) {
-                            Text("Additional information")
-                                .padding()
+                VStack {
+                    switch viewType {
+                    case .movie:
+                        if let image = image,
+                           let description = description {
+                            DesctriptionViewGeneric(viewType: .movie, image: image, description: description) {
+                                Text("Additional information")
+                                    .padding()
+                            }
                         }
-                    }
-                } else if viewType == .character {
-                    if let image = image,
-                       let description = description {
-                        CharacterDesctriptionViewGeneric(image: image, description: description) {
-                            Text("Additional information")
-                                .padding()
+                        Text(Constants.titleCharacters)
+                            .withCustomTitleTextFormatting()
+                    case .character:
+                        if let image = image,
+                           let description = description {
+                            DesctriptionViewGeneric(viewType: .movie, image: image, description: description) {
+                                Text("Additional information")
+                                    .padding()
+                            }
                         }
+                        Text(Constants.titleMoviesCollection)
+                            .withCustomTitleTextFormatting()
                     }
                 }
-                Text(Constants.titleMoviesCollection)
-                    .withCustomTitleTextFormatting()
                 CustomHorizontalGridView()
             }
         }
     }
 }
 
-struct MovieDesctriptionViewGeneric<Content: View>: View {
+struct DesctriptionViewGeneric<Content: View>: View {
+    enum ViewType {
+        case movie
+        case character
+    }
     
-    let image: UIImage?
-    let description: String?
+    let viewType: ViewType
+    let image: UIImage
+    let description: String
     let content: Content
     
-    init(image: UIImage, description: String, @ViewBuilder content: () -> Content) {
+    init(viewType: ViewType, image: UIImage, description: String, @ViewBuilder content: () -> Content) {
         self.image = image
         self.description = description
         self.content = content()
+        self.viewType = viewType
     }
     
     var body: some View {
         VStack {
             HStack {
-                if let image = image {
+                switch viewType {
+                case .movie:
                     Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
+                        .withCustomImageModifier(frameWidth: 220)
                         .padding(.leading)
-                        .frame(maxWidth: 250)
-                }
-                if let description = description {
                     Text(description)
                         .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
+                case .character:
+                    Text(description)
+                        .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
+                    Image(uiImage: image)
+                        .withCustomImageModifier(frameWidth: 220)
+                        .padding(.leading)
                 }
             }
             content
@@ -83,35 +95,12 @@ struct MovieDesctriptionViewGeneric<Content: View>: View {
     }
 }
 
-struct CharacterDesctriptionViewGeneric<Content: View>: View {
-    
-    let image: UIImage?
-    let description: String?
-    let content: Content
-    
-    init(image: UIImage, description: String, @ViewBuilder content: () -> Content) {
-        self.image = image
-        self.description = description
-        self.content = content()
-    }
-    
-    var body: some View {
-        VStack {
-            HStack {
-                if let description = description {
-                    Text(description)
-                        .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
-                }
-                if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.trailing)
-                        .frame(maxWidth: 250)
-                }
-            }
-            content
-        }
+extension Image {
+    func withCustomImageModifier(frameWidth: CGFloat) -> some View {
+        self
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: frameWidth)
     }
 }
 
