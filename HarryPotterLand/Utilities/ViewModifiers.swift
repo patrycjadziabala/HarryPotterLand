@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+enum ViewType {
+    case movieDetails
+    case characterDetails
+}
+
 struct CustomTitleTextModifier: ViewModifier {
     
     let fontSize: Int

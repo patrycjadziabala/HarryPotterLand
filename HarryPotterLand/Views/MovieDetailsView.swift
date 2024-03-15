@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    
     let image: UIImage
     let title: String
     let description: String
     
     var body: some View {
-        ReusableDetailsView(viewType: .movie,
+        ReusableDetailsView(viewType: .movieDetails,
                             title: title,
                             description: description,
                             image: image)

@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ReusableDetailsView: View {
-    enum ViewType {
-        case movie
-        case character
-    }
-    
     let viewType: ViewType
     let title: String
     let description: String?
     let image: UIImage?
+    
+    @StateObject private var viewModel = ReusableDetailsViewModel()
     
     var body: some View {
         ScrollView (showsIndicators: false) {
@@ -25,41 +22,31 @@ struct ReusableDetailsView: View {
                     .withCustomTitleTextFormatting(fontSize: 40,
                                                    alignment: .top)
                 VStack {
-                    switch viewType {
-                    case .movie:
-                        if let image = image,
-                           let description = description {
-                            DesctriptionViewGeneric(viewType: .movie, image: image, description: description) {
-                                Text("Additional information")
-                                    .padding()
-                            }
+                    if let image = image,
+                       let description = description {
+                        DesctriptionViewGeneric(viewType: viewType, image: image, description: description) {
+                            Text("Additional information")
+                                .padding()
                         }
-                        Text(Constants.titleCharacters)
-                            .withCustomTitleTextFormatting()
-                    case .character:
-                        if let image = image,
-                           let description = description {
-                            DesctriptionViewGeneric(viewType: .movie, image: image, description: description) {
-                                Text("Additional information")
-                                    .padding()
-                            }
-                        }
-                        Text(Constants.titleMoviesCollection)
-                            .withCustomTitleTextFormatting()
                     }
+                    Text(viewModel.subTitle ?? "")
+                        .withCustomTitleTextFormatting()
+                    CustomHorizontalGridView()
+                    Text("See more button")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing)
                 }
-                CustomHorizontalGridView()
             }
         }
+        .background(
+            Color.blue
+                .opacity(0.6)
+                .ignoresSafeArea()
+        )
     }
 }
 
 struct DesctriptionViewGeneric<Content: View>: View {
-    enum ViewType {
-        case movie
-        case character
-    }
-    
     let viewType: ViewType
     let image: UIImage
     let description: String
@@ -76,18 +63,18 @@ struct DesctriptionViewGeneric<Content: View>: View {
         VStack {
             HStack {
                 switch viewType {
-                case .movie:
+                case .movieDetails:
                     Image(uiImage: image)
                         .withCustomImageModifier(frameWidth: 220)
-                        .padding(.leading)
+                        .padding(.trailing)
                     Text(description)
                         .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
-                case .character:
+                case .characterDetails:
                     Text(description)
                         .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
                     Image(uiImage: image)
                         .withCustomImageModifier(frameWidth: 220)
-                        .padding(.leading)
+                        .padding(.trailing)
                 }
             }
             content
@@ -100,12 +87,12 @@ extension Image {
         self
             .resizable()
             .scaledToFit()
-            .frame(maxWidth: frameWidth)
+            .frame(maxWidth: frameWidth, alignment: .center)
     }
 }
 
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ReusableDetailsView(viewType: .character, title: "Harry Potter", description: "Main character", image: UIImage(systemName: "heart.fill")!)
+        ReusableDetailsView(viewType: .characterDetails, title: "Harry Potter", description: "Main character", image: UIImage(systemName: "heart.fill")!)
     }
 }

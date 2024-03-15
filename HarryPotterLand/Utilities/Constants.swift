@@ -16,6 +16,7 @@ struct Constants {
     
     // MARK: - Images
     static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")
+    static let hogwartsCastleCartoon = "hogwartsCastleCartoon"
     
     // MARK: - Colors
     
