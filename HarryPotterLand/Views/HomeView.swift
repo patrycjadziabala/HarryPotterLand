@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-struct CustomHorizontalGridView: View {
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack {
-                ForEach(0..<10) { index in
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.gray)
-                        .frame(width: 150, height: 200)
-                        .shadow(radius: 10)
-                        .padding()
-                }
-            }
-        }
-    }
-}
-
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
@@ -51,9 +35,21 @@ struct HomeView: View {
     }
 }
 
-extension View {
-    func withCustomTitleTextFormatting(fontSize: Int = 28, alignment: Alignment = .leading) -> some View {
-        modifier(CustomTitleTextModifier(fontSize: fontSize, alignment: alignment))
+
+
+struct CustomHorizontalGridView: View {
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(0..<10) { index in
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color.gray)
+                        .frame(width: 150, height: 200)
+                        .shadow(radius: 10)
+                        .padding()
+                }
+            }
+        }
     }
 }
 

@@ -21,7 +21,7 @@ struct ReusableGridView: View {
                 ForEach(0..<50) { index in
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color.gray)
-                        .frame(height: 150)
+                        .frame(height: UIScreen.main.bounds.height * 0.2)
                 }
             }
         }

@@ -10,10 +10,21 @@ import SwiftUI
 struct WelcomeView: View {
     var body: some View {
         VStack (spacing: 80) {
-            Text(Constants.titleHarryPotterLand)
-                .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
-                .kerning(2)
-                .multilineTextAlignment(.center)
+            title
+            ButtonView()
+        }
+    }
+    
+    var title: some View {
+        Text(Constants.titleHarryPotterLand)
+            .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
+            .kerning(2)
+            .multilineTextAlignment(.center)
+    }
+    
+    struct ButtonView: View {
+        var body: some View {
+            Text("")
             Button {
                 //                HomeView()
             } label: {
@@ -27,7 +38,7 @@ struct WelcomeView: View {
                         .shadow(radius: 10)
                         .overlay(
                             Text("Enter")
-                                )
+                        )
                 }
             }
         }

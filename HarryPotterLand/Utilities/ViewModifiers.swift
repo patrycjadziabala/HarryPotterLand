@@ -26,3 +26,11 @@ struct CustomTitleTextModifier: ViewModifier {
     }
 }
 
+//MARK: - Extensions
+
+extension View {
+    func withCustomTitleTextFormatting(fontSize: Int = 28, alignment: Alignment = .leading) -> some View {
+        modifier(CustomTitleTextModifier(fontSize: fontSize, alignment: alignment))
+    }
+}
+

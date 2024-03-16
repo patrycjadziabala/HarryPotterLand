@@ -13,7 +13,7 @@ struct CharacterDetailsView: View {
     let description: String
     
     var body: some View {
-        ReusableDetailsView(viewType: .movieDetails,
+        ReusableDetailsView(viewType: .characterDetails,
                             title: title,
                             description: description,
                             image: image)

@@ -14,6 +14,7 @@ struct ReusableDetailsView: View {
     let image: UIImage?
     
     @StateObject private var viewModel = ReusableDetailsViewModel()
+    @State var showSheet: Bool = false
     
     var body: some View {
         ScrollView (showsIndicators: false) {
@@ -24,13 +25,20 @@ struct ReusableDetailsView: View {
                 VStack {
                     if let image = image,
                        let description = description {
-                        DesctriptionViewGeneric(viewType: viewType, image: image, description: description) {
-                            Text("Additional information")
-                                .padding()
+                        DesctriptionViewGeneric(viewType: viewType,
+                                                image: image,
+                                                description: description) {
+                            Button {
+                                showSheet.toggle()
+                            } label: {
+                                Text("More information")
+                                    .buttonBorderShape(.roundedRectangle)
+                            }
                         }
                     }
                     Text(viewModel.subTitle ?? "")
                         .withCustomTitleTextFormatting()
+                    //press and hold to see a bigger picture
                     CustomHorizontalGridView()
                     Text("See more button")
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -43,6 +51,9 @@ struct ReusableDetailsView: View {
                 .opacity(0.6)
                 .ignoresSafeArea()
         )
+        .sheet(isPresented: $showSheet) {
+            MoreInformationSheet()
+        }
     }
 }
 
@@ -66,7 +77,7 @@ struct DesctriptionViewGeneric<Content: View>: View {
                 case .movieDetails:
                     Image(uiImage: image)
                         .withCustomImageModifier(frameWidth: 220)
-                        .padding(.trailing)
+                        .padding(.leading)
                     Text(description)
                         .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
                 case .characterDetails:
@@ -78,6 +89,34 @@ struct DesctriptionViewGeneric<Content: View>: View {
                 }
             }
             content
+        }
+    }
+}
+
+struct MoreInformationSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        ZStack {
+            Color.green
+                .opacity(0.6)
+                .ignoresSafeArea()
+            VStack {
+                VStack (alignment: .trailing) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        //TODO: Create custom button
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                            .font(.largeTitle)
+                            .padding(20)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                Spacer()
+                Text("More info")
+            }
         }
     }
 }
