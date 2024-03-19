@@ -11,24 +11,26 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVStack (spacing: 5) {
-                if let image = viewModel.image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.bottom)
+        TabView {
+            ScrollView(showsIndicators: false) {
+                LazyVStack (spacing: 5) {
+                    if let image = viewModel.image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.bottom)
+                    }
+                    Text(Constants.titleMoviesCollection)
+                        .withCustomTitleTextFormatting()
+                    CustomHorizontalGridView()
+                    Text(Constants.titleCharacters)
+                        .withCustomTitleTextFormatting()
+                    CustomHorizontalGridView()
                 }
-                Text(Constants.titleMoviesCollection)
-                    .withCustomTitleTextFormatting()
-                CustomHorizontalGridView()
-                Text(Constants.titleCharacters)
-                    .withCustomTitleTextFormatting()
-                CustomHorizontalGridView()
-            }
-            .onAppear {
-                Task {
-                    await viewModel.fetchHogwartsCastleImage()
+                .onAppear {
+                    Task {
+                        await viewModel.fetchHogwartsCastleImage()
+                    }
                 }
             }
         }

@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ReusableGridView: View {
     let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-        GridItem(.flexible(), spacing: nil, alignment: nil),
-
+        GridItem(.flexible(), spacing: 3, alignment: nil),
+        GridItem(.flexible(), spacing: 3, alignment: nil),
+        GridItem(.flexible(), spacing: 3, alignment: nil),
     ]
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns) {
+            LazyVGrid(columns: columns, spacing: 3) {
                 ForEach(0..<50) { index in
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color.gray)

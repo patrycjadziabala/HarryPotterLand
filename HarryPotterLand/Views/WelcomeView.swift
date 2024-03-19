@@ -8,10 +8,40 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @AppStorage("signed_in") var currentUserSignedIn: Bool = true
+    @AppStorage("name") var currentUserName: String?
+    @AppStorage("age") var currentUserAge: Int?
+    @AppStorage("gender") var currentUserGender: String?
+    
     var body: some View {
-        VStack (spacing: 80) {
-            title
-            ButtonView()
+        ZStack {
+            RadialGradient(colors: [Color.gray, Color.blue], center: .center, startRadius: 5, endRadius: 500)
+                .ignoresSafeArea()
+            if currentUserSignedIn {
+                VStack (spacing: 80) {
+                    Text("Sign out")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .onTapGesture {
+                            signOut()
+                        }
+                    if let userName = currentUserName,
+                       let userAge = currentUserAge {
+                        Text("Hello \(userName), \(userAge)")
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                    }
+                    title
+                    ButtonView()
+                }
+            } else {
+                OnboardingView()
+            }
         }
     }
     
@@ -24,9 +54,8 @@ struct WelcomeView: View {
     
     struct ButtonView: View {
         var body: some View {
-            Text("")
             Button {
-                //                HomeView()
+                //                MainTabView()
             } label: {
                 VStack {
                     Image(Constants.hogwartsCastleCartoon)
@@ -37,10 +66,19 @@ struct WelcomeView: View {
                         .frame(width: 75, height: 75)
                         .shadow(radius: 10)
                         .overlay(
-                            Text("Enter")
+                            Text(Constants.enter)
                         )
                 }
             }
+        }
+    }
+    
+    func signOut() {
+        currentUserName = nil
+        currentUserAge = nil
+        currentUserGender = nil
+        withAnimation(.spring()) {
+            currentUserSignedIn = false
         }
     }
 }

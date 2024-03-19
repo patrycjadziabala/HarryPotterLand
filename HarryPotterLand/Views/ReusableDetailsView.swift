@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReusableDetailsView: View {
+    //MARK: Properties
     let viewType: ViewType
     let title: String
     let description: String?
@@ -16,6 +17,7 @@ struct ReusableDetailsView: View {
     @StateObject private var viewModel = ReusableDetailsViewModel()
     @State var showSheet: Bool = false
     
+    //MARK: Main body
     var body: some View {
         ScrollView (showsIndicators: false) {
             LazyVStack (spacing: 25) {
@@ -57,6 +59,7 @@ struct ReusableDetailsView: View {
     }
 }
 
+//MARK: DesctriptionViewGeneric
 struct DesctriptionViewGeneric<Content: View>: View {
     let viewType: ViewType
     let image: UIImage
@@ -93,8 +96,9 @@ struct DesctriptionViewGeneric<Content: View>: View {
     }
 }
 
+//MARK: MoreInformationSheet
 struct MoreInformationSheet: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -104,9 +108,8 @@ struct MoreInformationSheet: View {
             VStack {
                 VStack (alignment: .trailing) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                       dismiss()
                     } label: {
-                        //TODO: Create custom button
                         Image(systemName: "xmark")
                             .foregroundColor(.white)
                             .font(.largeTitle)
@@ -121,6 +124,7 @@ struct MoreInformationSheet: View {
     }
 }
 
+//MARK: Extensions
 extension Image {
     func withCustomImageModifier(frameWidth: CGFloat) -> some View {
         self
