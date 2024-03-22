@@ -35,6 +35,30 @@ struct Constants {
     
     // MARK: - Colors
     
+    //Griffindor
+    static let color_darkRed = "DarkRed"
+    static let color_red = "Red"
+    static let color_gold = "Gold"
+    static let color_griffindorYellow = "GriffindorYellow"
+    
+    //Hufflepuff
+    static let color_canary = "Canary"
+    static let color_lightCanary = "LightCanary"
+    static let color_darkBrown = "DarkBrown"
+    static let color_lightBrown = "LightBrown"
+    
+    //Ravenclaw
+    static let color_blue = "Blue"
+    static let color_darkBlue = "DarkBlue"
+    static let color_grey = "Grey"
+    static let color_ravenclawGold = "RavenclawGold"
+    
+    //Slytherin
+    static let color_darkGreen = "DarkGreen"
+    static let color_darkSilver = "DarkSilver"
+    static let color_lightSilver = "LightSilver"
+    static let color_green = "Green"
+    
     //MARK: - Fonts
     static let fontHPWelcomeScreen = "HarryP"
 }

@@ -55,6 +55,7 @@ struct ReusableDetailsView: View {
         )
         .sheet(isPresented: $showSheet) {
             MoreInformationSheet()
+                .presentationDetents([.medium, .large])
         }
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
     var body: some View {
         TabView {
             NavigationStack {
@@ -24,6 +25,7 @@ struct MainTabView: View {
                 Image(systemName: "star.fill")
                 Text("Fav")
             }
+            .badge(5)
         }
     }
 }

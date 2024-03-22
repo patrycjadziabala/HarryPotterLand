@@ -19,3 +19,8 @@ import Foundation
 //TODO: LongPressGesture
 //TODO: Widgets
 //TODO: Push notifications
+//TODO: Count number of favourites and amend badge number in MainTabView
+//TODO: Fix Picker in OnboardingView (use Menu instead?)
+//TODO: Onboarding - change to popover rather than full screen
+//TODO: Use ViewThatFits for one line text 
+//TODO: Choosing theme colors with choose your house

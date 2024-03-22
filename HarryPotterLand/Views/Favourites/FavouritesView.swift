@@ -8,19 +8,12 @@
 import SwiftUI
 
 struct FavouritesView: View {
-    
-    @State var characters: [String] = [
-    "Harry", "Ron", "snape"
-    ]
-    
-    @State var movies: [String] = [
-    "HP1", "HP5"
-    ]
+    @StateObject private var favouritesViewModel = FavouritesViewModel()
     
     var body: some View {
         List {
             Section {
-                ForEach(characters, id: \.self) { character in
+                ForEach(favouritesViewModel.characters, id: \.self) { character in
                     Text(character.capitalized)
                 }
                 .onDelete(perform: deleteCharacter)
@@ -28,7 +21,7 @@ struct FavouritesView: View {
                 Text("Characters")
             }
             Section {
-                ForEach(movies, id: \.self) { movie in
+                ForEach(favouritesViewModel.movies, id: \.self) { movie in
                     Text(movie)
                 }
                 .onDelete(perform: deleteMovie)
@@ -40,13 +33,12 @@ struct FavouritesView: View {
     }
     
     func deleteCharacter(indexSet: IndexSet) {
-        characters.remove(atOffsets: indexSet)
+        favouritesViewModel.characters.remove(atOffsets: indexSet)
     }
     
     func deleteMovie(indexSet: IndexSet) {
-        movies.remove(atOffsets: indexSet)
+        favouritesViewModel.movies.remove(atOffsets: indexSet)
     }
-    
 }
 
 struct FavouritesView_Previews: PreviewProvider {

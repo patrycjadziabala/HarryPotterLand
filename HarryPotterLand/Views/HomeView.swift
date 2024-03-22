@@ -11,7 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
-        TabView {
+       
             ScrollView(showsIndicators: false) {
                 LazyVStack (spacing: 5) {
                     if let image = viewModel.image {
@@ -32,7 +32,7 @@ struct HomeView: View {
                         await viewModel.fetchHogwartsCastleImage()
                     }
                 }
-            }
+            
         }
     }
 }

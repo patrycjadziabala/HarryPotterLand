@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    
     //Onboarding states:
     /*
      0 - Welcome screen
@@ -24,6 +23,7 @@ struct OnboardingView: View {
     
     //onboarding inputs
     @State var name: String = ""
+    @FocusState private var nameFieldInFocus: Bool
     @State var age: Double = 50
     @State var gender: String = ""
     
@@ -102,6 +102,7 @@ extension OnboardingView {
                 .foregroundColor(.white)
             Image(Constants.hogwartsCastleCartoon)
                 .withCustomImageModifier(frameWidth: 350)
+                .cornerRadius(35)
             Text(Constants.pleaseSignIn)
                 .font(.headline)
                 .fontWeight(.bold)
@@ -119,6 +120,7 @@ extension OnboardingView {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             TextField(Constants.yourName, text: $name)
+                .focused($nameFieldInFocus)
                 .font(.headline)
                 .frame(height: 55)
                 .padding(.horizontal)
@@ -181,6 +183,7 @@ extension OnboardingView {
         switch onboardingState {
         case 1:
             guard name.count >= 3 else {
+                nameFieldInFocus = true
                 showAlert(title: Constants.alertName)
                 return
             }

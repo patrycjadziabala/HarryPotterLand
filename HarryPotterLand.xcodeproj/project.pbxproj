@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1192BADEF9E0014D729 /* NoItemsView.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -27,9 +28,12 @@
 		46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C4B2BA8A3D600100FD1 /* TODO.swift */; };
 		46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C4D2BA8A65E00100FD1 /* MainTabView.swift */; };
 		46FE7C502BA9BFA400100FD1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C4F2BA9BFA400100FD1 /* OnboardingView.swift */; };
+		46FE7C522BAA055800100FD1 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C512BAA055800100FD1 /* FavouritesViewModel.swift */; };
+		46FE7C562BADBA1600100FD1 /* ContentUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4624A1192BADEF9E0014D729 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 		46FE7C4B2BA8A3D600100FD1 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		46FE7C4D2BA8A65E00100FD1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		46FE7C4F2BA9BFA400100FD1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		46FE7C512BAA055800100FD1 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUnavailableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4624A11B2BADF0580014D729 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				46FE7C472BA89CF100100FD1 /* FavouritesView.swift */,
+				4624A1192BADEF9E0014D729 /* NoItemsView.swift */,
+				46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
 		462640512BA0949A00F5F22C = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +152,7 @@
 			children = (
 				4626407B2BA0CCD900F5F22C /* HomeViewModel.swift */,
 				462640862BA1F12C00F5F22C /* ReusableDetailsViewModel.swift */,
+				46FE7C512BAA055800100FD1 /* FavouritesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -143,18 +160,26 @@
 		4626407D2BA0CCE600F5F22C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46FE7C572BADBA1E00100FD1 /* ReusableViews */,
 				4626406B2BA095E700F5F22C /* WelcomeView.swift */,
 				46FE7C4F2BA9BFA400100FD1 /* OnboardingView.swift */,
 				46FE7C4D2BA8A65E00100FD1 /* MainTabView.swift */,
 				462640752BA0C14F00F5F22C /* HomeView.swift */,
-				462640802BA104D000F5F22C /* ReusableDetailsView.swift */,
 				462640822BA104E000F5F22C /* MovieDetailsView.swift */,
 				462640842BA104EC00F5F22C /* CharacterDetailsView.swift */,
-				462640882BA46FAB00F5F22C /* ReusableGridView.swift */,
-				46FE7C472BA89CF100100FD1 /* FavouritesView.swift */,
-				46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */,
+				4624A11B2BADF0580014D729 /* Favourites */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		46FE7C572BADBA1E00100FD1 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				462640802BA104D000F5F22C /* ReusableDetailsView.swift */,
+				46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */,
+				462640882BA46FAB00F5F22C /* ReusableGridView.swift */,
+			);
+			path = ReusableViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +255,9 @@
 			files = (
 				462640812BA104D000F5F22C /* ReusableDetailsView.swift in Sources */,
 				462640792BA0C21B00F5F22C /* ImageLoaderManager.swift in Sources */,
+				46FE7C522BAA055800100FD1 /* FavouritesViewModel.swift in Sources */,
 				46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */,
+				46FE7C562BADBA1600100FD1 /* ContentUnavailableView.swift in Sources */,
 				46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */,
 				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
 				462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */,
@@ -240,6 +267,7 @@
 				462640872BA1F12C00F5F22C /* ReusableDetailsViewModel.swift in Sources */,
 				4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */,
 				462640832BA104E000F5F22C /* MovieDetailsView.swift in Sources */,
+				4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */,
 				46FE7C4A2BA8A28F00100FD1 /* FavouritesListRow.swift in Sources */,
 				462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */,
 				4626407C2BA0CCD900F5F22C /* HomeViewModel.swift in Sources */,
@@ -301,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -355,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
