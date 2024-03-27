@@ -17,6 +17,7 @@ import Foundation
 //TODO: OnTapGesture(double click) - add to favourites
 //TODO: MagnificationGesture
 //TODO: LongPressGesture
+//TODO: LongPressGesture
 //TODO: Widgets
 //TODO: Push notifications
 //TODO: Count number of favourites and amend badge number in MainTabView
@@ -24,3 +25,5 @@ import Foundation
 //TODO: Onboarding - change to popover rather than full screen
 //TODO: Use ViewThatFits for one line text 
 //TODO: Choosing theme colors with choose your house
+//TODO: Drag gesture -> Drag an item on Welcome Screen to sign in
+//TODO: Scroll View Reader  -> Scroll to "bottom of screen"? or go to "type in actor's name or movie" on list

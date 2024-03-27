@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1192BADEF9E0014D729 /* NoItemsView.swift */; };
+		4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4624A11C2BAE22C40014D729 /* Launch Screen.storyboard */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		4624A1192BADEF9E0014D729 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
+		4624A11C2BAE22C40014D729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +83,13 @@
 			path = Favourites;
 			sourceTree = "<group>";
 		};
+		4624A11E2BAE24390014D729 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		462640512BA0949A00F5F22C = {
 			isa = PBXGroup;
 			children = (
@@ -101,13 +110,14 @@
 			isa = PBXGroup;
 			children = (
 				462640772BA0C1E500F5F22C /* DataManagers */,
-				4626407D2BA0CCE600F5F22C /* Views */,
+				4624A11E2BAE24390014D729 /* Models */,
 				4626407A2BA0CCC600F5F22C /* ViewModels */,
-				4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */,
+				4626407D2BA0CCE600F5F22C /* Views */,
 				462640742BA0985900F5F22C /* Utilities */,
 				462640612BA0949C00F5F22C /* Assets.xcassets */,
 				462640702BA0970F00F5F22C /* Info.plist */,
 				462640632BA0949C00F5F22C /* Preview Content */,
+				4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */,
 				46FE7C4B2BA8A3D600100FD1 /* TODO.swift */,
 			);
 			path = HarryPotterLand;
@@ -160,6 +170,7 @@
 		4626407D2BA0CCE600F5F22C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4624A11C2BAE22C40014D729 /* Launch Screen.storyboard */,
 				46FE7C572BADBA1E00100FD1 /* ReusableViews */,
 				4626406B2BA095E700F5F22C /* WelcomeView.swift */,
 				46FE7C4F2BA9BFA400100FD1 /* OnboardingView.swift */,
@@ -242,6 +253,7 @@
 			files = (
 				4626406F2BA096F000F5F22C /* HarryP-MVZ6w.ttf in Resources */,
 				462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */,
+				4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */,
 				462640622BA0949C00F5F22C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +420,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = None;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,6 +451,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = None;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

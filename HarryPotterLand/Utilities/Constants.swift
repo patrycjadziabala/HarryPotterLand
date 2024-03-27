@@ -14,6 +14,7 @@ struct Constants {
     static let titleMoviesCollection = "Movies Collection"
     static let titleCharacters = "Characters"
     static let enter = "Enter"
+    static let pressAndHold = "Press and hold 🎵"
     static let signIn = "Sign in"
     static let welcomeToHPWorld = "Welcome to Harry Potter world"
     static let pleaseSignIn = "Please sign in to enter"
@@ -28,10 +29,14 @@ struct Constants {
     static let next = "Next"
     static let alertName = "Your name must be at least 3 characters long 😬"
     static let alertGender = "Please select gender 😬"
+    static let home = "Home"
+    static let fav = "Fav"
     
     // MARK: - Images
     static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")
     static let hogwartsCastleCartoon = "hogwartsCastleCartoon"
+    static let homeIcon = "house.fill"
+    static let starFillIcon = "star.fill"
     
     // MARK: - Colors
     

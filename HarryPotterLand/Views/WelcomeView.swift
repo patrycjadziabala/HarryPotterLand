@@ -18,7 +18,7 @@ struct WelcomeView: View {
             RadialGradient(colors: [Color.gray, Color.blue], center: .center, startRadius: 5, endRadius: 500)
                 .ignoresSafeArea()
             if currentUserSignedIn {
-                VStack (spacing: 80) {
+                VStack (spacing: 20) {
                     Text("Sign out")
                         .foregroundColor(.white)
                         .font(.headline)
@@ -30,6 +30,7 @@ struct WelcomeView: View {
                         .onTapGesture {
                             signOut()
                         }
+                        .padding(.bottom, 20)
                     if let userName = currentUserName,
                        let userAge = currentUserAge {
                         Text("Hello \(userName), \(userAge)")
@@ -37,7 +38,12 @@ struct WelcomeView: View {
                             .background(Color.red)
                     }
                     title
-                    ButtonView()
+                    Spacer()
+                    Image(Constants.hogwartsCastleCartoon)
+                        .withCustomImageModifier(frameWidth: 155)
+                        .cornerRadius(90)
+                    EnterButtonLongPressView()
+                    EnterButtonView()
                 }
             } else {
                 OnboardingView()
@@ -52,15 +58,31 @@ struct WelcomeView: View {
             .multilineTextAlignment(.center)
     }
     
-    struct ButtonView: View {
+    struct EnterButtonLongPressView: View {
+        // play hogwarts theme song and enter once hold is released
         var body: some View {
             Button {
                 // MainTabView()
             } label: {
                 VStack {
-                    Image(Constants.hogwartsCastleCartoon)
-                        .withCustomImageModifier(frameWidth: 155)
-                        .cornerRadius(90)
+                    Capsule()
+                        .fill(Color.white)
+                        .frame(width: 75, height: 75)
+                        .shadow(radius: 10)
+                        .overlay(
+                            Text(Constants.pressAndHold)
+                        )
+                }
+            }
+        }
+    }
+    
+    struct EnterButtonView: View {
+        var body: some View {
+            Button {
+                // MainTabView()
+            } label: {
+                VStack {
                     Capsule()
                         .fill(Color.white)
                         .frame(width: 75, height: 75)

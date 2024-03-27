@@ -14,13 +14,20 @@ class FavouritesViewModel: ObservableObject {
     @Published var movies: [String] = [
     "HP1", "HP5"
     ]
-    @Published var charactersCount: Int = 0 {
-        didSet {
-            countFavourites()
-        }
+    @Published var favouritesCount: Int = 0 
+//    {
+//        didSet {
+//            countFavourites()
+//        }
+//    }
+    
+    init() {
+        print(favouritesCount)
+        countFavourites()
+        print(favouritesCount)
     }
     
     func countFavourites() {
-        charactersCount = characters.count + movies.count
+        favouritesCount = characters.count + movies.count
     }
 }

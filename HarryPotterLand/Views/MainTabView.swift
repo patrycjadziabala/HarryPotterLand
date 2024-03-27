@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject private var favouritesViewModel: FavouritesViewModel
     
     var body: some View {
         TabView {
@@ -15,17 +16,17 @@ struct MainTabView: View {
                 HomeView()
             }
             .tabItem {
-                Image(systemName: "house.fill")
-                Text("Home")
+                Image(systemName: Constants.homeIcon)
+                Text(Constants.home)
             }
             NavigationStack {
                 FavouritesView()
             }
             .tabItem {
-                Image(systemName: "star.fill")
-                Text("Fav")
+                Image(systemName: Constants.starFillIcon)
+                Text(Constants.fav)
             }
-            .badge(5)
+            .badge(favouritesViewModel.favouritesCount)
         }
     }
 }
@@ -33,5 +34,6 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
+            .environmentObject(FavouritesViewModel())
     }
 }
