@@ -11,27 +11,27 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
-        
-        ScrollView(showsIndicators: false) {
-            LazyVStack (spacing: 5) {
-                if let image = viewModel.image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.bottom)
+       
+            ScrollView(showsIndicators: false) {
+                LazyVStack (spacing: 5) {
+                    if let image = viewModel.image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.bottom)
+                    }
+                    Text(Constants.titleMoviesCollection)
+                        .withCustomTitleTextFormatting()
+                    CustomHorizontalGridView()
+                    Text(Constants.titleCharacters)
+                        .withCustomTitleTextFormatting()
+                    CustomHorizontalGridView()
                 }
-                Text(Constants.titleMoviesCollection)
-                    .withCustomTitleTextFormatting()
-                CustomHorizontalGridView()
-                Text(Constants.titleCharacters)
-                    .withCustomTitleTextFormatting()
-                CustomHorizontalGridView()
-            }
-            .onAppear {
-                Task {
-                    await viewModel.fetchHogwartsCastleImage()
+                .onAppear {
+                    Task {
+                        await viewModel.fetchHogwartsCastleImage()
+                    }
                 }
-            }
             
         }
     }
@@ -58,7 +58,7 @@ struct CustomHorizontalGridView: View {
                     }
                     .frame(width: 150, height: 200)
                     .shadow(radius: 10)
-                    .padding()
+                .padding()
                 }
             }
         }

@@ -32,5 +32,4 @@ class ImageLoaderManager {
             throw error
         }
     }
-    
 }

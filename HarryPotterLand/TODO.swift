@@ -8,7 +8,7 @@
 import Foundation
 
 //TODO: Create custom dismiss button
-//TODO: Create custom alert
+//TODO: Create custom alerts
 //TODO: Create custom action sheets (confirmationDialog)
 //TODO: Add Context Menu
 //TODO: Add search bar to search for characters and filter movies

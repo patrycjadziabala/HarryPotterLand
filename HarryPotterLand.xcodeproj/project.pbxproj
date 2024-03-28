@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1192BADEF9E0014D729 /* NoItemsView.swift */; };
 		4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4624A11C2BAE22C40014D729 /* Launch Screen.storyboard */; };
+		4624A1512BB49AE10014D729 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1502BB49AE10014D729 /* SoundManager.swift */; };
+		4624A1542BB49C240014D729 /* Harry-Potter-Theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4624A1532BB49C240014D729 /* Harry-Potter-Theme.mp3 */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		4624A1192BADEF9E0014D729 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		4624A11C2BAE22C40014D729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4624A1502BB49AE10014D729 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		4624A1532BB49C240014D729 /* Harry-Potter-Theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Harry-Potter-Theme.mp3"; sourceTree = SOURCE_ROOT; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +92,14 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4624A1522BB49C0C0014D729 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				4624A1532BB49C240014D729 /* Harry-Potter-Theme.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		462640512BA0949A00F5F22C = {
@@ -144,6 +156,7 @@
 			children = (
 				4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */,
 				462640722BA0977500F5F22C /* Constants.swift */,
+				4624A1522BB49C0C0014D729 /* Sounds */,
 				4626406D2BA096A800F5F22C /* Fonts */,
 			);
 			path = Utilities;
@@ -153,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				462640782BA0C21B00F5F22C /* ImageLoaderManager.swift */,
+				4624A1502BB49AE10014D729 /* SoundManager.swift */,
 			);
 			path = DataManagers;
 			sourceTree = "<group>";
@@ -252,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4626406F2BA096F000F5F22C /* HarryP-MVZ6w.ttf in Resources */,
+				4624A1542BB49C240014D729 /* Harry-Potter-Theme.mp3 in Resources */,
 				462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */,
 				4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */,
 				462640622BA0949C00F5F22C /* Assets.xcassets in Resources */,
@@ -270,6 +285,7 @@
 				46FE7C522BAA055800100FD1 /* FavouritesViewModel.swift in Sources */,
 				46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */,
 				46FE7C562BADBA1600100FD1 /* ContentUnavailableView.swift in Sources */,
+				4624A1512BB49AE10014D729 /* SoundManager.swift in Sources */,
 				46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */,
 				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
 				462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */,

@@ -59,21 +59,27 @@ struct WelcomeView: View {
     }
     
     struct EnterButtonLongPressView: View {
-        // play hogwarts theme song and enter once hold is released
+        @State private var isPressingDown: Bool = false
+        
         var body: some View {
-            Button {
-                // MainTabView()
-            } label: {
-                VStack {
-                    Capsule()
-                        .fill(Color.white)
-                        .frame(width: 75, height: 75)
-                        .shadow(radius: 10)
-                        .overlay(
-                            Text(Constants.pressAndHold)
-                        )
+            Capsule()
+                .fill(Color.white)
+                .frame(width: 75, height: 75)
+                .shadow(radius: 10)
+                .overlay(
+                    Text(Constants.pressAndHold)
+                        .multilineTextAlignment(.center)
+                )
+                .onLongPressGesture(minimumDuration: 0.3) {
+                    SoundManager.instance.playSound()
+                    print("started")
                 }
-            }
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 0)
+                        .onEnded{ _ in
+                            SoundManager.instance.stopSound()
+                        }
+                )
         }
     }
     
