@@ -17,7 +17,6 @@ import Foundation
 //TODO: OnTapGesture(double click) - add to favourites
 //TODO: MagnificationGesture
 //TODO: LongPressGesture
-//TODO: LongPressGesture
 //TODO: Widgets
 //TODO: Push notifications
 //TODO: Count number of favourites and amend badge number in MainTabView
@@ -27,3 +26,12 @@ import Foundation
 //TODO: Choosing theme colors with choose your house
 //TODO: Drag gesture -> Drag an item on Welcome Screen to sign in
 //TODO: Scroll View Reader  -> Scroll to "bottom of screen"? or go to "type in actor's name or movie" on list
+//TODO: Set request for notifications at sign in
+//TODO: Settings tab -> option to remove notifications from NotificationManager
+
+//DONE
+// - LongPressGesture
+// - @AppStorage
+// - Singletons
+// - Haptics and vibrations
+// - Local notifications

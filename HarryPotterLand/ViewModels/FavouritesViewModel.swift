@@ -30,4 +30,12 @@ class FavouritesViewModel: ObservableObject {
     func countFavourites() {
         favouritesCount = characters.count + movies.count
     }
+    
+    func addToFavourites() {
+        HapticsManager.instance.notification(type: .success)
+    }
+    
+    func removeFromFavourites() {
+        HapticsManager.instance.notification(type: .error)
+    }
 }

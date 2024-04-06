@@ -81,15 +81,15 @@ extension OnboardingView {
         Text(onboardingState == 0 ? Constants.signIn :
                 onboardingState == 3 ? Constants.finish :
                 Constants.next)
-            .font(.headline)
-            .foregroundColor(.purple)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
-            .onTapGesture {
-                handleNextButtonPressed()
-            }
+        .font(.headline)
+        .foregroundColor(.purple)
+        .frame(height: 55)
+        .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .cornerRadius(10)
+        .onTapGesture {
+            handleNextButtonPressed()
+        }
     }
     
     private var welcomeScreen: some View {
@@ -111,7 +111,7 @@ extension OnboardingView {
             Spacer()
         }
     }
-        
+    
     private var addNameSection: some View {
         VStack (spacing: 20) {
             Spacer()
@@ -150,7 +150,7 @@ extension OnboardingView {
         }
         .padding(30)
     }
- 
+    
     private var addGenderSection: some View {
         VStack (spacing: 20) {
             Spacer()
@@ -197,7 +197,7 @@ extension OnboardingView {
         }
         //GO TO NEXT SECTION
         if onboardingState == 3 {
-          signIn()
+            signIn()
         } else {
             withAnimation(.spring()) {
                 onboardingState += 1
@@ -206,6 +206,7 @@ extension OnboardingView {
     }
     
     func signIn() {
+        NotificationManager.instance.requestAuthorisation()
         currentUserName = name
         currentUserAge = Int(age)
         currentUserGender = gender
