@@ -13,7 +13,7 @@ struct HarryPotterLandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
+            HomeView()
                 .environmentObject(favouritesViewModel)
         }
     }

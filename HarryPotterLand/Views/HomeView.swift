@@ -8,37 +8,50 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
-       
-            ScrollView(showsIndicators: false) {
-                LazyVStack (spacing: 5) {
-                    if let image = viewModel.image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.bottom)
-                    }
-                    Text(Constants.titleMoviesCollection)
-                        .withCustomTitleTextFormatting()
-                    CustomHorizontalGridView()
-                    Text(Constants.titleCharacters)
-                        .withCustomTitleTextFormatting()
-                    CustomHorizontalGridView()
+        ScrollView(showsIndicators: false) {
+            LazyVStack (spacing: 5) {
+                if let image = viewModel.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.bottom)
                 }
-                .onAppear {
-                    Task {
-                        await viewModel.fetchHogwartsCastleImage()
+                Text(Constants.titleMoviesCollection)
+                    .withCustomTitleTextFormatting()
+                CustomHorizontalGridView()
+                Text(Constants.titleCharacters)
+                    .withCustomTitleTextFormatting()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(viewModel.characters) { character in
+                            VStack {
+                                Text(character.name)
+                                    .font(.headline)
+                                Text(character.house)
+                                    .font(.subheadline)
+                            }
+                        }
                     }
                 }
+                //                CustomHorizontalGridView()
+            }
+            .onAppear {
+                Task {
+                    await viewModel.fetchHogwartsCastleImage()
+                }
+            }
             
         }
-            .ignoresSafeArea()
+        .ignoresSafeArea()
     }
 }
 
 struct CustomHorizontalGridView: View {
+    
     func getPercentage(geo: GeometryProxy) -> Double {
         let maxDistance = UIScreen.main.bounds.width / 2
         let currentX = geo.frame(in: .global).midX
@@ -59,7 +72,7 @@ struct CustomHorizontalGridView: View {
                     }
                     .frame(width: 150, height: 200)
                     .shadow(radius: 10)
-                .padding()
+                    .padding()
                 }
             }
         }

@@ -8,6 +8,7 @@
 import Foundation
 
 class FavouritesViewModel: ObservableObject {
+    
     @Published var characters: [String] = [
     "Harry", "Ron", "snape"
     ]

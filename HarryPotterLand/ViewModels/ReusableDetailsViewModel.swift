@@ -8,6 +8,7 @@
 import Foundation
 
 class ReusableDetailsViewModel: ObservableObject {
+    
     var subTitle: String? = nil
     let viewType: ViewType = .movieDetails
     

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReusableDetailsView: View {
+    
     //MARK: Properties
     let viewType: ViewType
     let title: String
@@ -62,6 +63,7 @@ struct ReusableDetailsView: View {
 
 //MARK: DesctriptionViewGeneric
 struct DesctriptionViewGeneric<Content: View>: View {
+    
     let viewType: ViewType
     let image: UIImage
     let description: String
@@ -99,6 +101,7 @@ struct DesctriptionViewGeneric<Content: View>: View {
 
 //MARK: MoreInformationSheet
 struct MoreInformationSheet: View {
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

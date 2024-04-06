@@ -13,6 +13,8 @@
 		4624A1542BB49C240014D729 /* Harry-Potter-Theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4624A1532BB49C240014D729 /* Harry-Potter-Theme.mp3 */; };
 		4624A1562BC01D0F0014D729 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1552BC01D0F0014D729 /* HapticsManager.swift */; };
 		4624A1582BC0213A0014D729 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1572BC0213A0014D729 /* NotificationManager.swift */; };
+		4624A15A2BC18B3D0014D729 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1592BC18B3D0014D729 /* CharacterModel.swift */; };
+		4624A15C2BC1962C0014D729 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A15B2BC1962C0014D729 /* APIManager.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		4624A1532BB49C240014D729 /* Harry-Potter-Theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Harry-Potter-Theme.mp3"; sourceTree = SOURCE_ROOT; };
 		4624A1552BC01D0F0014D729 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		4624A1572BC0213A0014D729 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4624A1592BC18B3D0014D729 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		4624A15B2BC1962C0014D729 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		4624A11E2BAE24390014D729 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4624A1592BC18B3D0014D729 /* CharacterModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				4624A1502BB49AE10014D729 /* SoundManager.swift */,
 				4624A1552BC01D0F0014D729 /* HapticsManager.swift */,
 				4624A1572BC0213A0014D729 /* NotificationManager.swift */,
+				4624A15B2BC1962C0014D729 /* APIManager.swift */,
 			);
 			path = DataManagers;
 			sourceTree = "<group>";
@@ -307,6 +313,8 @@
 				462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */,
 				4626407C2BA0CCD900F5F22C /* HomeViewModel.swift in Sources */,
 				46FE7C502BA9BFA400100FD1 /* OnboardingView.swift in Sources */,
+				4624A15A2BC18B3D0014D729 /* CharacterModel.swift in Sources */,
+				4624A15C2BC1962C0014D729 /* APIManager.swift in Sources */,
 				462640732BA0977500F5F22C /* Constants.swift in Sources */,
 				4624A1582BC0213A0014D729 /* NotificationManager.swift in Sources */,
 			);

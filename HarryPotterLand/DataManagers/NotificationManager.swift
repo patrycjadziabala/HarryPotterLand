@@ -25,8 +25,8 @@ class NotificationManager {
     
     func scheduleNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "This is my first notification"
-        content.subtitle = "This was so easy"
+        content.title = "It has been so long 🥺"
+        content.subtitle = "Your favourite Harry Potter characters miss you. Visit them in the app to make them feel better 🤩"
         content.sound = .default
         content.badge = 1
         
@@ -50,6 +50,7 @@ class NotificationManager {
 }
 
 struct NotifictaionManager: View {
+    
     var body: some View {
         VStack {
             Button {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
     @AppStorage("signed_in") var currentUserSignedIn: Bool = true
     @AppStorage("name") var currentUserName: String?
     @AppStorage("age") var currentUserAge: Int?
@@ -59,6 +60,7 @@ struct WelcomeView: View {
     }
     
     struct EnterButtonLongPressView: View {
+        
         @State private var isPressingDown: Bool = false
         
         var body: some View {
@@ -84,6 +86,7 @@ struct WelcomeView: View {
     }
     
     struct EnterButtonView: View {
+        
         var body: some View {
             Button {
                 // MainTabView()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FavouritesView: View {
+    
     @StateObject private var favouritesViewModel = FavouritesViewModel()
     
     var body: some View {

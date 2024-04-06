@@ -28,6 +28,7 @@ import Foundation
 //TODO: Scroll View Reader  -> Scroll to "bottom of screen"? or go to "type in actor's name or movie" on list
 //TODO: Set request for notifications at sign in
 //TODO: Settings tab -> option to remove notifications from NotificationManager
+//TODO: Sort favourites alphabetically
 
 //DONE
 // - LongPressGesture
@@ -35,3 +36,4 @@ import Foundation
 // - Singletons
 // - Haptics and vibrations
 // - Local notifications
+// - Combine - Fetching data from api

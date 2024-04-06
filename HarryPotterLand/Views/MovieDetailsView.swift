@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
+    
     let image: UIImage
     let title: String
     let description: String

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    
     //Onboarding states:
     /*
      0 - Welcome screen

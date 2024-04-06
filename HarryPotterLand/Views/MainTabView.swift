@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
     @EnvironmentObject private var favouritesViewModel: FavouritesViewModel
     
     var body: some View {

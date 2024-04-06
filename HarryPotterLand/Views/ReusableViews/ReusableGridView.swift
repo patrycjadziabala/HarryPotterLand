@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReusableGridView: View {
+    
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 3, alignment: nil),
         GridItem(.flexible(), spacing: 3, alignment: nil),
