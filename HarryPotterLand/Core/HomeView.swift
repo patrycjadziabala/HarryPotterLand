@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject private var viewModel = HomeViewModel()
+    @StateObject private var viewModel = HomeViewModel(apiManager: APIManager())
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -37,14 +37,14 @@ struct HomeView: View {
                         }
                     }
                 }
-                //                CustomHorizontalGridView()
+//                                CustomHorizontalGridView()
             }
             .onAppear {
                 Task {
                     await viewModel.fetchHogwartsCastleImage()
+                    fetchCharacters()
                 }
             }
-            
         }
         .ignoresSafeArea()
     }
@@ -83,4 +83,17 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
+}
+
+extension HomeView {
+    
+    private func fetchCharacters() {
+         Task {
+             do {
+                 try await viewModel.fetchCharacters()
+             } catch {
+                 
+             }
+         }
+     }
 }

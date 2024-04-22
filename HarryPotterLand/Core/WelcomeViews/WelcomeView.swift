@@ -20,29 +20,16 @@ struct WelcomeView: View {
                 .ignoresSafeArea()
             if currentUserSignedIn {
                 VStack (spacing: 20) {
-                    Text("Sign out")
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.black)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        .onTapGesture {
-                            signOut()
-                        }
-                        .padding(.bottom, 20)
+                    signOutButton
                     if let userName = currentUserName,
                        let userAge = currentUserAge {
                         Text("Hello \(userName), \(userAge)")
                             .frame(maxWidth: .infinity)
                             .background(Color.red)
                     }
-                    title
+                    titleView
                     Spacer()
-                    Image(Constants.hogwartsCastleCartoon)
-                        .withCustomImageModifier(frameWidth: 155)
-                        .cornerRadius(90)
+                    imageView
                     EnterButtonLongPressView()
                     EnterButtonView()
                 }
@@ -51,12 +38,42 @@ struct WelcomeView: View {
             }
         }
     }
+}
+
+struct WelcomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        WelcomeView()
+    }
+}
+
+extension WelcomeView {
     
-    var title: some View {
+    private var signOutButton: some View {
+        Text("Sign out")
+            .foregroundColor(.white)
+            .font(.headline)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.black)
+            .cornerRadius(10)
+            .padding(.horizontal)
+            .onTapGesture {
+                signOut()
+            }
+            .padding(.bottom, 20)
+    }
+    
+    var titleView: some View {
         Text(Constants.titleHarryPotterLand)
             .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
             .kerning(2)
             .multilineTextAlignment(.center)
+    }
+    
+    private var imageView: some View {
+        Image(Constants.hogwartsCastleCartoon)
+            .withCustomImageModifier(frameWidth: 155)
+            .cornerRadius(90)
     }
     
     struct EnterButtonLongPressView: View {
@@ -111,11 +128,5 @@ struct WelcomeView: View {
         withAnimation(.spring()) {
             currentUserSignedIn = false
         }
-    }
-}
-
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
     }
 }

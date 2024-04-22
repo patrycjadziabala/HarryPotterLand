@@ -76,8 +76,8 @@ struct OnboardingView_Previews: PreviewProvider {
     }
 }
 
-//MARK: COMPONENTS
 extension OnboardingView {
+    
     private var bottomButton: some View {
         Text(onboardingState == 0 ? Constants.signIn :
                 onboardingState == 3 ? Constants.finish :

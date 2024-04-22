@@ -29,6 +29,7 @@ import Foundation
 //TODO: Set request for notifications at sign in
 //TODO: Settings tab -> option to remove notifications from NotificationManager
 //TODO: Sort favourites alphabetically
+//TODO: Add searchbar for searching characters and dynamic filter
 
 //DONE
 // - LongPressGesture

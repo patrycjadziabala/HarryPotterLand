@@ -1,5 +1,5 @@
 //
-//  MovieDetailsView.swift
+//  CharacterDetailsView.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 12/03/2024.
@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct MovieDetailsView: View {
+struct CharacterDetailsView: View {
     
     let image: UIImage
     let title: String
     let description: String
     
     var body: some View {
-        ReusableDetailsView(viewType: .movieDetails,
+        DetailsView(viewType: .characterDetails,
                             title: title,
                             description: description,
                             image: image)
     }
 }
 
-struct MovieDetailsView_Previews: PreviewProvider {
+struct CharacterDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(image: UIImage(systemName: "heart.fill")!, title: "Harry Potter", description: "Movie description")
+        CharacterDetailsView(image: UIImage(systemName: "heart.fill")!, title: "Harry Potter", description: "Character description")
     }
 }

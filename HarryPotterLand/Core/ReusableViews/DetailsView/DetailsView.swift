@@ -1,5 +1,5 @@
 //
-//  ReusableDetailsView.swift
+//  DetailsView.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 12/03/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReusableDetailsView: View {
+struct DetailsView: View {
     
     //MARK: Properties
     let viewType: ViewType
@@ -128,18 +128,8 @@ struct MoreInformationSheet: View {
     }
 }
 
-//MARK: Extensions
-extension Image {
-    func withCustomImageModifier(frameWidth: CGFloat) -> some View {
-        self
-            .resizable()
-            .scaledToFit()
-            .frame(maxWidth: frameWidth, alignment: .center)
-    }
-}
-
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ReusableDetailsView(viewType: .characterDetails, title: "Harry Potter", description: "Main character", image: UIImage(systemName: "heart.fill")!)
+        DetailsView(viewType: .characterDetails, title: "Harry Potter", description: "Main character", image: UIImage(systemName: "heart.fill")!)
     }
 }
