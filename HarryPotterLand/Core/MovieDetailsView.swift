@@ -9,20 +9,21 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     
-    let image: UIImage
+    let image: String
     let title: String
     let description: String
     
     var body: some View {
-        DetailsView(viewType: .movieDetails,
-                            title: title,
-                            description: description,
-                            image: image)
+        Text("Text")
+//        DetailsView(viewType: .movieDetails,
+//                            title: title,
+//                            description: description,
+//                            image: image)
     }
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(image: UIImage(systemName: "heart.fill")!, title: "Harry Potter", description: "Movie description")
+        MovieDetailsView(image: dev.character.image, title: dev.character.name, description: dev.character.house)
     }
 }

@@ -13,12 +13,8 @@ import Combine
     
     @Published var image: UIImage? = nil
     let imageLoader = ImageLoaderManager()
+    var apiManager: APIManagerProtocol = APIManager()
     @Published var characters: [CharacterModel] = []
-    var apiManager: APIManagerProtocol
-    
-    init(apiManager: APIManagerProtocol)  {
-        self.apiManager = apiManager
-    }
     
     func fetchHogwartsCastleImage() async {
         let image = try? await imageLoader.fetchHogwartsCastleImage()

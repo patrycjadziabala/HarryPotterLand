@@ -16,6 +16,9 @@
 		4624A15A2BC18B3D0014D729 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A1592BC18B3D0014D729 /* CharacterModel.swift */; };
 		4624A15C2BC1962C0014D729 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A15B2BC1962C0014D729 /* APIManager.swift */; };
 		4624A2252BD686950014D729 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2242BD686950014D729 /* Image.swift */; };
+		4624A2302BD7D9550014D729 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A22F2BD7D9550014D729 /* PreviewProvider.swift */; };
+		4624A2332BD7E0FB0014D729 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4624A2322BD7E0FB0014D729 /* CachedAsyncImage */; };
+		4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -29,7 +32,7 @@
 		462640812BA104D000F5F22C /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640802BA104D000F5F22C /* DetailsView.swift */; };
 		462640832BA104E000F5F22C /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640822BA104E000F5F22C /* MovieDetailsView.swift */; };
 		462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640842BA104EC00F5F22C /* CharacterDetailsView.swift */; };
-		462640872BA1F12C00F5F22C /* ReusableDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640862BA1F12C00F5F22C /* ReusableDetailsViewModel.swift */; };
+		462640872BA1F12C00F5F22C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640862BA1F12C00F5F22C /* DetailsViewModel.swift */; };
 		462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640882BA46FAB00F5F22C /* ReusableGridView.swift */; };
 		46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C472BA89CF100100FD1 /* FavouritesView.swift */; };
 		46FE7C4A2BA8A28F00100FD1 /* FavouritesListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */; };
@@ -50,6 +53,8 @@
 		4624A1592BC18B3D0014D729 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		4624A15B2BC1962C0014D729 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4624A2242BD686950014D729 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		4624A22F2BD7D9550014D729 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +70,7 @@
 		462640802BA104D000F5F22C /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		462640822BA104E000F5F22C /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		462640842BA104EC00F5F22C /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
-		462640862BA1F12C00F5F22C /* ReusableDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableDetailsViewModel.swift; sourceTree = "<group>"; };
+		462640862BA1F12C00F5F22C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		462640882BA46FAB00F5F22C /* ReusableGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGridView.swift; sourceTree = "<group>"; };
 		46FE7C472BA89CF100100FD1 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRow.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4624A2332BD7E0FB0014D729 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4624A2242BD686950014D729 /* Image.swift */,
+				4624A22F2BD7D9550014D729 /* PreviewProvider.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -126,7 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				462640802BA104D000F5F22C /* DetailsView.swift */,
-				462640862BA1F12C00F5F22C /* ReusableDetailsViewModel.swift */,
+				462640862BA1F12C00F5F22C /* DetailsViewModel.swift */,
+				4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
@@ -231,7 +239,7 @@
 		4626407D2BA0CCE600F5F22C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				46FE7C572BADBA1E00100FD1 /* ReusableViews */,
+				46FE7C572BADBA1E00100FD1 /* Components */,
 				4624A2292BD6978D0014D729 /* Launch */,
 				4624A22A2BD697A30014D729 /* WelcomeViews */,
 				46FE7C4D2BA8A65E00100FD1 /* MainTabView.swift */,
@@ -244,14 +252,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		46FE7C572BADBA1E00100FD1 /* ReusableViews */ = {
+		46FE7C572BADBA1E00100FD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */,
 				462640882BA46FAB00F5F22C /* ReusableGridView.swift */,
 				4624A2262BD6968B0014D729 /* DetailsView */,
 			);
-			path = ReusableViews;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +278,9 @@
 			dependencies = (
 			);
 			name = HarryPotterLand;
+			packageProductDependencies = (
+				4624A2322BD7E0FB0014D729 /* CachedAsyncImage */,
+			);
 			productName = HarryPotterLand;
 			productReference = 4626405A2BA0949A00F5F22C /* HarryPotterLand.app */;
 			productType = "com.apple.product-type.application";
@@ -298,6 +309,9 @@
 				Base,
 			);
 			mainGroup = 462640512BA0949A00F5F22C;
+			packageReferences = (
+				4624A2312BD7E0FB0014D729 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = 4626405B2BA0949A00F5F22C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -334,13 +348,15 @@
 				4624A1562BC01D0F0014D729 /* HapticsManager.swift in Sources */,
 				46FE7C562BADBA1600100FD1 /* ContentUnavailableView.swift in Sources */,
 				4624A1512BB49AE10014D729 /* SoundManager.swift in Sources */,
+				4624A2302BD7D9550014D729 /* PreviewProvider.swift in Sources */,
 				46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */,
 				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
 				462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */,
 				46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */,
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,
 				462640762BA0C14F00F5F22C /* HomeView.swift in Sources */,
-				462640872BA1F12C00F5F22C /* ReusableDetailsViewModel.swift in Sources */,
+				462640872BA1F12C00F5F22C /* DetailsViewModel.swift in Sources */,
+				4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */,
 				4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */,
 				462640832BA104E000F5F22C /* MovieDetailsView.swift in Sources */,
 				4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */,
@@ -561,6 +577,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4624A2312BD7E0FB0014D729 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4624A2322BD7E0FB0014D729 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4624A2312BD7E0FB0014D729 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 462640522BA0949A00F5F22C /* Project object */;
 }

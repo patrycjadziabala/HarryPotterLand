@@ -7,18 +7,24 @@
 
 import Foundation
 
-class ReusableDetailsViewModel: ObservableObject {
+class DetailsViewModel: ObservableObject {
     
-    var subTitle: String? = nil
+    var subTitle: String = ""
     let viewType: ViewType = .movieDetails
+    let model: CharacterModel
     
-    func getSubTitle(viewType: ViewType) -> String? {
+    init(subTitle: String, model: CharacterModel) {
+        self.subTitle = subTitle
+        self.model = model
+    }
+    
+    func getSubTitle(viewType: ViewType) -> String {
         switch viewType {
         case .movieDetails:
             subTitle = Constants.titleCharacters
         case .characterDetails:
             subTitle = Constants.titleMoviesCollection
         }
-        return subTitle ?? nil
+        return subTitle
     }
 }
