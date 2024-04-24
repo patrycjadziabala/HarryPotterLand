@@ -19,7 +19,7 @@ class DeveloperPreview {
     
     static let instance = DeveloperPreview()
     private init() { }
-    
+        
     let character = CharacterModel(
         id: "123",
         name: "Harry Potter",

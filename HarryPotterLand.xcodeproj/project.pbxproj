@@ -19,6 +19,7 @@
 		4624A2302BD7D9550014D729 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A22F2BD7D9550014D729 /* PreviewProvider.swift */; };
 		4624A2332BD7E0FB0014D729 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4624A2322BD7E0FB0014D729 /* CachedAsyncImage */; };
 		4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */; };
+		4624A2392BD97B790014D729 /* DescriptionViewGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		4624A2242BD686950014D729 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		4624A22F2BD7D9550014D729 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
+		4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewGeneric.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */,
 				462640882BA46FAB00F5F22C /* ReusableGridView.swift */,
 				4624A2262BD6968B0014D729 /* DetailsView */,
+				4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */,
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,
 				462640762BA0C14F00F5F22C /* HomeView.swift in Sources */,
+				4624A2392BD97B790014D729 /* DescriptionViewGeneric.swift in Sources */,
 				462640872BA1F12C00F5F22C /* DetailsViewModel.swift in Sources */,
 				4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */,
 				4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */,

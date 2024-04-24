@@ -65,7 +65,7 @@ extension WelcomeView {
     
     var titleView: some View {
         Text(Constants.titleHarryPotterLand)
-            .font(Font.custom(Constants.fontHPWelcomeScreen, size: 100))
+            .font(Font.custom(Constants.fontHP, size: 100))
             .kerning(2)
             .multilineTextAlignment(.center)
     }

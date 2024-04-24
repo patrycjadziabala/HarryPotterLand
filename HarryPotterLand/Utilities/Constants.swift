@@ -65,5 +65,5 @@ struct Constants {
     static let color_green = "Green"
     
     //MARK: - Fonts
-    static let fontHPWelcomeScreen = "HarryP"
+    static let fontHP = "HarryP"
 }

@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct HarryPotterLandApp: App {
-    @StateObject var favouritesViewModel = FavouritesViewModel()
-    
+    @StateObject private var favouritesViewModel = FavouritesViewModel()
+    @StateObject private var homeViewModel = HomeViewModel()
+
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(favouritesViewModel)
+                .environmentObject(homeViewModel)
         }
     }
 }
