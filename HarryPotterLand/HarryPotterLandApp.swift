@@ -14,7 +14,7 @@ struct HarryPotterLandApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MainTabView()
                 .environmentObject(favouritesViewModel)
                 .environmentObject(homeViewModel)
         }

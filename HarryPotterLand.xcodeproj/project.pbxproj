@@ -20,6 +20,9 @@
 		4624A2332BD7E0FB0014D729 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4624A2322BD7E0FB0014D729 /* CachedAsyncImage */; };
 		4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */; };
 		4624A2392BD97B790014D729 /* DescriptionViewGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */; };
+		4624A23C2BD990B70014D729 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A23B2BD990B70014D729 /* DismissButton.swift */; };
+		4624A23E2BD993800014D729 /* InfoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A23D2BD993800014D729 /* InfoGridView.swift */; };
+		4624A2402BDA7ED40014D729 /* MoreInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A23F2BDA7ED40014D729 /* MoreInfoSheet.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -31,8 +34,6 @@
 		4626407C2BA0CCD900F5F22C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626407B2BA0CCD900F5F22C /* HomeViewModel.swift */; };
 		4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */; };
 		462640812BA104D000F5F22C /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640802BA104D000F5F22C /* DetailsView.swift */; };
-		462640832BA104E000F5F22C /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640822BA104E000F5F22C /* MovieDetailsView.swift */; };
-		462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640842BA104EC00F5F22C /* CharacterDetailsView.swift */; };
 		462640872BA1F12C00F5F22C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640862BA1F12C00F5F22C /* DetailsViewModel.swift */; };
 		462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640882BA46FAB00F5F22C /* ReusableGridView.swift */; };
 		46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C472BA89CF100100FD1 /* FavouritesView.swift */; };
@@ -57,6 +58,9 @@
 		4624A22F2BD7D9550014D729 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
 		4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewGeneric.swift; sourceTree = "<group>"; };
+		4624A23B2BD990B70014D729 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		4624A23D2BD993800014D729 /* InfoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGridView.swift; sourceTree = "<group>"; };
+		4624A23F2BDA7ED40014D729 /* MoreInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoSheet.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,8 +74,6 @@
 		4626407B2BA0CCD900F5F22C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		462640802BA104D000F5F22C /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		462640822BA104E000F5F22C /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
-		462640842BA104EC00F5F22C /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		462640862BA1F12C00F5F22C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		462640882BA46FAB00F5F22C /* ReusableGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGridView.swift; sourceTree = "<group>"; };
 		46FE7C472BA89CF100100FD1 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,9 @@
 				462640802BA104D000F5F22C /* DetailsView.swift */,
 				462640862BA1F12C00F5F22C /* DetailsViewModel.swift */,
 				4624A2362BD7E3C80014D729 /* DetailCollectionView.swift */,
+				4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */,
+				4624A23F2BDA7ED40014D729 /* MoreInfoSheet.swift */,
+				4624A23D2BD993800014D729 /* InfoGridView.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
@@ -156,6 +161,14 @@
 				46FE7C4F2BA9BFA400100FD1 /* OnboardingView.swift */,
 			);
 			path = WelcomeViews;
+			sourceTree = "<group>";
+		};
+		4624A23A2BD990A70014D729 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4624A23B2BD990B70014D729 /* DismissButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		462640512BA0949A00F5F22C = {
@@ -246,8 +259,6 @@
 				4624A22A2BD697A30014D729 /* WelcomeViews */,
 				46FE7C4D2BA8A65E00100FD1 /* MainTabView.swift */,
 				462640752BA0C14F00F5F22C /* HomeView.swift */,
-				462640822BA104E000F5F22C /* MovieDetailsView.swift */,
-				462640842BA104EC00F5F22C /* CharacterDetailsView.swift */,
 				4624A11B2BADF0580014D729 /* Favourites */,
 				4626407A2BA0CCC600F5F22C /* ViewModels */,
 			);
@@ -257,10 +268,10 @@
 		46FE7C572BADBA1E00100FD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4624A23A2BD990A70014D729 /* Buttons */,
 				46FE7C552BADBA1600100FD1 /* ContentUnavailableView.swift */,
 				462640882BA46FAB00F5F22C /* ReusableGridView.swift */,
 				4624A2262BD6968B0014D729 /* DetailsView */,
-				4624A2382BD97B790014D729 /* DescriptionViewGeneric.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -350,11 +361,11 @@
 				46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */,
 				4624A1562BC01D0F0014D729 /* HapticsManager.swift in Sources */,
 				46FE7C562BADBA1600100FD1 /* ContentUnavailableView.swift in Sources */,
+				4624A2402BDA7ED40014D729 /* MoreInfoSheet.swift in Sources */,
 				4624A1512BB49AE10014D729 /* SoundManager.swift in Sources */,
 				4624A2302BD7D9550014D729 /* PreviewProvider.swift in Sources */,
 				46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */,
 				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
-				462640852BA104EC00F5F22C /* CharacterDetailsView.swift in Sources */,
 				46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */,
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,
 				462640762BA0C14F00F5F22C /* HomeView.swift in Sources */,
@@ -362,7 +373,7 @@
 				462640872BA1F12C00F5F22C /* DetailsViewModel.swift in Sources */,
 				4624A2372BD7E3C80014D729 /* DetailCollectionView.swift in Sources */,
 				4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */,
-				462640832BA104E000F5F22C /* MovieDetailsView.swift in Sources */,
+				4624A23C2BD990B70014D729 /* DismissButton.swift in Sources */,
 				4624A11A2BADEF9E0014D729 /* NoItemsView.swift in Sources */,
 				46FE7C4A2BA8A28F00100FD1 /* FavouritesListRow.swift in Sources */,
 				462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */,
@@ -372,6 +383,7 @@
 				4624A15A2BC18B3D0014D729 /* CharacterModel.swift in Sources */,
 				4624A15C2BC1962C0014D729 /* APIManager.swift in Sources */,
 				462640732BA0977500F5F22C /* Constants.swift in Sources */,
+				4624A23E2BD993800014D729 /* InfoGridView.swift in Sources */,
 				4624A1582BC0213A0014D729 /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

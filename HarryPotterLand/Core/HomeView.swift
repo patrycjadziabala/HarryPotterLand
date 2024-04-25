@@ -11,7 +11,7 @@ import CachedAsyncImage
 struct HomeView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
-
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack (spacing: 5) {
@@ -32,7 +32,7 @@ struct HomeView: View {
                     LazyHStack {
                         ForEach(homeViewModel.characters, id: \.id) { character in
                             NavigationLink {
-                                DetailsView(viewType: .characterDetails, viewModel: DetailsViewModel(model: character), character: character)
+                                DetailsView(viewType: .characterDetails, character: character)
                             } label: {
                                 DetailCollectionView(character: character)
                             }

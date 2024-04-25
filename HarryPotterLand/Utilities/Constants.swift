@@ -29,8 +29,22 @@ struct Constants {
     static let next = "Next"
     static let alertName = "Your name must be at least 3 characters long 😬"
     static let alertGender = "Please select gender 😬"
+    static let student = "Student"
+    static let staff = "Staff"
     static let home = "Home"
     static let fav = "Fav"
+    static let house = "House:"
+    static let species = "Species:"
+    static let alive = "Alive:"
+    static let dateOfBirth = "DOB:"
+    static let actor = "Actor:"
+    static let eyeColor = "Eye color:"
+    static let hairColor = "Hair color:"
+    static let ancestry = "Ancestry:"
+    static let patronus = "Patronus:"
+    static let wizard = "Wizard:"
+    static let scrollUp = "Scroll up for more info ⇧"
+    static let na = "N/A"
     
     // MARK: - Images
     static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")

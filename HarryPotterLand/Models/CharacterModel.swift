@@ -26,8 +26,10 @@ struct CharacterModel: Identifiable, Codable {
     let actor: String
     let alive: Bool
     let image: String
+    var houseLogo: String {
+        "logo\(house.capitalized)"
+    }
 }
-
 struct WandModel: Codable {
     let wood: String
     let core: String

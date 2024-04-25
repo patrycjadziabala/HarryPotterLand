@@ -13,13 +13,11 @@ struct DescriptionViewGeneric<Content: View>: View {
     let viewType: ViewType
     let name: String
     let image: String
-    let description: String
     let content: Content
     
-    init(viewType: ViewType, name: String, image: String, description: String, @ViewBuilder content: () -> Content) {
+    init(viewType: ViewType, name: String, image: String, @ViewBuilder content: () -> Content) {
         self.name = name
         self.image = image
-        self.description = description
         self.content = content()
         self.viewType = viewType
     }
@@ -38,17 +36,18 @@ struct DescriptionViewGeneric<Content: View>: View {
                         } placeholder: {
                             ProgressView()
                         }
-                        Text(description)
+                        content
                             .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
                     }
                 }
+                
             case .characterDetails:
                 VStack {
                     Text(name)
                         .font(Font.custom(Constants.fontHP, size: 100))
                     HStack {
-                        Text(description)
-                            .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
+                        content
+                            .withCustomTitleTextFormatting(fontSize: 15)
                         CachedAsyncImage(url: URL(string: image)) { image in
                             image
                                 .withCustomImageModifier(frameWidth: 150)
@@ -59,7 +58,6 @@ struct DescriptionViewGeneric<Content: View>: View {
                     }
                 }
             }
-            content
         }
     }
 }
