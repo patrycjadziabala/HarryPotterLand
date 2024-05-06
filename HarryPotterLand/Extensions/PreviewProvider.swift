@@ -43,4 +43,29 @@ class DeveloperPreview {
         alive: true,
         image: "https://ik.imagekit.io/hpapi/harry.jpg"
     )
+    
+    let movie = MovieModel(
+        backdropPath: "/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+        budget: 165000000,
+        genres: [],
+        homepage: "http://www.interstellarmovie.net/",
+        id: 123,
+        imdbID: "4567",
+        originCountry: [],
+        originalLanguage: "en",
+        originalTitle: "Interstellar",
+        overview: "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+        popularity: 388.876,
+        posterPath: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+        releaseDate: "2014-11-05",
+        revenue: 701729206,
+        runtime: 169,
+        spokenLanguages: [],
+        status: "Released",
+        tagline: "Mankind was born on Earth. It was never meant to die here.",
+        title: "Interstellar",
+        video: false,
+        voteAverage: 8.433,
+        voteCount: 34189
+    )
 }

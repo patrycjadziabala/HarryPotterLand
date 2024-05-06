@@ -29,7 +29,11 @@ struct CharacterModel: Identifiable, Codable {
     var houseLogo: String {
         "logo\(house.capitalized)"
     }
+    var webFandom: String {
+        "https://harrypotter.fandom.com/wiki/\(String(describing: name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)?.components(separatedBy: "_")))"
+    }
 }
+
 struct WandModel: Codable {
     let wood: String
     let core: String

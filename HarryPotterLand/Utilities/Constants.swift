@@ -45,6 +45,8 @@ struct Constants {
     static let wizard = "Wizard:"
     static let scrollUp = "Scroll up for more info ⇧"
     static let na = "N/A"
+    static let explore = "Explore 👇🏻🌎"
+    static let fandom = "Fandom"
     
     // MARK: - Images
     static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")
@@ -80,4 +82,14 @@ struct Constants {
     
     //MARK: - Fonts
     static let fontHP = "HarryP"
+    
+    //MARK: - Hp Movie Ids
+    static let idHP1 = "671"
+    static let idHP2 = "672"
+    static let idHP3 = "673"
+    static let idHP4 = "674"
+    static let idHP5 = "675"
+    static let idHP6 = "676"
+    static let idHP7 = "677"
+    static let idHP8 = "678"
 }

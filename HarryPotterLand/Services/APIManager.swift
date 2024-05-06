@@ -8,7 +8,10 @@
 import Foundation
 
 protocol APIManagerProtocol {
-    func fetchCharacters() async throws -> [CharacterModel]?
+    func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]?
+    func fetchData<T: Codable>(url: String) async throws -> T?
+    func getImageUrlFromTMBD(model: MovieModel?, imageSize: ImageSize) -> String?
+    func fetchCharactersFromHpAPI() async throws -> [CharacterModel]?
 }
 
 enum NetworkError: Error {
@@ -19,9 +22,102 @@ enum NetworkError: Error {
     case failedToDecodeResponse
 }
 
+enum Endpoint: String {
+    case movie
+    case person
+}
+
+enum ImageSize: String {
+    case small = "100"
+    case medium = "200"
+    case large = "500"
+}
+
 class APIManager: APIManagerProtocol {
     
-    func fetchCharacters() async throws -> [CharacterModel]? {
+    // URLs
+    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    
+    /*
+     https://api.themoviedb.org/3/movie/672?api_key=29d1eac12ae7da1b5df0ba13aca09837
+     https://api.themoviedb.org/3/movie/157336/videos?api_key=29d1eac12ae7da1b5df0ba13aca09837
+     */
+    
+    private func buildUrlStringForTMDB(for endpoint: Endpoint, id: String?) -> String? {
+        let urlString = tMDBbURLString.replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
+            .replacingOccurrences(of: "<id>", with: id ?? "")
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let urlString = urlString else {
+            return nil
+        }
+        return urlString
+    }
+    
+    private func buildUrlStringForTMDB(for endpoint: Endpoint) -> String? {
+        let urlString = tMDBbURLString.replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let urlString = urlString else {
+            return nil
+        }
+        return urlString
+    }
+    
+    // TMDB-API
+  
+    func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]? {
+        let urlString: String
+        if let id = id {
+            guard let url = buildUrlStringForTMDB(for: endpoint, id: id) else {
+                throw NetworkError.invalidURL
+            }
+            urlString = url
+        } else {
+            guard let url = buildUrlStringForTMDB(for: endpoint) else {
+                throw NetworkError.invalidURL
+            }
+            urlString = url
+            print(urlString)
+            print(url)
+        }
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidURL
+        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse else {
+            throw NetworkError.badResponse
+        }
+        guard response.statusCode >= 200 && response.statusCode < 300 else {
+            throw NetworkError.badStatus
+        }
+        guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data) else {
+            throw NetworkError.failedToDecodeResponse
+        }
+        return [decodedResponse]
+    }
+    
+    func fetchData<T: Codable>(url: String) async throws -> T? {
+        guard let url = URL(string: url) else {
+            throw NetworkError.invalidURL
+        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse else {
+            throw NetworkError.badResponse
+        }
+        guard response.statusCode >= 200 && response.statusCode < 300 else {
+            throw NetworkError.badStatus
+        }
+        guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data) else {
+            throw NetworkError.failedToDecodeResponse
+        }
+        return decodedResponse
+    }
+    
+    func getImageUrlFromTMBD(model: MovieModel?, imageSize: ImageSize) -> String? {
+        "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    }
+    
+    // HP-API
+    func fetchCharactersFromHpAPI() async throws -> [CharacterModel]? {
         guard let url = URL(string: "https://hp-api.onrender.com/api/characters") else {
             throw NetworkError.invalidURL
         }

@@ -14,6 +14,7 @@ import SwiftUI
     let imageLoader = ImageLoaderManager()
     var apiManager: APIManagerProtocol = APIManager()
     @Published var characters: [CharacterModel] = []
+    @Published var movies: [MovieModel] = []
     
     func fetchHogwartsCastleImage() async {
         let image = try? await imageLoader.fetchHogwartsCastleImage()
@@ -23,9 +24,21 @@ import SwiftUI
     }
     
     func fetchCharacters() async throws {
-        guard let downloadedData: [CharacterModel] = try await apiManager.fetchCharacters() else {
+        guard let downloadedData: [CharacterModel] = try await apiManager.fetchCharactersFromHpAPI() else {
             return
         }
         characters = downloadedData
+    }
+    
+    func fetchMovieDetails() async throws {
+        guard let downloadedData1: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP1),
+              let downloadedData2: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP2),
+              let downloadedData3: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP3)
+        else {
+            return
+        }
+        movies.append(contentsOf: downloadedData1)
+        movies.append(contentsOf: downloadedData2)
+        movies.append(contentsOf: downloadedData3)
     }
 }

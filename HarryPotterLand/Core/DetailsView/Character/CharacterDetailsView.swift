@@ -1,5 +1,5 @@
 //
-//  DetailsView.swift
+//  CharacterDetailsView.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 12/03/2024.
@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct DetailsView: View {
+struct CharacterDetailsView: View {
     
     //MARK: Properties
-    @State var viewType: ViewType
-    //    @StateObject var viewModel: DetailsViewModel
+    @StateObject var viewModel: CharacterDetailsViewModel
     @State var showSheet: Bool = false
     @State var expand: Bool = false
     let character: CharacterModel
@@ -21,7 +20,7 @@ struct DetailsView: View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 DescriptionViewGeneric(
-                    viewType: viewType,
+                    viewType: .characterDetails,
                     name: character.name,
                     image: character.image
                 )
@@ -29,10 +28,8 @@ struct DetailsView: View {
                     infoGridView
                 }
                 moreInformationButton()
-                Text(
-                    viewType == .characterDetails ? Constants.titleMoviesCollection : Constants.titleCharacters
-                )
-                .withCustomTitleTextFormatting()
+                Text(Constants.titleCharacters)
+                    .withCustomTitleTextFormatting()
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
                 Text("See more button")
@@ -53,11 +50,11 @@ struct DetailsView: View {
 
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(viewType: .characterDetails, character: dev.character)
+        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character), character: dev.character)
     }
 }
 
-extension DetailsView {
+extension CharacterDetailsView {
     
     private var infoGridView: some View {
         InfoGridView(
@@ -82,7 +79,7 @@ extension DetailsView {
     }
     
     private var moreInfoSheet: some View {
-        MoreInfoSheet(houseLogo: character.houseLogo, studentStatus: character.hogwartsStudent ? Constants.student : Constants.staff, character: character)
+        MoreInfoSheet(houseLogo: character.houseLogo, studentStatus: character.hogwartsStudent ? Constants.student : Constants.staff, websiteUrlString: viewModel.buildUrlForCharacterFandom(character: character), character: character)
             .presentationDetents([.medium, .large])
     }
     

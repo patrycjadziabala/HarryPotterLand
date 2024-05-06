@@ -21,6 +21,8 @@ struct HomeView: View {
                         .scaledToFit()
                         .padding(.bottom)
                 }
+                
+            
                 //                Text(Constants.titleMoviesCollection)
                 //                    .withCustomTitleTextFormatting()
                 
@@ -32,17 +34,30 @@ struct HomeView: View {
                     LazyHStack {
                         ForEach(homeViewModel.characters, id: \.id) { character in
                             NavigationLink {
-                                DetailsView(viewType: .characterDetails, character: character)
+                                CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: character), character: character)
                             } label: {
                                 DetailCollectionView(character: character)
                             }
                         }
                     }
                 }
+                Spacer()
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    LazyHStack {
+//                        ForEach(homeViewModel.movies, id: \.id) { movie in
+//                            NavigationLink {
+//                                DetailsView(viewType: .movieDetails, viewModel: DetailsViewModel(model: movie), character: movie)
+//                            } label: {
+//                                DetailCollectionView(character: movie)
+//                            }
+//                        }
+//                    }
+//                }          
             }
             .onAppear {
                 Task {
-                    fetchCharacters()
+                    fetchData()
+                
                 }
             }
         }
@@ -61,11 +76,12 @@ struct HomeView_Previews: PreviewProvider {
 
 extension HomeView {
     
-    private func fetchCharacters() {
+    private func fetchData() {
         Task {
             do {
                 try await homeViewModel.fetchCharacters()
                 await homeViewModel.fetchHogwartsCastleImage()
+                try await homeViewModel.fetchMovieDetails()
             } catch {
                 
             }
