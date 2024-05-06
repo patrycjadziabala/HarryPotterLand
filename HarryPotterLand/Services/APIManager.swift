@@ -10,7 +10,6 @@ import Foundation
 protocol APIManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]?
     func fetchData<T: Codable>(url: String) async throws -> T?
-    func getImageUrlFromTMBD(model: MovieModel?, imageSize: ImageSize) -> String?
     func fetchCharactersFromHpAPI() async throws -> [CharacterModel]?
 }
 
@@ -25,12 +24,6 @@ enum NetworkError: Error {
 enum Endpoint: String {
     case movie
     case person
-}
-
-enum ImageSize: String {
-    case small = "100"
-    case medium = "200"
-    case large = "500"
 }
 
 class APIManager: APIManagerProtocol {
@@ -76,8 +69,6 @@ class APIManager: APIManagerProtocol {
                 throw NetworkError.invalidURL
             }
             urlString = url
-            print(urlString)
-            print(url)
         }
         guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
@@ -110,10 +101,6 @@ class APIManager: APIManagerProtocol {
             throw NetworkError.failedToDecodeResponse
         }
         return decodedResponse
-    }
-    
-    func getImageUrlFromTMBD(model: MovieModel?, imageSize: ImageSize) -> String? {
-        "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     }
     
     // HP-API

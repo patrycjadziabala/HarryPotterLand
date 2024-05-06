@@ -10,7 +10,6 @@ import Foundation
 class CharacterDetailsViewModel: ObservableObject {
     
     let model: CharacterModel
-    var fandomUrl: String = ""
     
     init(model: CharacterModel) {
         self.model = model
@@ -24,6 +23,5 @@ class CharacterDetailsViewModel: ObservableObject {
             return nil
         }
         return urlString
-        fandomUrl = urlString
     }
 }

@@ -89,7 +89,7 @@ struct Constants {
     static let idHP3 = "673"
     static let idHP4 = "674"
     static let idHP5 = "675"
-    static let idHP6 = "676"
-    static let idHP7 = "677"
-    static let idHP8 = "678"
+    static let idHP6 = "767"
+    static let idHP7 = "12444"
+    static let idHP8 = "12445"
 }

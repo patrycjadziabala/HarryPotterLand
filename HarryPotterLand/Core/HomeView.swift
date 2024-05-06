@@ -22,7 +22,7 @@ struct HomeView: View {
                         .padding(.bottom)
                 }
                 
-            
+                
                 //                Text(Constants.titleMoviesCollection)
                 //                    .withCustomTitleTextFormatting()
                 
@@ -34,30 +34,46 @@ struct HomeView: View {
                     LazyHStack {
                         ForEach(homeViewModel.characters, id: \.id) { character in
                             NavigationLink {
-                                CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: character), character: character)
+                                CharacterDetailsView(
+                                    viewModel: CharacterDetailsViewModel(
+                                        model: character
+                                    ),
+                                    character: character
+                                )
                             } label: {
-                                DetailCollectionView(character: character)
+                                DetailCollectionView(
+                                    url: character.image,
+                                    title: character.name,
+                                    details: character.house,
+                                    frameWidth: 150
+                                )
                             }
                         }
                     }
                 }
                 Spacer()
-//                ScrollView(.horizontal, showsIndicators: false) {
-//                    LazyHStack {
-//                        ForEach(homeViewModel.movies, id: \.id) { movie in
-//                            NavigationLink {
-//                                DetailsView(viewType: .movieDetails, viewModel: DetailsViewModel(model: movie), character: movie)
-//                            } label: {
-//                                DetailCollectionView(character: movie)
-//                            }
-//                        }
-//                    }
-//                }          
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(homeViewModel.movies, id: \.id) { movie in
+                            NavigationLink {
+                                MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie))
+                            } label: {
+                                DetailCollectionView(
+                                    url:
+                                        homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
+                                    ,
+                                    title: movie.originalTitle ?? "Not available",
+                                    details: movie.releaseDate ?? "Unknown",
+                                    frameWidth: 150
+                                )
+                            }
+                        }
+                    }
+                }
             }
             .onAppear {
                 Task {
                     fetchData()
-                
                 }
             }
         }

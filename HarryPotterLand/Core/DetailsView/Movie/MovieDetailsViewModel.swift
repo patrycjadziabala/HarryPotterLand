@@ -14,4 +14,6 @@ class MovieDetailsViewModel: ObservableObject {
     init(model: MovieModel) {
         self.model = model
     }
+    
+ 
 }

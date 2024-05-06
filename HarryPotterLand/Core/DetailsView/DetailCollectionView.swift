@@ -10,7 +10,11 @@ import CachedAsyncImage
 
 struct DetailCollectionView: View {
     
-    let character: CharacterModel
+//    let character: CharacterModel
+    let url: String
+    let title: String
+    let details: String
+    let frameWidth: CGFloat?
     
     var body: some View {
         
@@ -20,14 +24,12 @@ struct DetailCollectionView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color.gray)
-                        
                         VStack {
-                            CachedAsyncImage(url: URL(string: character.image)) { image in
+                            CachedAsyncImage(url: URL(string: url)) { image in
                                 if #available(iOS 16.4, *) {
                                     image
                                         .resizable()
                                         .scaledToFit()
-                                    
                                         .frame(maxWidth: 150, maxHeight: 175)
                                 } else {
                                     // Fallback on earlier versions
@@ -39,11 +41,11 @@ struct DetailCollectionView: View {
                             } placeholder: {
                                 ProgressView()
                             }
-                            Text(character.name)
+                            Text(title)
                                 .font(.headline)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 4)
-                            Text(character.house)
+                            Text(details)
                                 .font(.subheadline)
                                 .padding(.bottom, 4)
                         }
@@ -53,7 +55,7 @@ struct DetailCollectionView: View {
                         axis: /*@START_MENU_TOKEN@*/(x: 0.0, y: 1.0, z: 0.0)/*@END_MENU_TOKEN@*/
                     )
                 }
-                .frame(width: 150, height: 250)
+                .frame(width: frameWidth, height: 250)
                 .shadow(radius: 10)
                 .padding()
             }
@@ -63,7 +65,12 @@ struct DetailCollectionView: View {
 
 struct DetailCollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailCollectionView(character: dev.character)
+        DetailCollectionView(
+            url: dev.character.image,
+            title: dev.character.name,
+            details: dev.character.house,
+            frameWidth: 150
+        )
     }
 }
 

@@ -13,17 +13,19 @@ struct MovieDetailsView: View {
     
     var body: some View {
         VStack {
-            DescriptionViewGeneric(
-                viewType: .movieDetails,
-                name: viewModel.model.originalTitle ?? "" ,
-                image: viewModel.model.posterPath ?? "") {
-                    
-                }
+            Text(viewModel.model.originalTitle ?? "1")
+//            DescriptionViewGeneric(
+//                viewType: .movieDetails,
+//                name: viewModel.model.originalTitle ?? "" ,
+//                image: viewModel.model.posterPath ?? "") {
+//                    
+//                }
         }   
     }
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
-    static var previews: some View {    MovieDetailsView(viewModel: MovieDetailsViewModel(model: dev.movie))
+    static var previews: some View {   
+        MovieDetailsView(viewModel: MovieDetailsViewModel(model: dev.movie))
     }
 }
