@@ -9,14 +9,13 @@ import SwiftUI
 
 @main
 struct HarryPotterLandApp: App {
-    @StateObject private var favouritesViewModel = FavouritesViewModel()
-    @StateObject private var homeViewModel = HomeViewModel()
-
+    
+    @StateObject private var favouritesManager = FavouritesManager(hapticsManager: HapticsManager())
+    
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .environmentObject(favouritesViewModel)
-                .environmentObject(homeViewModel)
+                .environmentObject(favouritesManager)
         }
     }
 }

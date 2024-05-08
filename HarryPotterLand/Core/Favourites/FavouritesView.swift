@@ -9,11 +9,11 @@ import SwiftUI
 
 struct FavouritesView: View {
     
-    @StateObject private var favouritesViewModel = FavouritesViewModel()
+    @EnvironmentObject private var favouritesManager: FavouritesManager
     
     var body: some View {
         ZStack {
-            if favouritesViewModel.characters.isEmpty && favouritesViewModel.movies.isEmpty {
+            if favouritesManager.characters.isEmpty && favouritesManager.movies.isEmpty {
                 NoItemsView()
                     .transition(AnyTransition.opacity.animation(.easeIn))
             } else {
@@ -37,7 +37,7 @@ extension FavouritesView {
     
     private var charactersSection: some View {
         Section {
-            ForEach(favouritesViewModel.characters, id: \.self) { character in
+            ForEach(favouritesManager.characters, id: \.self) { character in
                 Text(character.capitalized)
             }
             .onDelete(perform: deleteCharacter)
@@ -48,7 +48,7 @@ extension FavouritesView {
     
     private var moviesSection: some View {
         Section {
-            ForEach(favouritesViewModel.movies, id: \.self) { movie in
+            ForEach(favouritesManager.movies, id: \.self) { movie in
                 Text(movie)
             }
             .onDelete(perform: deleteMovie)
@@ -60,10 +60,10 @@ extension FavouritesView {
     // MARK: - Functions
     
     func deleteCharacter(indexSet: IndexSet) {
-        favouritesViewModel.characters.remove(atOffsets: indexSet)
+        favouritesManager.characters.remove(atOffsets: indexSet)
     }
     
     func deleteMovie(indexSet: IndexSet) {
-        favouritesViewModel.movies.remove(atOffsets: indexSet)
+        favouritesManager.movies.remove(atOffsets: indexSet)
     }
 }

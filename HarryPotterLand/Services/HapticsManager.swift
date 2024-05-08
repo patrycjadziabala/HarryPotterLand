@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 class HapticsManager {
     
     static let instance = HapticsManager()

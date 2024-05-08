@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FavouritesViewModel: ObservableObject {
+class FavouritesManager: ObservableObject {
     
     @Published var characters: [String] = [
     "Harry", "Ron", "snape"
@@ -15,14 +15,18 @@ class FavouritesViewModel: ObservableObject {
     @Published var movies: [String] = [
     "HP1", "HP5"
     ]
-    @Published var favouritesCount: Int = 0 
+    @Published var favouritesCount: Int = 0
+    private var hapticsManager: HapticsManager
+    
+    
 //    {
 //        didSet {
 //            countFavourites()
 //        }
 //    }
     
-    init() {
+    init(hapticsManager: HapticsManager) {
+        self.hapticsManager = hapticsManager
         print(favouritesCount)
         countFavourites()
         print(favouritesCount)
@@ -33,10 +37,10 @@ class FavouritesViewModel: ObservableObject {
     }
     
     func addToFavourites() {
-        HapticsManager.instance.notification(type: .success)
+        hapticsManager.notification(type: .success)
     }
     
     func removeFromFavourites() {
-        HapticsManager.instance.notification(type: .error)
+        hapticsManager.notification(type: .error)
     }
 }

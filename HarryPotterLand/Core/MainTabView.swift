@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @EnvironmentObject private var favouritesViewModel: FavouritesViewModel
+    @EnvironmentObject var favouritesManager: FavouritesManager
     
     var body: some View {
         TabView {
@@ -27,7 +27,7 @@ struct MainTabView: View {
                 Image(systemName: Constants.starFillIcon)
                 Text(Constants.fav)
             }
-            .badge(favouritesViewModel.favouritesCount)
+            .badge(favouritesManager.favouritesCount)
         }
     }
 }
@@ -35,6 +35,5 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
-            .environmentObject(FavouritesViewModel())
     }
 }
