@@ -10,7 +10,6 @@ import CachedAsyncImage
 
 struct DetailCollectionView: View {
     
-//    let character: CharacterModel
     let url: String
     let title: String
     let details: String

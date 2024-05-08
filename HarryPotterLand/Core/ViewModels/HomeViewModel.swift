@@ -53,7 +53,7 @@ import SwiftUI
     }
     
     func getImageUrlFromTMBD(model: MovieModel?, imageSize: Int) -> String? {
-       let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"
         return url
     }
 }

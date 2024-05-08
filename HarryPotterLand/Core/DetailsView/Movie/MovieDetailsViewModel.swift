@@ -15,5 +15,4 @@ class MovieDetailsViewModel: ObservableObject {
         self.model = model
     }
     
- 
 }

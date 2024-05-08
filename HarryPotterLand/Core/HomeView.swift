@@ -21,13 +21,6 @@ struct HomeView: View {
                         .scaledToFit()
                         .padding(.bottom)
                 }
-                
-                
-                //                Text(Constants.titleMoviesCollection)
-                //                    .withCustomTitleTextFormatting()
-                
-                //                    DetailCollectionView(image: character.image, name: character.name, description: character.house)
-                
                 Text(Constants.titleCharacters)
                     .withCustomTitleTextFormatting()
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -52,11 +45,13 @@ struct HomeView: View {
                     }
                 }
                 Spacer()
+                Text(Constants.titleMoviesCollection)
+                    .withCustomTitleTextFormatting()
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(homeViewModel.movies, id: \.id) { movie in
                             NavigationLink {
-                                MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie))
+                                MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie), image: homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "", movie: movie)
                             } label: {
                                 DetailCollectionView(
                                     url:

@@ -24,40 +24,35 @@ struct DescriptionViewGeneric<Content: View>: View {
     
     var body: some View {
         VStack {
-            switch viewType {
-            case .movieDetails:
-                VStack {
-                    Text(name)
-                    HStack {
-                        CachedAsyncImage(url: URL(string: image)) { image in
-                            image
-                                .withCustomImageModifier(frameWidth: 150)
-                                .padding(.trailing)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        content
-                            .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
-                    }
-                }
-                
-            case .characterDetails:
-                VStack {
-                    Text(name)
-                        .font(Font.custom(Constants.fontHP, size: 100))
-                    HStack {
-                        content
-                            .withCustomTitleTextFormatting(fontSize: 15)
-                        CachedAsyncImage(url: URL(string: image)) { image in
-                            image
-                                .withCustomImageModifier(frameWidth: 150)
-                                .padding(.trailing)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                    }
+            Text(name)
+                .font(Font.custom(Constants.fontHP, size: viewType == .characterDetails ? 70 : 50 ))
+                .frame(maxWidth: .infinity)
+                .frame(alignment: .center)
+            HStack {
+                switch viewType {
+                case .movieDetails:
+                    imageSection
+                    content
+                        .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
+                case .characterDetails:
+                    content
+                        .withCustomTitleTextFormatting(fontSize: 15)
+                    imageSection
                 }
             }
+        }
+    }
+}
+
+extension DescriptionViewGeneric {
+    
+    private var imageSection: some View {
+        CachedAsyncImage(url: URL(string: image)) { image in
+            image
+                .withCustomImageModifier(frameWidth: 200)
+                .padding(.leading)
+        } placeholder: {
+            ProgressView()
         }
     }
 }
