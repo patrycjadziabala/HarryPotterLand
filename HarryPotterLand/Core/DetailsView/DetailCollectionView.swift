@@ -24,29 +24,8 @@ struct DetailCollectionView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color.gray)
                         VStack {
-                            CachedAsyncImage(url: URL(string: url)) { image in
-                                if #available(iOS 16.4, *) {
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(maxWidth: 150, maxHeight: 175)
-                                } else {
-                                    // Fallback on earlier versions
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .cornerRadius(35)
-                                }
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            Text(title)
-                                .font(.headline)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 4)
-                            Text(details)
-                                .font(.subheadline)
-                                .padding(.bottom, 4)
+                            imageSection
+                            titleAndSubtitleSection
                         }
                     }
                     .rotation3DEffect(
@@ -74,6 +53,37 @@ struct DetailCollectionView_Previews: PreviewProvider {
 }
 
 extension DetailCollectionView {
+    
+    private var imageSection: some View {
+        CachedAsyncImage(url: URL(string: url)) { image in
+            if #available(iOS 16.4, *) {
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 150, maxHeight: 175)
+            } else {
+                // Fallback on earlier versions
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(35)
+            }
+        } placeholder: {
+            ProgressView()
+        }
+    }
+    
+    private var titleAndSubtitleSection: some View {
+        VStack {
+            Text(title)
+                .font(.headline)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 4)
+            Text(details)
+                .font(.subheadline)
+                .padding(.bottom, 4)
+        }
+    }
     
     func getPercentage(geo: GeometryProxy) -> Double {
         let maxDistance = UIScreen.main.bounds.width / 2

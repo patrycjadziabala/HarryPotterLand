@@ -13,6 +13,7 @@ struct Constants {
     static let titleHarryPotterLand = "Harry Potter Land"
     static let titleMoviesCollection = "Movies Collection"
     static let titleCharacters = "Characters"
+    static let titleMovies = "Movies"
     static let enter = "Enter"
     static let pressAndHold = "Press and hold 🎵"
     static let signIn = "Sign in"
@@ -51,6 +52,8 @@ struct Constants {
     static let na = "N/A"
     static let explore = "Explore 👇🏻🌎"
     static let fandom = "Fandom"
+    static let notAvailable = "Not available"
+    static let unknown = "Unknown"
     
     // MARK: - Images
     static let hogwartsCastleImageUrl = URL(string: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hogwarts_-_Wizarding_World_of_Harry_Potter_-_Hollywood.jpg")

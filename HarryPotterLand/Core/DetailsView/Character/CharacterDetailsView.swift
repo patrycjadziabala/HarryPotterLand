@@ -19,22 +19,13 @@ struct CharacterDetailsView: View {
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
-                DescriptionViewGeneric(
-                    viewType: .characterDetails,
-                    name: character.name,
-                    image: character.image
-                )
-                {
-                    infoGridView
-                }
+                topSection
                 moreInformationButton()
-                Text(Constants.titleCharacters)
+                Text(Constants.titleMoviesCollection)
                     .withCustomTitleTextFormatting()
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
-                Text("See more button")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.trailing)
+                seeMoreButton
             }
         }
         .background(
@@ -55,6 +46,17 @@ struct ReusableDetailsView_Previews: PreviewProvider {
 }
 
 extension CharacterDetailsView {
+    
+    private var topSection: some View {
+        DescriptionViewGeneric(
+            viewType: .characterDetails,
+            name: character.name,
+            image: character.image
+        )
+        {
+            infoGridView
+        }
+    }
     
     private var infoGridView: some View {
         InfoGridView(
@@ -92,5 +94,11 @@ extension CharacterDetailsView {
             Text("More information")
                 .buttonBorderShape(.roundedRectangle)
         }
+    }
+    
+    private var seeMoreButton: some View {
+        Text("See more button")
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.trailing)
     }
 }

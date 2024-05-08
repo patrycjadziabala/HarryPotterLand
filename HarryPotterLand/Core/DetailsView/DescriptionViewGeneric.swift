@@ -24,10 +24,7 @@ struct DescriptionViewGeneric<Content: View>: View {
     
     var body: some View {
         VStack {
-            Text(name)
-                .font(Font.custom(Constants.fontHP, size: viewType == .characterDetails ? 70 : 50 ))
-                .frame(maxWidth: .infinity)
-                .frame(alignment: .center)
+            nameSection
             HStack {
                 switch viewType {
                 case .movieDetails:
@@ -45,6 +42,13 @@ struct DescriptionViewGeneric<Content: View>: View {
 }
 
 extension DescriptionViewGeneric {
+    
+    private var nameSection: some View {
+        Text(name)
+            .font(Font.custom(Constants.fontHP, size: viewType == .characterDetails ? 70 : 50 ))
+            .frame(maxWidth: .infinity)
+            .frame(alignment: .center)
+    }
     
     private var imageSection: some View {
         CachedAsyncImage(url: URL(string: image)) { image in
