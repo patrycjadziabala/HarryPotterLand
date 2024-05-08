@@ -25,7 +25,7 @@ struct MoreInfoSheet: View {
                 websiteSection
                     .padding()
                 Spacer()
-                Text(Constants.scrollUp)
+                Text(Constants.Titles.scrollUp)
             }
         }
     }
@@ -61,12 +61,12 @@ extension MoreInfoSheet {
     
     private var middleSection: some View {
         InfoGridView(
-            title1: Constants.actor,
-            title2: Constants.eyeColor,
-            title3: Constants.hairColor,
-            title4: Constants.ancestry,
-            title5: Constants.patronus,
-            title6: Constants.wizard,
+            title1: Constants.Titles.actor,
+            title2: Constants.Titles.eyeColor,
+            title3: Constants.Titles.hairColor,
+            title4: Constants.Titles.ancestry,
+            title5: Constants.Titles.patronus,
+            title6: Constants.Titles.wizard,
             info1: character.actor,
             info2: character.eyeColour,
             info3: character.hairColour,
@@ -80,11 +80,11 @@ extension MoreInfoSheet {
     
     private var websiteSection: some View {
         VStack (alignment: .leading, spacing: 10) {
-            Text(Constants.explore)
+            Text(Constants.Titles.explore)
             Spacer(minLength: 4)
             if let websiteString = websiteUrlString,
                let url = URL(string: websiteString) {
-                Link(Constants.fandom, destination: url)
+                Link(Constants.Titles.fandom, destination: url)
             }
         }
         .accentColor(.blue)

@@ -21,7 +21,7 @@ struct CharacterDetailsView: View {
             VStack (spacing: 25) {
                 topSection
                 moreInformationButton()
-                Text(Constants.titleMoviesCollection)
+                Text(Constants.Titles.titleMoviesCollection)
                     .withCustomTitleTextFormatting()
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
@@ -60,10 +60,10 @@ extension CharacterDetailsView {
     
     private var infoGridView: some View {
         InfoGridView(
-            title1: Constants.house,
-            title2: Constants.species,
-            title3: Constants.alive,
-            title4: Constants.dateOfBirth,
+            title1: Constants.Titles.house,
+            title2: Constants.Titles.species,
+            title3: Constants.Titles.alive,
+            title4: Constants.Titles.dateOfBirth,
             title5: nil,
             title6: nil,
             info1: character.house,
@@ -72,7 +72,7 @@ extension CharacterDetailsView {
             info4: character.dateOfBirth?
                 .replacingOccurrences(of: "-", with: "/")
                 .replacingOccurrences(of: "19", with: "")
-            ?? Constants.na,
+            ?? Constants.Titles.na,
             info5: nil,
             info6: nil,
             font: .callout,
@@ -81,7 +81,7 @@ extension CharacterDetailsView {
     }
     
     private var moreInfoSheet: some View {
-        MoreInfoSheet(houseLogo: character.houseLogo, studentStatus: character.hogwartsStudent ? Constants.student : Constants.staff, websiteUrlString: viewModel.buildUrlForCharacterFandom(character: character), character: character)
+        MoreInfoSheet(houseLogo: character.houseLogo, studentStatus: character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff, websiteUrlString: viewModel.buildUrlForCharacterFandom(character: character), character: character)
             .presentationDetents([.medium, .large])
     }
     

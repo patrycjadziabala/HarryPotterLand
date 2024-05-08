@@ -22,7 +22,7 @@ class ImageLoaderManager {
     }
     
     func fetchHogwartsCastleImage() async throws -> UIImage? {
-        guard let hogwartsCastleImage = Constants.hogwartsCastleImageUrl else {
+        guard let hogwartsCastleImage = Constants.Images.hogwartsCastleImageUrl else {
             return nil
         }
         do {

@@ -45,7 +45,7 @@ extension DescriptionViewGeneric {
     
     private var nameSection: some View {
         Text(name)
-            .font(Font.custom(Constants.fontHP, size: viewType == .characterDetails ? 70 : 50 ))
+            .font(Font.custom(Constants.Fonts.fontHP, size: viewType == .characterDetails ? 70 : 50 ))
             .frame(maxWidth: .infinity)
             .frame(alignment: .center)
     }

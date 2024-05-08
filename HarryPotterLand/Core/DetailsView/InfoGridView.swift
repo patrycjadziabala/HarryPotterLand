@@ -37,12 +37,12 @@ struct InfoGridView: View {
 struct  InfoGridView_Previews: PreviewProvider {
     static var previews: some View {
         InfoGridView(
-            title1: Constants.actor,
-            title2: Constants.eyeColor,
-            title3: Constants.hairColor,
-            title4: Constants.ancestry,
-            title5: Constants.patronus,
-            title6: Constants.wizard,
+            title1: Constants.Titles.actor,
+            title2: Constants.Titles.eyeColor,
+            title3: Constants.Titles.hairColor,
+            title4: Constants.Titles.ancestry,
+            title5: Constants.Titles.patronus,
+            title6: Constants.Titles.wizard,
             info1: dev.character.actor,
             info2: dev.character.eyeColour,
             info3: dev.character.hairColour,

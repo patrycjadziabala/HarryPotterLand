@@ -17,15 +17,15 @@ struct MainTabView: View {
                 HomeView()
             }
             .tabItem {
-                Image(systemName: Constants.homeIcon)
-                Text(Constants.home)
+                Image(systemName: Constants.Images.homeIcon)
+                Text(Constants.Titles.home)
             }
             NavigationStack {
                 FavouritesView()
             }
             .tabItem {
-                Image(systemName: Constants.starFillIcon)
-                Text(Constants.fav)
+                Image(systemName: Constants.Images.starFillIcon)
+                Text(Constants.Titles.fav)
             }
             .badge(favouritesManager.favouritesCount)
         }

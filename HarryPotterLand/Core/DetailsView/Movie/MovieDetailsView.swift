@@ -53,10 +53,10 @@ extension MovieDetailsView {
     
     private var infoGridView: some View {
         InfoGridView(
-            title1: Constants.releaseDate,
-            title2: Constants.originCountry,
-            title3: Constants.budget,
-            title4: Constants.rating,
+            title1: Constants.Titles.releaseDate,
+            title2: Constants.Titles.originCountry,
+            title3: Constants.Titles.budget,
+            title4: Constants.Titles.rating,
             title5: nil,
             title6: nil,
             info1: movie.releaseDate?

@@ -64,14 +64,14 @@ extension WelcomeView {
     }
     
     var titleView: some View {
-        Text(Constants.titleHarryPotterLand)
-            .font(Font.custom(Constants.fontHP, size: 100))
+        Text(Constants.Titles.titleHarryPotterLand)
+            .font(Font.custom(Constants.Fonts.fontHP, size: 100))
             .kerning(2)
             .multilineTextAlignment(.center)
     }
     
     private var imageView: some View {
-        Image(Constants.hogwartsCastleCartoon)
+        Image(Constants.Images.hogwartsCastleCartoon)
             .withCustomImageModifier(frameWidth: 155)
             .cornerRadius(90)
     }
@@ -86,7 +86,7 @@ extension WelcomeView {
                 .frame(width: 75, height: 75)
                 .shadow(radius: 10)
                 .overlay(
-                    Text(Constants.pressAndHold)
+                    Text(Constants.Titles.pressAndHold)
                         .multilineTextAlignment(.center)
                 )
                 .onLongPressGesture(minimumDuration: 0.3) {
@@ -114,7 +114,7 @@ extension WelcomeView {
                         .frame(width: 75, height: 75)
                         .shadow(radius: 10)
                         .overlay(
-                            Text(Constants.enter)
+                            Text(Constants.Titles.enter)
                         )
                 }
             }

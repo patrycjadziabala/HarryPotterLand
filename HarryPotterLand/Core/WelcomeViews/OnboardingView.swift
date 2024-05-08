@@ -79,9 +79,9 @@ struct OnboardingView_Previews: PreviewProvider {
 extension OnboardingView {
     
     private var bottomButton: some View {
-        Text(onboardingState == 0 ? Constants.signIn :
-                onboardingState == 3 ? Constants.finish :
-                Constants.next)
+        Text(onboardingState == 0 ? Constants.Titles.signIn :
+                onboardingState == 3 ? Constants.Titles.finish :
+                Constants.Titles.next)
         .font(.headline)
         .foregroundColor(.purple)
         .frame(height: 55)
@@ -96,15 +96,15 @@ extension OnboardingView {
     private var welcomeScreen: some View {
         VStack(spacing: 40) {
             Spacer()
-            Text(Constants.welcomeToHPWorld)
-                .font(.custom(Constants.fontHP, size: 55))
+            Text(Constants.Titles.welcomeToHPWorld)
+                .font(.custom(Constants.Fonts.fontHP, size: 55))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .foregroundColor(.white)
-            Image(Constants.hogwartsCastleCartoon)
+            Image(Constants.Images.hogwartsCastleCartoon)
                 .withCustomImageModifier(frameWidth: 350)
                 .cornerRadius(35)
-            Text(Constants.pleaseSignIn)
+            Text(Constants.Titles.pleaseSignIn)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
@@ -116,11 +116,11 @@ extension OnboardingView {
     private var addNameSection: some View {
         VStack (spacing: 20) {
             Spacer()
-            Text(Constants.pleaseEnterYourName)
+            Text(Constants.Titles.pleaseEnterYourName)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
-            TextField(Constants.yourName, text: $name)
+            TextField(Constants.Titles.yourName, text: $name)
                 .focused($nameFieldInFocus)
                 .font(.headline)
                 .frame(height: 55)
@@ -136,7 +136,7 @@ extension OnboardingView {
     private var addAgeSection: some View {
         VStack (spacing: 20) {
             Spacer()
-            Text(Constants.pleaseEnterYourAge)
+            Text(Constants.Titles.pleaseEnterYourAge)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
@@ -155,14 +155,14 @@ extension OnboardingView {
     private var addGenderSection: some View {
         VStack (spacing: 20) {
             Spacer()
-            Text(Constants.pleaseSelectYourGender)
+            Text(Constants.Titles.pleaseSelectYourGender)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             Picker(selection: $gender) {
-                Text(Constants.male).tag("Male")
-                Text(Constants.female).tag("Female")
-                Text(Constants.nonbinary).tag("Non-Binary")
+                Text(Constants.Titles.male).tag("Male")
+                Text(Constants.Titles.female).tag("Female")
+                Text(Constants.Titles.nonbinary).tag("Non-Binary")
             } label: {
                 Text(gender.count > 1 ? gender : "Select a gender")
                     .font(.headline)
@@ -185,12 +185,12 @@ extension OnboardingView {
         case 1:
             guard name.count >= 3 else {
                 nameFieldInFocus = true
-                showAlert(title: Constants.alertName)
+                showAlert(title: Constants.Titles.alertName)
                 return
             }
         case 3:
             guard gender.count > 1 else {
-                showAlert(title: Constants.alertGender)
+                showAlert(title: Constants.Titles.alertGender)
                 return
             }
         default:

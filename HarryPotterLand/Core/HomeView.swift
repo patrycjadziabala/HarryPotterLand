@@ -53,7 +53,7 @@ extension HomeView {
     
     private var charactersSection: some View {
         VStack {
-            Text(Constants.titleCharacters)
+            Text(Constants.Titles.titleCharacters)
                 .withCustomTitleTextFormatting()
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
@@ -81,7 +81,7 @@ extension HomeView {
     
     private var moviesSection: some View {
         VStack {
-            Text(Constants.titleMoviesCollection)
+            Text(Constants.Titles.titleMoviesCollection)
                 .withCustomTitleTextFormatting()
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
@@ -93,8 +93,8 @@ extension HomeView {
                                 url:
                                     homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
                                 ,
-                                title: movie.originalTitle ?? Constants.notAvailable,
-                                details: movie.releaseDate ?? Constants.unknown,
+                                title: movie.originalTitle ?? Constants.Titles.notAvailable,
+                                details: movie.releaseDate ?? Constants.Titles.unknown,
                                 frameWidth: 150
                             )
                         }

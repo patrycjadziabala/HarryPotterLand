@@ -31,14 +31,14 @@ import SwiftUI
     }
     
     func fetchMovieDetails() async throws {
-        guard let downloadedData1: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP1),
-              let downloadedData2: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP2),
-              let downloadedData3: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP3),
-              let downloadedData4: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP4),
-              let downloadedData5: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP5),
-              let downloadedData6: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP6),
-              let downloadedData7: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP7),
-              let downloadedData8: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.idHP8)
+        guard let downloadedData1: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP1),
+              let downloadedData2: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP2),
+              let downloadedData3: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP3),
+              let downloadedData4: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP4),
+              let downloadedData5: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP5),
+              let downloadedData6: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP6),
+              let downloadedData7: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP7),
+              let downloadedData8: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP8)
         else {
             return
         }

@@ -42,7 +42,7 @@ extension FavouritesView {
             }
             .onDelete(perform: deleteCharacter)
         } header: {
-            Text(Constants.titleCharacters)
+            Text(Constants.Titles.titleCharacters)
         }
     }
     
@@ -53,7 +53,7 @@ extension FavouritesView {
             }
             .onDelete(perform: deleteMovie)
         } header: {
-            Text(Constants.titleMovies)
+            Text(Constants.Titles.titleMovies)
         }
     }
     
