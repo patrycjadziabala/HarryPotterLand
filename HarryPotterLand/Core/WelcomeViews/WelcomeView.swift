@@ -80,6 +80,8 @@ extension WelcomeView {
         
         @State private var isPressingDown: Bool = false
         
+        private var soundManager = SoundManager()
+        
         var body: some View {
             Capsule()
                 .fill(Color.white)
@@ -90,13 +92,13 @@ extension WelcomeView {
                         .multilineTextAlignment(.center)
                 )
                 .onLongPressGesture(minimumDuration: 0.3) {
-                    SoundManager.instance.playSound()
+                    soundManager.playSound()
                     print("started")
                 }
                 .simultaneousGesture(
                     DragGesture(minimumDistance: 0)
                         .onEnded{ _ in
-                            SoundManager.instance.stopSound()
+                            soundManager.stopSound()
                         }
                 )
         }

@@ -18,7 +18,6 @@ class FavouritesManager: ObservableObject {
     @Published var favouritesCount: Int = 0
     private var hapticsManager: HapticsManager
     
-    
 //    {
 //        didSet {
 //            countFavourites()

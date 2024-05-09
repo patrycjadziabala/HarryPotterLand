@@ -49,7 +49,7 @@ extension MoreInfoSheet {
                 .withCustomImageModifier(frameWidth: 55)
                 .padding()
             
-            Text(character.hogwartsStudent ? "Student" : "Staff")
+            Text(character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff)
                 .frame(maxWidth: .infinity)
                 .withCustomTitleTextFormatting(fontSize: 30, alignment: .center)
             
