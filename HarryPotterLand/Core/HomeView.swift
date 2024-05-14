@@ -63,11 +63,13 @@ extension HomeView {
                                 viewModel: CharacterDetailsViewModel(
                                     model: character
                                 ),
-                                character: character
+                                character: character,
+                                movies: homeViewModel.movies
                             )
                         } label: {
+                    
                             DetailCollectionView(
-                                url: character.image,
+                                imageUrl: character.image,
                                 title: character.name,
                                 details: character.house,
                                 frameWidth: 150
@@ -90,7 +92,7 @@ extension HomeView {
                             MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie), image: homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "", movie: movie)
                         } label: {
                             DetailCollectionView(
-                                url:
+                                imageUrl:
                                     homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
                                 ,
                                 title: movie.originalTitle ?? Constants.Titles.notAvailable,

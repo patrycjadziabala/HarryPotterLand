@@ -26,9 +26,9 @@ class FavouritesManager: ObservableObject {
     
     init(hapticsManager: HapticsManager) {
         self.hapticsManager = hapticsManager
-        print(favouritesCount)
+//        print(favouritesCount)
         countFavourites()
-        print(favouritesCount)
+//        print(favouritesCount)
     }
     
     func countFavourites() {

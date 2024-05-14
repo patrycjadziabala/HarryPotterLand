@@ -14,6 +14,7 @@ struct CharacterDetailsView: View {
     @State var showSheet: Bool = false
     @State var expand: Bool = false
     let character: CharacterModel
+    let movies: [MovieModel]
     
     //MARK: Main body
     var body: some View {
@@ -23,11 +24,27 @@ struct CharacterDetailsView: View {
                 moreInformationButton()
                 Text(Constants.Titles.titleMoviesCollection)
                     .withCustomTitleTextFormatting()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(viewModel.actorInMovies, id: \.id) { movie in
+                            DetailCollectionView(
+                                imageUrl: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 150) ?? "",
+                                title: movie.originalTitle,
+                                details: movie.releaseDate,
+                                frameWidth: 150
+                            )
+                        }
+                    }
+                }
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
+                Text(movies.first?.originalTitle ?? "")
                 seeMoreButton
             }
         }
+        .onAppear(perform: {
+            fetchData()
+        })
         .background(
             Color.blue
                 .opacity(0.6)
@@ -41,7 +58,7 @@ struct CharacterDetailsView: View {
 
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character), character: dev.character)
+        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character), character: dev.character, movies: [dev.movie])
     }
 }
 
@@ -100,5 +117,17 @@ extension CharacterDetailsView {
         Text("See more button")
             .frame(maxWidth: .infinity, alignment: .trailing)
             .padding(.trailing)
+    }
+    
+    //MARK: - Functions
+    
+    private func fetchData() {
+        Task {
+            do {
+                try await viewModel.getHarryPotterMoviesForActor()
+            } catch {
+               print(error.localizedDescription)
+            }
+        }
     }
 }

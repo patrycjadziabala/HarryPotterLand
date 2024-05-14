@@ -10,7 +10,7 @@ import CachedAsyncImage
 
 struct DetailCollectionView: View {
     
-    let url: String
+    let imageUrl: String
     let title: String
     let details: String
     let frameWidth: CGFloat?
@@ -44,7 +44,7 @@ struct DetailCollectionView: View {
 struct DetailCollectionView_Previews: PreviewProvider {
     static var previews: some View {
         DetailCollectionView(
-            url: dev.character.image,
+            imageUrl: dev.character.image,
             title: dev.character.name,
             details: dev.character.house,
             frameWidth: 150
@@ -55,22 +55,27 @@ struct DetailCollectionView_Previews: PreviewProvider {
 extension DetailCollectionView {
     
     private var imageSection: some View {
-        CachedAsyncImage(url: URL(string: url)) { image in
+        CachedAsyncImage(url: URL(string: imageUrl)) { image in
             if #available(iOS 16.4, *) {
                 image
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: 150, maxHeight: 175)
+                    .cornerRadius(15)
+                    .padding()
+
             } else {
                 // Fallback on earlier versions
                 image
                     .resizable()
                     .scaledToFit()
-                    .cornerRadius(35)
+                    .cornerRadius(15)
+                    .padding()
             }
         } placeholder: {
             ProgressView()
         }
+//        .clipShape(RoundedRectangle(cornerRadius: 55, style: .continuous))
     }
     
     private var titleAndSubtitleSection: some View {

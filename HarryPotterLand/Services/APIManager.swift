@@ -9,7 +9,7 @@ import Foundation
 
 protocol APIManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]?
-    func fetchData<T: Codable>(url: String) async throws -> T?
+    func fetchData<T: Codable>(url: String?, endpoint: Endpoint?, queryType: QueryType?, query: String?, actorId: String?) async throws -> T?
     func fetchCharactersFromHpAPI() async throws -> [CharacterModel]?
 }
 
@@ -24,30 +24,32 @@ enum NetworkError: Error {
 enum Endpoint: String {
     case movie
     case person
+    case search
+    case movie_credits
+}
+
+enum QueryType: String {
+    case person
 }
 
 class APIManager: APIManagerProtocol {
     
     // URLs
-    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
-    
-    /*
-     https://api.themoviedb.org/3/movie/672?api_key=29d1eac12ae7da1b5df0ba13aca09837
-     https://api.themoviedb.org/3/movie/157336/videos?api_key=29d1eac12ae7da1b5df0ba13aca09837
-     */
+    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType><id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    let tMDBbSearchURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType>?query=<query>&api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    let personMovieCreditsUrlString = "https://api.themoviedb.org/3/person/<actorId>/movie_credits?api_key=29d1eac12ae7da1b5df0ba13aca09837"
     
     private func buildUrlStringForTMDB(for endpoint: Endpoint, id: String?) -> String? {
-        let urlString = tMDBbURLString.replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
+        let urlString = tMDBbURLString
+            .replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
             .replacingOccurrences(of: "<id>", with: id ?? "")
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let urlString = urlString else {
-            return nil
-        }
         return urlString
     }
     
     private func buildUrlStringForTMDB(for endpoint: Endpoint) -> String? {
-        let urlString = tMDBbURLString.replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
+        let urlString = tMDBbURLString
+            .replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard let urlString = urlString else {
             return nil
@@ -55,10 +57,30 @@ class APIManager: APIManagerProtocol {
         return urlString
     }
     
+    private func buildUrlStringForTMDB(for endpoint: Endpoint, queryType: QueryType, query: String?) -> String? {
+        let urlString = tMDBbSearchURLString
+            .replacingOccurrences(of: "<endpoint>", with: endpoint.rawValue)
+            .replacingOccurrences(of: "<queryType>", with: queryType.rawValue)
+            .replacingOccurrences(of: "<query>", with: query ?? "")
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let urlString = urlString else {
+            return nil
+        }
+        return urlString
+    }
+    
+    private func buildUrlStringForTMDB(actorId: String?) -> String? {
+        let urlString = personMovieCreditsUrlString
+            .replacingOccurrences(of: "<actorId>", with: actorId ?? "")
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        return urlString
+    }
+    
     // TMDB-API
-  
+    
     func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]? {
         let urlString: String
+        
         if let id = id {
             guard let url = buildUrlStringForTMDB(for: endpoint, id: id) else {
                 throw NetworkError.invalidURL
@@ -86,8 +108,33 @@ class APIManager: APIManagerProtocol {
         return [decodedResponse]
     }
     
-    func fetchData<T: Codable>(url: String) async throws -> T? {
-        guard let url = URL(string: url) else {
+    func fetchData<T: Codable>(url: String?, endpoint: Endpoint?, queryType: QueryType?, query: String?, actorId: String?) async throws -> T? {
+        let urlString: String
+        
+        if let endpoint = endpoint,
+           let query = query,
+           let queryType = queryType {
+            guard let url = buildUrlStringForTMDB(
+                for: endpoint,
+                queryType: queryType,
+                query: query
+            ) else {
+                throw NetworkError.invalidURL
+            }
+            urlString = url
+        } else if let actorId = actorId {
+            guard let url = buildUrlStringForTMDB(actorId: actorId) else {
+                throw NetworkError.invalidURL
+            }
+            urlString = url
+        } else {
+           if let url = url {
+               urlString = url
+           } else {
+               throw NetworkError.invalidURL
+           }
+        }
+        guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)

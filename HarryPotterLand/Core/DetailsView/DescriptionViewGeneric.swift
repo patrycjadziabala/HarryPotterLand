@@ -54,7 +54,10 @@ extension DescriptionViewGeneric {
         CachedAsyncImage(url: URL(string: image)) { image in
             image
                 .withCustomImageModifier(frameWidth: 200)
+                .cornerRadius(15)
+                .padding()
                 .padding(viewType == .movieDetails ? .leading : .trailing)
+                
         } placeholder: {
             ProgressView()
         }
