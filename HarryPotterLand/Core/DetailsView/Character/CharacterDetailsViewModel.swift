@@ -53,7 +53,7 @@ class CharacterDetailsViewModel: ObservableObject {
     }
     
     func getImageUrlFromTMBD(model: Cast?, imageSize: Int) -> String? {
-        let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"
+        let url =  "https://image.tmdb.org/t/p/w\(imageSize)\(model?.posterPath ?? "")"
         return url
     }
 }

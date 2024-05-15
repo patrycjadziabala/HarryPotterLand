@@ -128,11 +128,11 @@ class APIManager: APIManagerProtocol {
             }
             urlString = url
         } else {
-           if let url = url {
-               urlString = url
-           } else {
-               throw NetworkError.invalidURL
-           }
+            if let url = url {
+                urlString = url
+            } else {
+                throw NetworkError.invalidURL
+            }
         }
         guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
