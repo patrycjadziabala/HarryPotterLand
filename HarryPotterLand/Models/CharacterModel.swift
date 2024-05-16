@@ -34,6 +34,24 @@ struct CharacterModel: Identifiable, Codable {
     }
 }
 
+extension CharacterModel: DetailCollectionViewProtocol {
+    var colletionViewId: String {
+        id
+    }
+    
+    var collectionViewTitle: String {
+        name
+    }
+    
+    var collectionViewDetails: String {
+        dateOfBirth ?? ""
+    }
+    
+    var collectionViewCellType: CellContentType {
+        .name
+    }
+}
+
 struct WandModel: Codable {
     let wood: String
     let core: String

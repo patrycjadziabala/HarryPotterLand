@@ -67,12 +67,10 @@ extension HomeView {
                                 movies: homeViewModel.movies
                             )
                         } label: {
-                    
                             DetailCollectionView(
+                                frameWidth: 150,
                                 imageUrl: character.image,
-                                title: character.name,
-                                details: character.house,
-                                frameWidth: 150
+                                model: character
                             )
                         }
                     }
@@ -87,17 +85,20 @@ extension HomeView {
                 .withCustomTitleTextFormatting()
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
+                    
                     ForEach(homeViewModel.movies, id: \.id) { movie in
                         NavigationLink {
-                            MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie), image: homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "", movie: movie)
+                            MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie),
+                                             image: homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
+                                             movie: movie)
                         } label: {
                             DetailCollectionView(
-                                imageUrl:
-                                    homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
-                                ,
-                                title: movie.originalTitle ?? Constants.Titles.notAvailable,
-                                details: movie.releaseDate ?? Constants.Titles.unknown,
-                                frameWidth: 150
+                                frameWidth: 150,
+                                imageUrl: homeViewModel.getImageUrlFromTMBD(
+                                    model: movie,
+                                    imageSize: 200
+                                ) ?? "",
+                                model: movie
                             )
                         }
                     }
@@ -105,6 +106,7 @@ extension HomeView {
             }
         }
     }
+    
     
     private func fetchData() {
         Task {

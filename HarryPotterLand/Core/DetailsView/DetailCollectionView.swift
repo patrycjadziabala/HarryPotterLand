@@ -8,12 +8,17 @@
 import SwiftUI
 import CachedAsyncImage
 
+protocol DetailCollectionViewProtocol {
+    var colletionViewId: String { get }
+    var collectionViewTitle: String { get }
+    var collectionViewDetails: String { get }
+    var collectionViewCellType: CellContentType { get }
+}
+
 struct DetailCollectionView: View {
-    
-    let imageUrl: String
-    let title: String
-    let details: String
-    let frameWidth: CGFloat?
+    var frameWidth: CGFloat?
+    let imageUrl: String?
+    let model: DetailCollectionViewProtocol
     
     var body: some View {
         
@@ -44,10 +49,9 @@ struct DetailCollectionView: View {
 struct DetailCollectionView_Previews: PreviewProvider {
     static var previews: some View {
         DetailCollectionView(
-            imageUrl: dev.character.image,
-            title: dev.character.name,
-            details: dev.character.house,
-            frameWidth: 150
+            frameWidth: 150,
+            imageUrl: dev.movie.posterPath,
+            model: dev.movie
         )
     }
 }
@@ -55,7 +59,7 @@ struct DetailCollectionView_Previews: PreviewProvider {
 extension DetailCollectionView {
     
     private var imageSection: some View {
-        CachedAsyncImage(url: URL(string: imageUrl)) { image in
+        CachedAsyncImage(url: URL(string: imageUrl ?? "")) { image in
             if #available(iOS 16.4, *) {
                 image
                     .resizable()
@@ -63,7 +67,7 @@ extension DetailCollectionView {
                     .frame(maxWidth: 150, maxHeight: 175)
                     .cornerRadius(15)
                     .padding()
-
+                
             } else {
                 // Fallback on earlier versions
                 image
@@ -75,16 +79,16 @@ extension DetailCollectionView {
         } placeholder: {
             ProgressView()
         }
-//        .clipShape(RoundedRectangle(cornerRadius: 55, style: .continuous))
+        //        .clipShape(RoundedRectangle(cornerRadius: 55, style: .continuous))
     }
     
     private var titleAndSubtitleSection: some View {
         VStack {
-            Text(title)
+            setTitle(model: model)
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 4)
-            Text(details)
+            setDetails(model: model)               
                 .font(.subheadline)
                 .padding(.bottom, 4)
         }
@@ -94,5 +98,13 @@ extension DetailCollectionView {
         let maxDistance = UIScreen.main.bounds.width / 2
         let currentX = geo.frame(in: .global).midX
         return Double(1 - (currentX / maxDistance))
+    }
+    
+    func setTitle(model: DetailCollectionViewProtocol) -> some View {
+        return Text(model.collectionViewTitle)
+    }
+    
+    func setDetails(model: DetailCollectionViewProtocol) -> some View {
+        return Text(model.collectionViewDetails)
     }
 }

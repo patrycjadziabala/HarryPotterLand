@@ -29,6 +29,7 @@
 		4624A24C2BEB95950014D729 /* OvalComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24B2BEB95950014D729 /* OvalComponentView.swift */; };
 		4624A24E2BED1BDC0014D729 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24D2BED1BDC0014D729 /* ActorModel.swift */; };
 		4624A2502BF21EB30014D729 /* ActorInMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */; };
+		4624A2522BF4BF230014D729 /* OtherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2512BF4BF230014D729 /* OtherModels.swift */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		4624A24B2BEB95950014D729 /* OvalComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalComponentView.swift; sourceTree = "<group>"; };
 		4624A24D2BED1BDC0014D729 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInMoviesModel.swift; sourceTree = "<group>"; };
+		4624A2512BF4BF230014D729 /* OtherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherModels.swift; sourceTree = "<group>"; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4624A2432BDFD4720014D729 /* MovieModel.swift */,
 				4624A24D2BED1BDC0014D729 /* ActorModel.swift */,
 				4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */,
+				4624A2512BF4BF230014D729 /* OtherModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				4624A2302BD7D9550014D729 /* PreviewProvider.swift in Sources */,
 				46FE7C4E2BA8A65E00100FD1 /* MainTabView.swift in Sources */,
 				4624A24C2BEB95950014D729 /* OvalComponentView.swift in Sources */,
+				4624A2522BF4BF230014D729 /* OtherModels.swift in Sources */,
 				4626407F2BA0FDB400F5F22C /* ViewModifiers.swift in Sources */,
 				46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */,
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,

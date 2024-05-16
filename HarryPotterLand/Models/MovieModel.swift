@@ -44,6 +44,28 @@ struct MovieModel: Codable {
     }
 }
 
+extension MovieModel: DetailCollectionViewProtocol {
+    var colletionViewId: String {
+        String(id ?? 0)
+    }
+    
+    var collectionViewImageUrl: String {
+        posterPath ?? ""
+    }
+    
+    var collectionViewTitle: String {
+        originalTitle ?? ""
+    }
+    
+    var collectionViewDetails: String {
+        releaseDate ?? ""
+    }
+    
+    var collectionViewCellType: CellContentType {
+        .title
+    }
+}
+
 struct Genre: Codable, Identifiable {
     let id: Int?
     let name: String?

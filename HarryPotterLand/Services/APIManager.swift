@@ -35,7 +35,7 @@ enum QueryType: String {
 class APIManager: APIManagerProtocol {
     
     // URLs
-    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType><id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
     let tMDBbSearchURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType>?query=<query>&api_key=29d1eac12ae7da1b5df0ba13aca09837"
     let personMovieCreditsUrlString = "https://api.themoviedb.org/3/person/<actorId>/movie_credits?api_key=29d1eac12ae7da1b5df0ba13aca09837"
     
