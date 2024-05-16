@@ -25,25 +25,29 @@ struct CharacterDetailsView: View {
                 Text(Constants.Titles.titleMoviesCollection)
                     .withCustomTitleTextFormatting()
                 ScrollView(.horizontal, showsIndicators: false) {
-//                    LazyHStack {
-//                        ForEach(viewModel.actorInMovies, id: \.id) { movie in
-//                            NavigationLink {
-//                                MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie), image: <#T##String#>, movie: <#T##MovieModel#>)
-//                            } label: {
-//                                DetailCollectionView(
-//                                    imageUrl: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
-//                                    title: movie.originalTitle,
-//                                    details: movie.releaseDate,
-//                                    frameWidth: 200
-//                                )
-//                            }
-//                            
-//                        }
-//                    }
+                    LazyHStack {
+                        ForEach(viewModel.actorInMovies, id: \.id) { movie in
+                            NavigationLink {
+                                MovieDetailsView(
+                                    viewModel: MovieDetailsViewModel(
+                                        model: movie
+                                    ),
+                                    image: movie.posterPath ?? "",
+                                    movie: movie
+                                )
+                            } label: {
+                                DetailCollectionView(
+                                    frameWidth: 150,
+                                    imageUrl: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 200),
+                                    model: movie
+                                )
+                            }
+                            
+                        }
+                    }
                 }
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
-                Text(movies.first?.originalTitle ?? "")
                 seeMoreButton
             }
         }

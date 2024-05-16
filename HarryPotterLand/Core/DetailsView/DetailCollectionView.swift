@@ -12,6 +12,7 @@ protocol DetailCollectionViewProtocol {
     var colletionViewId: String { get }
     var collectionViewTitle: String { get }
     var collectionViewDetails: String { get }
+    var collectionImageUrl: String { get }
     var collectionViewCellType: CellContentType { get }
 }
 

@@ -11,14 +11,14 @@ struct MovieDetailsView: View {
     
     @StateObject var viewModel: MovieDetailsViewModel
     let image: String
-    let movie: MovieModel
+    let movie: DetailCollectionViewProtocol
     
     //MARK: - Main body
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 topSection
-                genreSection
+//                genreSection
                 infoGridView
             }
         }
@@ -36,20 +36,20 @@ extension MovieDetailsView {
     private var topSection: some View {
         DescriptionViewGeneric(
             viewType: .movieDetails,
-            name: viewModel.model.originalTitle ?? "1",
-            image: image
+            name: viewModel.model.collectionViewTitle,
+            image: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
         ) {
-            Text(movie.overview ?? "")
+            Text(movie.collectionViewDetails)
         }
     }
     
-    private var genreSection: some View {
-        HStack (spacing: 25) {
-            ForEach(movie.genres ?? [], content: { genre in
-                OvalComponentView(text: genre.name ?? "")
-            })
-        }
-    }
+//    private var genreSection: some View {
+//        HStack (spacing: 25) {
+//            ForEach(movie.genres ?? [], content: { genre in
+//                OvalComponentView(text: genre.name ?? "")
+//            })
+//        }
+//    }
     
     private var infoGridView: some View {
         InfoGridView(
@@ -59,11 +59,11 @@ extension MovieDetailsView {
             title4: Constants.Titles.rating,
             title5: nil,
             title6: nil,
-            info1: movie.releaseDate?
-                .replacingOccurrences(of: "-", with: "/") ?? "",
-            info2: movie.originCountry?.description ?? "",
-            info3: String(movie.budget ?? 0),
-            info4: String(movie.voteAverage ?? 0),
+            info1: movie.collectionViewTitle,
+//                .replacingOccurrences(of: "-", with: "/") ?? "",
+            info2: movie.collectionViewTitle,
+            info3: String(movie.collectionViewDetails),
+            info4: String(movie.collectionViewTitle),
             info5: nil,
             info6: nil,
             font: .callout,

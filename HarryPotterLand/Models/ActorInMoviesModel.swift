@@ -46,6 +46,28 @@ struct Cast: Codable, Identifiable {
     }
 }
 
+extension Cast: DetailCollectionViewProtocol {
+    var collectionImageUrl: String {
+        posterPath ?? ""
+    }
+    
+    var colletionViewId: String {
+        String(id)
+    }
+    
+    var collectionViewTitle: String {
+        originalTitle
+    }
+    
+    var collectionViewDetails: String {
+        releaseDate
+    }
+    
+    var collectionViewCellType: CellContentType {
+        .title
+    }
+}
+
 enum OriginalLanguage: String, Codable {
     case en = "en"
 }
