@@ -97,7 +97,7 @@ extension OnboardingView {
         VStack(spacing: 40) {
             Spacer()
             Text(Constants.Titles.welcomeToHPWorld)
-                .font(.custom(Constants.Fonts.fontHP, size: 55))
+                .font(.custom(Constants.Fonts.fontWelcomeScreen, size: 55))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .foregroundColor(.white)

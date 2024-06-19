@@ -30,6 +30,8 @@
 		4624A24E2BED1BDC0014D729 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24D2BED1BDC0014D729 /* ActorModel.swift */; };
 		4624A2502BF21EB30014D729 /* ActorInMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */; };
 		4624A2522BF4BF230014D729 /* OtherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2512BF4BF230014D729 /* OtherModels.swift */; };
+		4624A2542BF646D10014D729 /* LUMOS.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4624A2532BF646D10014D729 /* LUMOS.TTF */; };
+		4624A2562BF751BA0014D729 /* dum1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4624A2552BF751BA0014D729 /* dum1.ttf */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		4624A24D2BED1BDC0014D729 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInMoviesModel.swift; sourceTree = "<group>"; };
 		4624A2512BF4BF230014D729 /* OtherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherModels.swift; sourceTree = "<group>"; };
+		4624A2532BF646D10014D729 /* LUMOS.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = LUMOS.TTF; path = lumos/LUMOS.TTF; sourceTree = SOURCE_ROOT; };
+		4624A2552BF751BA0014D729 /* dum1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dum1.ttf; path = dumbledor/dum1/dum1.ttf; sourceTree = SOURCE_ROOT; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,7 +254,9 @@
 		4626406D2BA096A800F5F22C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4624A2532BF646D10014D729 /* LUMOS.TTF */,
 				4626406E2BA096F000F5F22C /* HarryP-MVZ6w.ttf */,
+				4624A2552BF751BA0014D729 /* dum1.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -380,7 +386,9 @@
 				4626406F2BA096F000F5F22C /* HarryP-MVZ6w.ttf in Resources */,
 				4624A1542BB49C240014D729 /* Harry-Potter-Theme.mp3 in Resources */,
 				462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */,
+				4624A2542BF646D10014D729 /* LUMOS.TTF in Resources */,
 				4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */,
+				4624A2562BF751BA0014D729 /* dum1.ttf in Resources */,
 				462640622BA0949C00F5F22C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

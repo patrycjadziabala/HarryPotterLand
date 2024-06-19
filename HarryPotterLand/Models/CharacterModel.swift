@@ -48,7 +48,7 @@ extension CharacterModel: DetailCollectionViewProtocol {
     }
     
     var collectionViewDetails: String {
-        dateOfBirth ?? ""
+        house
     }
     
     var collectionViewCellType: CellContentType {

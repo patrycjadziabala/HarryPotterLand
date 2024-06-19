@@ -61,36 +61,39 @@ struct Constants {
         static let hogwartsCastleCartoon = "hogwartsCastleCartoon"
         static let homeIcon = "house.fill"
         static let starFillIcon = "star.fill"
+        static let hogwartsLogo = "HogwartsLogo"
     }
     
     struct Colors {
         //Griffindor
-        static let color_darkRed = "DarkRed"
-        static let color_red = "Red"
-        static let color_gold = "Gold"
-        static let color_griffindorYellow = "GriffindorYellow"
+        static let griffindorDarkRed = "DarkRed"
+        static let griffindorRed = "Red"
+        static let griffindorGold = "Gold"
+        static let griffindorYellow = "GriffindorYellow"
         
         //Hufflepuff
-        static let color_canary = "Canary"
-        static let color_lightCanary = "LightCanary"
-        static let color_darkBrown = "DarkBrown"
-        static let color_lightBrown = "LightBrown"
+        static let hufflepuffCanary = "Canary"
+        static let hufflepuffLightCanary = "LightCanary"
+        static let hufflepuffDarkBrown = "DarkBrown"
+        static let hufflepuffLightBrown = "LightBrown"
         
         //Ravenclaw
-        static let color_blue = "Blue"
-        static let color_darkBlue = "DarkBlue"
-        static let color_grey = "Grey"
-        static let color_ravenclawGold = "RavenclawGold"
+        static let ravenclawBlue = "Blue"
+        static let ravenclawDarkBlue = "DarkBlue"
+        static let ravenclawGrey = "Grey"
+        static let ravenclawGold = "RavenclawGold"
         
         //Slytherin
-        static let color_darkGreen = "DarkGreen"
-        static let color_darkSilver = "DarkSilver"
-        static let color_lightSilver = "LightSilver"
-        static let color_green = "Green"
+        static let slytherinDarkGreen = "DarkGreen"
+        static let slytherinDarkSilver = "DarkSilver"
+        static let slytherinLightSilver = "LightSilver"
+        static let slytherinGreen = "Green"
     }
     
     struct Fonts {
-        static let fontHP = "HarryP"
+        static let fontWelcomeScreen = "HarryP"
+        static let fontLumos = "LUMOS"
+        static let fontText = "dum1"
     }
     
     struct HPid {

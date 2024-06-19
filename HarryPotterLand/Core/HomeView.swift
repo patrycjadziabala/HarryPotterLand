@@ -54,7 +54,7 @@ extension HomeView {
     private var charactersSection: some View {
         VStack {
             Text(Constants.Titles.titleCharacters)
-                .withCustomTitleTextFormatting()
+                .withCustomTitleTextFormatting(fontType: .titleFont)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(homeViewModel.characters, id: \.id) { character in
@@ -82,7 +82,7 @@ extension HomeView {
     private var moviesSection: some View {
         VStack {
             Text(Constants.Titles.titleMoviesCollection)
-                .withCustomTitleTextFormatting()
+                .withCustomTitleTextFormatting(fontSize: 25, fontType: .welcomeScreenFont)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     

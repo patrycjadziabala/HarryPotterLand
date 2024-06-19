@@ -23,7 +23,7 @@ struct NoItemsView: View {
                 addAnimation()
             })
         }
-        .background(Color(Constants.Colors.color_blue)
+        .background(Color(Constants.Colors.ravenclawBlue)
             .opacity(0.4))
     }
 }
@@ -55,12 +55,12 @@ extension NoItemsView {
                 .font(.headline)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity)
-                .background(animate ? Color(Constants.Colors.color_canary) : Color(Constants.Colors.color_gold))
+                .background(animate ? Color(Constants.Colors.hufflepuffCanary) : Color(Constants.Colors.griffindorGold))
                 .cornerRadius(30)
         }
         .padding(.horizontal, animate ? 70 : 90)
         .shadow(
-            color: animate ? Color(Constants.Colors.color_darkBlue).opacity(0.5) : Color(Constants.Colors.color_darkBlue).opacity(0.7),
+            color: animate ? Color(Constants.Colors.ravenclawDarkBlue).opacity(0.5) : Color(Constants.Colors.ravenclawDarkBlue).opacity(0.7),
             radius: animate ? 30 : 10,
             y: animate ? 75 : 10)
         .scaleEffect(animate ? 1.1 : 1.0)
@@ -76,12 +76,12 @@ extension NoItemsView {
                 .font(.headline)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity)
-                .background(animate ? Color(Constants.Colors.color_canary) : Color(Constants.Colors.color_gold))
+                .background(animate ? Color(Constants.Colors.hufflepuffCanary) : Color(Constants.Colors.griffindorGold))
                 .cornerRadius(30)
         }
         .padding(.horizontal, animate ? 70 : 90)
         .shadow(
-            color: animate ? Color(Constants.Colors.color_darkBlue).opacity(0.5) : Color(Constants.Colors.color_darkBlue).opacity(0.7),
+            color: animate ? Color(Constants.Colors.ravenclawDarkBlue).opacity(0.5) : Color(Constants.Colors.ravenclawDarkBlue).opacity(0.7),
             radius: animate ? 30 : 10,
             y: animate ? 75 : 10)
         .scaleEffect(animate ? 1.1 : 1.0)

@@ -23,7 +23,7 @@ struct CharacterDetailsView: View {
                 topSection
                 moreInformationButton()
                 Text(Constants.Titles.titleMoviesCollection)
-                    .withCustomTitleTextFormatting()
+//                    .withCustomTitleTextFormatting(, fontType: <#FontType#>)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(viewModel.actorInMovies, id: \.id) { movie in

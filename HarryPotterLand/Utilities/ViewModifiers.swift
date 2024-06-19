@@ -13,24 +13,48 @@ enum ViewType {
     case characterDetails
 }
 
+enum FontType: String {
+    case welcomeScreenFont
+    case titleFont
+    case textFont
+}
+
 struct CustomTitleTextModifier: ViewModifier {
     
-    let fontSize: Int
+    let fontSize: CGFloat
+    let fontType: String
     let alignment: Alignment
     
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, alignment: alignment)
             .padding(.leading)
-            .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
+            .font(.custom(fontType, size: fontSize))
+//            .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
     }
 }
 
 //MARK: - Extensions
 
 extension View {
-    func withCustomTitleTextFormatting(fontSize: Int = 28, alignment: Alignment = .leading) -> some View {
-        modifier(CustomTitleTextModifier(fontSize: fontSize, alignment: alignment))
+    func withCustomTitleTextFormatting(
+        fontSize: CGFloat = 28,
+        fontType: FontType,
+        alignment: Alignment = .leading
+    ) -> some View {
+        let font = getFont(fontType: fontType)
+        return modifier(CustomTitleTextModifier(fontSize: fontSize, fontType: font, alignment: alignment))
+    }
+    
+    func getFont(fontType: FontType) -> String {
+        switch fontType {
+        case .welcomeScreenFont:
+            return Constants.Fonts.fontWelcomeScreen
+        case .titleFont:
+            return Constants.Fonts.fontLumos
+        case .textFont:
+            return Constants.Fonts.fontText
+        }
     }
 }
 

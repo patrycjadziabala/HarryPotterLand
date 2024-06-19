@@ -4,8 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>dum1.ttf</string>
 		<string>HarryP-MVZ6w.ttf</string>
-		<string></string>
+		<string>LUMOS.TTF</string>
 	</array>
 </dict>
 </plist>

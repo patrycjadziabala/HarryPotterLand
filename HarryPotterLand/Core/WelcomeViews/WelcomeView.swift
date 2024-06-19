@@ -16,8 +16,24 @@ struct WelcomeView: View {
     
     var body: some View {
         ZStack {
-            RadialGradient(colors: [Color.gray, Color.blue], center: .center, startRadius: 5, endRadius: 500)
+            RadialGradient(
+                colors: [
+                    Color(
+                        Constants.Colors.ravenclawGold
+                    ),
+                    Color(
+                        Constants.Colors.slytherinGreen
+                    )
+                ],
+                center: .bottomLeading,
+                startRadius: 5,
+                endRadius: 700
+            )
                 .ignoresSafeArea()
+            Image(Constants.Images.hogwartsLogo)
+                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
+                .opacity(0.25)
+                .offset(y: -120)
             if currentUserSignedIn {
                 VStack (spacing: 20) {
                     signOutButton
@@ -65,7 +81,7 @@ extension WelcomeView {
     
     var titleView: some View {
         Text(Constants.Titles.titleHarryPotterLand)
-            .font(Font.custom(Constants.Fonts.fontHP, size: 100))
+            .font(Font.custom(Constants.Fonts.fontWelcomeScreen, size: 100))
             .kerning(2)
             .multilineTextAlignment(.center)
     }

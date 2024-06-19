@@ -51,7 +51,7 @@ extension MoreInfoSheet {
             
             Text(character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff)
                 .frame(maxWidth: .infinity)
-                .withCustomTitleTextFormatting(fontSize: 30, alignment: .center)
+                .withCustomTitleTextFormatting(fontSize: 30, fontType: .titleFont, alignment: .center)
             
             DismissButton(alignment: .leading)
         }
