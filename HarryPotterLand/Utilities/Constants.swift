@@ -21,8 +21,8 @@ struct Constants {
         static let pleaseSignIn = "Please sign in to enter"
         static let pleaseEnterYourName = "Plase enter your name"
         static let yourName = "Your name"
-        static let pleaseEnterYourAge = "Plase enter your age"
-        static let pleaseSelectYourGender = "Plase select your gender"
+        static let pleaseEnterYourAge = "Please enter your age"
+        static let pleaseSelectYourGender = "Please select your gender"
         static let male = "Male"
         static let female = "Female"
         static let nonbinary = "Non-Binary"
@@ -92,8 +92,9 @@ struct Constants {
     
     struct Fonts {
         static let fontWelcomeScreen = "HarryP"
-        static let fontLumos = "LUMOS"
-        static let fontText = "dum1"
+        static let fontDumbledor = "Dumbledor1"
+        static let fontText = "jlrsnitch"
+        static let fontSnitch = "jlrsnitch"
     }
     
     struct HPid {

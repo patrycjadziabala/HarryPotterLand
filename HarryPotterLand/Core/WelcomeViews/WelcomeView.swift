@@ -9,31 +9,19 @@ import SwiftUI
 
 struct WelcomeView: View {
     
-    @AppStorage("signed_in") var currentUserSignedIn: Bool = true
+    @AppStorage("signed_in") var currentUserSignedIn: Bool = false
     @AppStorage("name") var currentUserName: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     
     var body: some View {
         ZStack {
-            RadialGradient(
-                colors: [
-                    Color(
-                        Constants.Colors.ravenclawGold
-                    ),
-                    Color(
-                        Constants.Colors.slytherinGreen
-                    )
-                ],
-                center: .bottomLeading,
-                startRadius: 5,
-                endRadius: 700
-            )
-                .ignoresSafeArea()
-            Image(Constants.Images.hogwartsLogo)
-                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
-                .opacity(0.25)
-                .offset(y: -120)
+//            colorBackground
+//            Image(Constants.Images.hogwartsLogo)
+//                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
+//                .opacity(0.25)
+//                .offset(y: -90)
+            
             if currentUserSignedIn {
                 VStack (spacing: 20) {
                     signOutButton
@@ -48,9 +36,12 @@ struct WelcomeView: View {
                     imageView
                     EnterButtonLongPressView()
                     EnterButtonView()
+                        .padding(.bottom)
                 }
+                .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             } else {
                 OnboardingView()
+                    .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             }
         }
     }
@@ -63,6 +54,39 @@ struct WelcomeView_Previews: PreviewProvider {
 }
 
 extension WelcomeView {
+    
+    private var colorBackground: some View {
+        ZStack{
+//            RadialGradient(
+//                colors: [
+//                    Color(
+//                        Constants.Colors.ravenclawGold
+//                    ),
+//                    Color(
+//                        Constants.Colors.slytherinGreen
+//                    )
+//                ],
+//                center: .bottomLeading,
+//                startRadius: 5,
+//                endRadius: 700
+//            )
+//            
+//            RadialGradient(
+//                colors: [
+//                    Color(
+//                        Constants.Colors.ravenclawDarkBlue
+//                    ).opacity(0.3),
+//                    Color(
+//                        Constants.Colors.slytherinDarkSilver
+//                    ).opacity(0.3)
+//                ],
+//                center: .topTrailing,
+//                startRadius: 5,
+//                endRadius: 300
+//            )
+        }
+        .ignoresSafeArea()
+    }
     
     private var signOutButton: some View {
         Text("Sign out")

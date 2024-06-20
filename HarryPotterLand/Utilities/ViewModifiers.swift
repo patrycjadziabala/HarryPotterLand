@@ -51,7 +51,7 @@ extension View {
         case .welcomeScreenFont:
             return Constants.Fonts.fontWelcomeScreen
         case .titleFont:
-            return Constants.Fonts.fontLumos
+            return Constants.Fonts.fontDumbledor
         case .textFont:
             return Constants.Fonts.fontText
         }

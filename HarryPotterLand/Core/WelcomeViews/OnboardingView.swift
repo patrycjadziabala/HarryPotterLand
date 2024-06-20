@@ -18,15 +18,17 @@ struct OnboardingView: View {
      */
     
     @State var onboardingState: Int = 0
+    
     let transition: AnyTransition = .asymmetric(
         insertion: .move(edge: .trailing),
         removal: .move(edge: .leading))
     
     //onboarding inputs
     @State var name: String = ""
-    @FocusState private var nameFieldInFocus: Bool
     @State var age: Double = 50
-    @State var gender: String = ""
+    @State var gender: String = "Male"
+    
+    @FocusState private var nameFieldInFocus: Bool
     
     //alert properties
     @State var alertTitle: String = ""
@@ -40,6 +42,7 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
+            colorBackground
             //content
             switch onboardingState {
             case 0:
@@ -59,7 +62,7 @@ struct OnboardingView: View {
             //buttons
             VStack {
                 Spacer()
-                bottomButton
+                signInButton
             }
             .padding(30)
         }
@@ -72,24 +75,65 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
-            .background(Color.purple)
     }
 }
 
+// MARK: COMPONENTS
 extension OnboardingView {
     
-    private var bottomButton: some View {
-        Text(onboardingState == 0 ? Constants.Titles.signIn :
-                onboardingState == 3 ? Constants.Titles.finish :
-                Constants.Titles.next)
-        .font(.headline)
-        .foregroundColor(.purple)
-        .frame(height: 55)
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(10)
-        .onTapGesture {
-            handleNextButtonPressed()
+    private var colorBackground: some View {
+        ZStack{
+            RadialGradient(
+                colors: [
+                    Color(
+                        Constants.Colors.hufflepuffDarkBrown
+                    ).opacity(0.7),
+                    Color(
+                        Constants.Colors.slytherinDarkSilver
+                    ).opacity(0.3)
+                ],
+                center: .topTrailing,
+                startRadius: 5,
+                endRadius: 1500
+            )
+            
+            Image(Constants.Images.hogwartsLogo)
+                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
+                .opacity(0.25)
+                .offset(y: -90)
+        }
+        .ignoresSafeArea()
+    }
+    
+    private var signInButton: some View {
+        VStack {
+            Text(Constants.Titles.pleaseSignIn)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
+                .foregroundColor(.white)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .frame(height: 3)
+                        .offset(y: 7)
+                        .foregroundStyle(.white)
+                    ,alignment: .bottom
+                )
+                .opacity(onboardingState == 0 ? 1 : 0.001)
+                .padding()
+            
+            Text(onboardingState == 0 ? Constants.Titles.signIn :
+                    onboardingState == 3 ? Constants.Titles.finish :
+                    Constants.Titles.next)
+            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+            .foregroundColor(.brown)
+            .kerning(2)
+            .shadow(radius: 1)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .cornerRadius(10)
+            .onTapGesture {
+                handleNextButtonPressed()
+            }
         }
     }
     
@@ -97,17 +141,14 @@ extension OnboardingView {
         VStack(spacing: 40) {
             Spacer()
             Text(Constants.Titles.welcomeToHPWorld)
-                .font(.custom(Constants.Fonts.fontWelcomeScreen, size: 55))
+                .font(.custom(Constants.Fonts.fontWelcomeScreen, size: 73))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
-                .foregroundColor(.white)
+                .shadow(radius: 4)
+                .padding(.horizontal, 3)
             Image(Constants.Images.hogwartsCastleCartoon)
                 .withCustomImageModifier(frameWidth: 350)
                 .cornerRadius(35)
-            Text(Constants.Titles.pleaseSignIn)
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
             Spacer()
             Spacer()
         }
@@ -117,15 +158,17 @@ extension OnboardingView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseEnterYourName)
-                .font(.headline)
-                .fontWeight(.bold)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
             TextField(Constants.Titles.yourName, text: $name)
                 .focused($nameFieldInFocus)
-                .font(.headline)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                .kerning(2)
                 .frame(height: 55)
                 .padding(.horizontal)
-                .background(Color.white)
+                .foregroundStyle(.brown)
+                .shadow(radius: 1)
+                .background(.white)
                 .cornerRadius(10)
             Spacer()
             Spacer()
@@ -137,13 +180,12 @@ extension OnboardingView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseEnterYourAge)
-                .font(.headline)
-                .fontWeight(.bold)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
+                .shadow(radius: 1)
             Text("\(String(format: "%.0f", age))")
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 55))
+                .foregroundStyle(.white)
             Slider(value: $age, in: 1...100, step: 1)
                 .tint(.white)
             Spacer()
@@ -156,20 +198,24 @@ extension OnboardingView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseSelectYourGender)
-                .font(.headline)
-                .fontWeight(.bold)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
             Picker(selection: $gender) {
+                Text("Select a gender").tag("G")
                 Text(Constants.Titles.male).tag("Male")
                 Text(Constants.Titles.female).tag("Female")
                 Text(Constants.Titles.nonbinary).tag("Non-Binary")
             } label: {
                 Text(gender.count > 1 ? gender : "Select a gender")
-                    .font(.headline)
-                    .fontWeight(.bold)
                     .foregroundColor(.white)
             }
+            .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .cornerRadius(10)
             .pickerStyle(MenuPickerStyle())
+            .tint(.brown)
             Spacer()
             Spacer()
         }
@@ -179,6 +225,7 @@ extension OnboardingView {
 
 //MARK: FUNCTIONS
 extension OnboardingView {
+    
     func handleNextButtonPressed() {
         //CHECK INPUTS
         switch onboardingState {

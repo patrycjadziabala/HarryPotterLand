@@ -30,8 +30,6 @@
 		4624A24E2BED1BDC0014D729 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24D2BED1BDC0014D729 /* ActorModel.swift */; };
 		4624A2502BF21EB30014D729 /* ActorInMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */; };
 		4624A2522BF4BF230014D729 /* OtherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624A2512BF4BF230014D729 /* OtherModels.swift */; };
-		4624A2542BF646D10014D729 /* LUMOS.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4624A2532BF646D10014D729 /* LUMOS.TTF */; };
-		4624A2562BF751BA0014D729 /* dum1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4624A2552BF751BA0014D729 /* dum1.ttf */; };
 		4626405E2BA0949A00F5F22C /* HarryPotterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */; };
 		462640622BA0949C00F5F22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640612BA0949C00F5F22C /* Assets.xcassets */; };
 		462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462640642BA0949C00F5F22C /* Preview Assets.xcassets */; };
@@ -45,6 +43,8 @@
 		462640812BA104D000F5F22C /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640802BA104D000F5F22C /* CharacterDetailsView.swift */; };
 		462640872BA1F12C00F5F22C /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640862BA1F12C00F5F22C /* CharacterDetailsViewModel.swift */; };
 		462640892BA46FAB00F5F22C /* ReusableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462640882BA46FAB00F5F22C /* ReusableGridView.swift */; };
+		4655F39F2C2464DE0040ACFA /* JlrSnitch-KdwZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4655F39E2C2464DE0040ACFA /* JlrSnitch-KdwZ.ttf */; };
+		4655F3A12C2465EB0040ACFA /* Dumbledor1-8a1n.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4655F3A02C2465EB0040ACFA /* Dumbledor1-8a1n.ttf */; };
 		46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C472BA89CF100100FD1 /* FavouritesView.swift */; };
 		46FE7C4A2BA8A28F00100FD1 /* FavouritesListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */; };
 		46FE7C4C2BA8A3D600100FD1 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C4B2BA8A3D600100FD1 /* TODO.swift */; };
@@ -77,8 +77,6 @@
 		4624A24D2BED1BDC0014D729 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		4624A24F2BF21EB30014D729 /* ActorInMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInMoviesModel.swift; sourceTree = "<group>"; };
 		4624A2512BF4BF230014D729 /* OtherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherModels.swift; sourceTree = "<group>"; };
-		4624A2532BF646D10014D729 /* LUMOS.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = LUMOS.TTF; path = lumos/LUMOS.TTF; sourceTree = SOURCE_ROOT; };
-		4624A2552BF751BA0014D729 /* dum1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dum1.ttf; path = dumbledor/dum1/dum1.ttf; sourceTree = SOURCE_ROOT; };
 		4626405A2BA0949A00F5F22C /* HarryPotterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4626405D2BA0949A00F5F22C /* HarryPotterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterLandApp.swift; sourceTree = "<group>"; };
 		462640612BA0949C00F5F22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +92,8 @@
 		462640802BA104D000F5F22C /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		462640862BA1F12C00F5F22C /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		462640882BA46FAB00F5F22C /* ReusableGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGridView.swift; sourceTree = "<group>"; };
+		4655F39E2C2464DE0040ACFA /* JlrSnitch-KdwZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JlrSnitch-KdwZ.ttf"; sourceTree = SOURCE_ROOT; };
+		4655F3A02C2465EB0040ACFA /* Dumbledor1-8a1n.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dumbledor1-8a1n.ttf"; sourceTree = SOURCE_ROOT; };
 		46FE7C472BA89CF100100FD1 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		46FE7C492BA8A28F00100FD1 /* FavouritesListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRow.swift; sourceTree = "<group>"; };
 		46FE7C4B2BA8A3D600100FD1 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
@@ -254,9 +254,9 @@
 		4626406D2BA096A800F5F22C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				4624A2532BF646D10014D729 /* LUMOS.TTF */,
 				4626406E2BA096F000F5F22C /* HarryP-MVZ6w.ttf */,
-				4624A2552BF751BA0014D729 /* dum1.ttf */,
+				4655F3A02C2465EB0040ACFA /* Dumbledor1-8a1n.ttf */,
+				4655F39E2C2464DE0040ACFA /* JlrSnitch-KdwZ.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -384,11 +384,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4626406F2BA096F000F5F22C /* HarryP-MVZ6w.ttf in Resources */,
+				4655F39F2C2464DE0040ACFA /* JlrSnitch-KdwZ.ttf in Resources */,
 				4624A1542BB49C240014D729 /* Harry-Potter-Theme.mp3 in Resources */,
+				4655F3A12C2465EB0040ACFA /* Dumbledor1-8a1n.ttf in Resources */,
 				462640652BA0949C00F5F22C /* Preview Assets.xcassets in Resources */,
-				4624A2542BF646D10014D729 /* LUMOS.TTF in Resources */,
 				4624A11D2BAE22C40014D729 /* Launch Screen.storyboard in Resources */,
-				4624A2562BF751BA0014D729 /* dum1.ttf in Resources */,
 				462640622BA0949C00F5F22C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
