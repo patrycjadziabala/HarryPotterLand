@@ -9,34 +9,51 @@ import SwiftUI
 
 struct WelcomeView: View {
     
-    @AppStorage("signed_in") var currentUserSignedIn: Bool = false
+    @AppStorage("signed_in") var currentUserSignedIn: Bool = true
     @AppStorage("name") var currentUserName: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     
+    @State private var scrollViewOffset: CGFloat = 0
+    
     var body: some View {
         ZStack {
-//            colorBackground
-//            Image(Constants.Images.hogwartsLogo)
-//                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
-//                .opacity(0.25)
-//                .offset(y: -90)
+            colorBackground
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Text("Tap here")
+                            .foregroundStyle(.black)
+                    }
+                    ToolbarItem(placement: .topBarLeading) {
+                        
+                    }
+                }
             
             if currentUserSignedIn {
                 VStack (spacing: 20) {
-                    signOutButton
-                    if let userName = currentUserName,
-                       let userAge = currentUserAge {
-                        Text("Hello \(userName), \(userAge)")
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
+                    HStack {
+                        signOutButton
+                        Spacer()
+                        if let userName = currentUserName,
+                           let userAge = currentUserAge,
+                           let userGender = currentUserGender {
+                            VStack(spacing: -10) {
+                                Text("\(userName.first!)")
+                                    .font(.custom(Constants.Fonts.fontSnitch, size: 65))
+                                Text("\(userGender), \(userAge)")
+                                    .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
+                            }
+                            .shadow(radius: 1)
+                            .foregroundStyle(Color(Constants.Colors.hufflepuffDarkBrown))
+                        }
                     }
+                    .padding(.horizontal)
+                    Spacer()
                     titleView
                     Spacer()
                     imageView
-                    EnterButtonLongPressView()
+                    EnterButtonLongPressView(soundManager: SoundManager())
                     EnterButtonView()
-                        .padding(.bottom)
                 }
                 .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             } else {
@@ -57,33 +74,24 @@ extension WelcomeView {
     
     private var colorBackground: some View {
         ZStack{
-//            RadialGradient(
-//                colors: [
-//                    Color(
-//                        Constants.Colors.ravenclawGold
-//                    ),
-//                    Color(
-//                        Constants.Colors.slytherinGreen
-//                    )
-//                ],
-//                center: .bottomLeading,
-//                startRadius: 5,
-//                endRadius: 700
-//            )
-//            
-//            RadialGradient(
-//                colors: [
-//                    Color(
-//                        Constants.Colors.ravenclawDarkBlue
-//                    ).opacity(0.3),
-//                    Color(
-//                        Constants.Colors.slytherinDarkSilver
-//                    ).opacity(0.3)
-//                ],
-//                center: .topTrailing,
-//                startRadius: 5,
-//                endRadius: 300
-//            )
+            RadialGradient(
+                colors: [
+                    Color(
+                        Constants.Colors.hufflepuffDarkBrown
+                    ).opacity(0.7),
+                    Color(
+                        Constants.Colors.slytherinDarkSilver
+                    ).opacity(0.3)
+                ],
+                center: .topTrailing,
+                startRadius: 5,
+                endRadius: 1500
+            )
+            
+            Image(Constants.Images.hogwartsLogo)
+                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
+                .opacity(0.25)
+                .offset(y: -90)
         }
         .ignoresSafeArea()
     }
@@ -92,15 +100,13 @@ extension WelcomeView {
         Text("Sign out")
             .foregroundColor(.white)
             .font(.headline)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
+            .frame(width: 100, height: 45)
             .background(Color.black)
             .cornerRadius(10)
             .padding(.horizontal)
             .onTapGesture {
                 signOut()
             }
-            .padding(.bottom, 20)
     }
     
     var titleView: some View {
@@ -120,27 +126,31 @@ extension WelcomeView {
         
         @State private var isPressingDown: Bool = false
         
-        private var soundManager = SoundManager()
+        private var soundManager: SoundManager
+        
+        init(soundManager: SoundManager) {
+            self.soundManager = soundManager
+        }
         
         var body: some View {
-            Capsule()
-                .fill(Color.white)
-                .frame(width: 75, height: 75)
-                .shadow(radius: 10)
-                .overlay(
-                    Text(Constants.Titles.pressAndHold)
-                        .multilineTextAlignment(.center)
-                )
-                .onLongPressGesture(minimumDuration: 0.3) {
-                    soundManager.playSound()
-                    print("started")
-                }
-                .simultaneousGesture(
-                    DragGesture(minimumDistance: 0)
-                        .onEnded{ _ in
-                            soundManager.stopSound()
-                        }
-                )
+            Button("", action: {
+                
+            })
+            .buttonStyle(WelcomeScreenButton(text: Constants.Titles.pressAndHold, performAction: {
+                
+            }))
+            .simultaneousGesture(
+                LongPressGesture(minimumDuration: 0.3)
+                    .onEnded { _ in
+                        soundManager.playSound()
+                    }
+            )
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onEnded{ _ in
+                        soundManager.stopSound()
+                    }
+            )
         }
     }
     
@@ -150,16 +160,11 @@ extension WelcomeView {
             Button {
                 // MainTabView()
             } label: {
-                VStack {
-                    Capsule()
-                        .fill(Color.white)
-                        .frame(width: 75, height: 75)
-                        .shadow(radius: 10)
-                        .overlay(
-                            Text(Constants.Titles.enter)
-                        )
-                }
+                Text("")
             }
+            .buttonStyle(WelcomeScreenButton(text: Constants.Titles.enter, performAction: {
+                // action here
+            }))
         }
     }
     

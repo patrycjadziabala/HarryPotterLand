@@ -149,6 +149,8 @@ extension OnboardingView {
             Image(Constants.Images.hogwartsCastleCartoon)
                 .withCustomImageModifier(frameWidth: 350)
                 .cornerRadius(35)
+                .opacity(0.8)
+                .shadow(radius: 10)
             Spacer()
             Spacer()
         }
