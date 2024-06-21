@@ -9,11 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State private var searchViewModel: SearchViewModel
-    
-    init(searchViewModel: SearchViewModel) {
-        self.searchViewModel = searchViewModel
-    }
+    @StateObject var searchViewModel = SearchViewModel()
+    @State var characters: [CharacterModel]
     
     var body: some View {
         ZStack {
@@ -25,12 +22,14 @@ struct SearchView: View {
                     .multilineTextAlignment(.center)
                     .shadow(radius: 10)
                 SearchBarView(searchText: $searchViewModel.searchText)
+                
+                Text(characters.first?.name ?? "Nie ma")
             }
         }
     }
 }
 
 #Preview {
-    SearchView(searchViewModel: SearchViewModel())
+    SearchView(characters: [])
         .previewLayout(.sizeThatFits)
 }

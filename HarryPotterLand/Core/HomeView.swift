@@ -10,7 +10,7 @@ import CachedAsyncImage
 
 struct HomeView: View {
     
-    @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var homeViewModel: HomeViewModel
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -33,7 +33,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            HomeView()
+            HomeView(homeViewModel: HomeViewModel())
         }
     }
 }
