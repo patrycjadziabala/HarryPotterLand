@@ -13,6 +13,7 @@ struct FavouritesView: View {
     
     var body: some View {
         ZStack {
+            
             if favouritesManager.characters.isEmpty && favouritesManager.movies.isEmpty {
                 NoItemsView()
                     .transition(AnyTransition.opacity.animation(.easeIn))
@@ -23,6 +24,8 @@ struct FavouritesView: View {
                 }
                 .listStyle(SidebarListStyle())
             }
+            Background()
+                .opacity(0.5)
         }
     }
 }
@@ -30,6 +33,7 @@ struct FavouritesView: View {
 struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
         FavouritesView()
+            .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
 }
 

@@ -11,6 +11,8 @@ struct WelcomeScreenButton: ButtonStyle {
     
     let offset: CGFloat = 5
     let text: String
+    let height: CGFloat?
+    let width: CGFloat?
     let performAction: (() -> Void)?
     
     func makeBody(configuration: Configuration) -> some View {
@@ -31,7 +33,7 @@ struct WelcomeScreenButton: ButtonStyle {
                     .multilineTextAlignment(.center)
         }
         .compositingGroup()
-        .frame(width: 90, height: 90)
+        .frame(width: width ?? 90, height: height ?? 90)
         .shadow(radius: 6, y: 4)
     }
 }
@@ -43,6 +45,6 @@ struct WelcomeScreenButton_Previews: PreviewProvider {
         }
         .frame(width: 50, height: 50)
         .foregroundColor(.white)
-        .buttonStyle(WelcomeScreenButton(text: "Press and hold", performAction: {}))
+        .buttonStyle(WelcomeScreenButton(text: "Go", height: 90, width: nil, performAction: {}))
     }
 }

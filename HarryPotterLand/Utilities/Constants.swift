@@ -35,6 +35,7 @@ struct Constants {
         static let staff = "Staff"
         static let home = "Home"
         static let fav = "Fav"
+        static let search = "Search"
         static let house = "House:"
         static let species = "Species:"
         static let alive = "Alive:"
@@ -55,6 +56,9 @@ struct Constants {
         static let fandom = "Fandom"
         static let notAvailable = "Not available"
         static let unknown = "Unknown"
+        static let searchForYourFavouriteCharactersOrMovies = "Search for your favourite characters or movies:"
+        static let searchByNameOrTitle = "Search by name or title..."
+        static let go = "Go"
     }
     
     struct Images {
@@ -62,7 +66,9 @@ struct Constants {
         static let hogwartsCastleCartoon = "hogwartsCastleCartoon"
         static let homeIcon = "house.fill"
         static let starFillIcon = "star.fill"
+        static let searchIcon = "magnifyingglass"
         static let hogwartsLogo = "HogwartsLogo"
+        static let xMarkCircle = "xmark.circle.fill"
     }
     
     struct Colors {
@@ -94,7 +100,7 @@ struct Constants {
     struct Fonts {
         static let fontWelcomeScreen = "HarryP"
         static let fontDumbledor = "Dumbledor1"
-        static let fontText = "jlrsnitch"
+        static let fontText = "Dumbledor1"
         static let fontSnitch = "jlrsnitch"
     }
     

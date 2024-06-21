@@ -42,7 +42,7 @@ struct WelcomeView_Previews: PreviewProvider {
 extension WelcomeView {
     
     private var colorBackground: some View {
-        ZStack{
+        ZStack {
             RadialGradient(
                 colors: [
                     Color(
@@ -150,9 +150,14 @@ extension WelcomeView {
             Button("", action: {
                 
             })
-            .buttonStyle(WelcomeScreenButton(text: Constants.Titles.pressAndHold, performAction: {
-                
-            }))
+            .buttonStyle(
+                WelcomeScreenButton(
+                    text: Constants.Titles.pressAndHold,
+                    height: nil,
+                    width: nil,
+                    performAction: {}
+                )
+            )
             .simultaneousGesture(
                 LongPressGesture(minimumDuration: 0.3)
                     .onEnded { _ in
@@ -177,9 +182,14 @@ extension WelcomeView {
                 NavigationLink(destination: MainTabView()) {
                     
                 }
-                .buttonStyle(WelcomeScreenButton(text: Constants.Titles.enter, performAction: {
-                    
-                }))
+                .buttonStyle(
+                    WelcomeScreenButton(
+                        text: Constants.Titles.enter,
+                        height: nil,
+                        width: nil,
+                        performAction: {}
+                    )
+                )
             }
         }
     }

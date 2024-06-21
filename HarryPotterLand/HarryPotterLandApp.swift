@@ -14,7 +14,7 @@ struct HarryPotterLandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            MainTabView()
                 .environmentObject(favouritesManager)
         }
     }

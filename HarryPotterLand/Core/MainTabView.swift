@@ -20,6 +20,7 @@ struct MainTabView: View {
                 Image(systemName: Constants.Images.homeIcon)
                 Text(Constants.Titles.home)
             }
+            
             NavigationStack {
                 FavouritesView()
             }
@@ -28,6 +29,14 @@ struct MainTabView: View {
                 Text(Constants.Titles.fav)
             }
             .badge(favouritesManager.favouritesCount)
+            
+            NavigationStack {
+                SearchView(searchViewModel: SearchViewModel())
+            }
+            .tabItem {
+                Image(systemName: Constants.Images.searchIcon)
+                Text(Constants.Titles.search)
+            }
         }
     }
 }
