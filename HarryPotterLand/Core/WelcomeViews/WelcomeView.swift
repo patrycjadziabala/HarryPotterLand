@@ -15,50 +15,19 @@ struct WelcomeView: View {
     @AppStorage("gender") var currentUserGender: String?
     
     @State private var scrollViewOffset: CGFloat = 0
+    @State private var currentScale: CGFloat = 0
     
     var body: some View {
-        ZStack {
-            colorBackground
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Text("Tap here")
-                            .foregroundStyle(.black)
-                    }
-                    ToolbarItem(placement: .topBarLeading) {
-                        
-                    }
+        NavigationView {
+            ZStack {
+                colorBackground
+                
+                if currentUserSignedIn {
+                    signedInView
+                } else {
+                    OnboardingView()
+                        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
                 }
-            
-            if currentUserSignedIn {
-                VStack (spacing: 20) {
-                    HStack {
-                        signOutButton
-                        Spacer()
-                        if let userName = currentUserName,
-                           let userAge = currentUserAge,
-                           let userGender = currentUserGender {
-                            VStack(spacing: -10) {
-                                Text("\(userName.first!)")
-                                    .font(.custom(Constants.Fonts.fontSnitch, size: 65))
-                                Text("\(userGender), \(userAge)")
-                                    .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
-                            }
-                            .shadow(radius: 1)
-                            .foregroundStyle(Color(Constants.Colors.hufflepuffDarkBrown))
-                        }
-                    }
-                    .padding(.horizontal)
-                    Spacer()
-                    titleView
-                    Spacer()
-                    imageView
-                    EnterButtonLongPressView(soundManager: SoundManager())
-                    EnterButtonView()
-                }
-                .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
-            } else {
-                OnboardingView()
-                    .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             }
         }
     }
@@ -77,15 +46,15 @@ extension WelcomeView {
             RadialGradient(
                 colors: [
                     Color(
-                        Constants.Colors.hufflepuffDarkBrown
-                    ).opacity(0.7),
+                        Constants.Colors.hufflepuffLightBrown
+                    ).opacity(0.6),
                     Color(
-                        Constants.Colors.slytherinDarkSilver
-                    ).opacity(0.3)
+                        Constants.Colors.ravenclawBlue
+                    )
                 ],
                 center: .topTrailing,
                 startRadius: 5,
-                endRadius: 1500
+                endRadius: 1700
             )
             
             Image(Constants.Images.hogwartsLogo)
@@ -96,8 +65,40 @@ extension WelcomeView {
         .ignoresSafeArea()
     }
     
+    private var signedInView: some View {
+        VStack (spacing: 20) {
+            HStack {
+                signOutButton
+                Spacer()
+                if let userName = currentUserName,
+                   let userAge = currentUserAge,
+                   let userGender = currentUserGender,
+                   let firstCharacter = userName.first {
+                    VStack(spacing: -10) {
+                        Text("\(firstCharacter)")
+                            .font(.custom(Constants.Fonts.fontSnitch, size: 65))
+                        
+                        Text("\(userGender), \(userAge)")
+                            .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
+                    }
+                    .foregroundStyle(.white)
+                    .shadow(radius: 7)
+                }
+            }
+            .padding(.horizontal)
+            Spacer()
+            titleView
+            Spacer()
+            imageView
+            EnterButtonLongPressView(soundManager: SoundManager())
+            EnterButtonView()
+        }
+        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
+        
+    }
+    
     private var signOutButton: some View {
-        Text("Sign out")
+        Text(Constants.Titles.signOut)
             .foregroundColor(.white)
             .font(.headline)
             .frame(width: 100, height: 45)
@@ -114,12 +115,25 @@ extension WelcomeView {
             .font(Font.custom(Constants.Fonts.fontWelcomeScreen, size: 100))
             .kerning(2)
             .multilineTextAlignment(.center)
+            .shadow(radius: 5)
     }
     
     private var imageView: some View {
         Image(Constants.Images.hogwartsCastleCartoon)
             .withCustomImageModifier(frameWidth: 155)
             .cornerRadius(90)
+            .scaleEffect(1 + currentScale)
+            .gesture(
+                MagnificationGesture()
+                    .onChanged { value in
+                        currentScale = value - 1
+                    }
+                    .onEnded{ value in
+                        withAnimation(.spring()) {
+                            currentScale = 0
+                        }
+                    }
+            )
     }
     
     struct EnterButtonLongPressView: View {
@@ -158,13 +172,15 @@ extension WelcomeView {
         
         var body: some View {
             Button {
-                // MainTabView()
+                
             } label: {
-                Text("")
+                NavigationLink(destination: MainTabView()) {
+                    
+                }
+                .buttonStyle(WelcomeScreenButton(text: Constants.Titles.enter, performAction: {
+                    
+                }))
             }
-            .buttonStyle(WelcomeScreenButton(text: Constants.Titles.enter, performAction: {
-                // action here
-            }))
         }
     }
     

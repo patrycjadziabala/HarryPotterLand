@@ -27,5 +27,8 @@ struct DismissButton: View {
 }
 
 #Preview {
-    DismissButton(alignment: .center)
+    ZStack {
+        Color.black
+        DismissButton(alignment: .center)
+    }
 }

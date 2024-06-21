@@ -16,7 +16,6 @@ import Foundation
 //TODO: ProgressView
 //TODO: OnTapGesture(double click) - add to favourites
 //TODO: MagnificationGesture
-//TODO: LongPressGesture
 //TODO: Widgets
 //TODO: Push notifications
 //TODO: Count number of favourites and amend badge number in MainTabView

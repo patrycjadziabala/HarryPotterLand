@@ -17,6 +17,7 @@ struct Constants {
         static let enter = "Enter"
         static let pressAndHold = "Press and hold 🎵"
         static let signIn = "Sign in"
+        static let signOut = " Sign out"
         static let welcomeToHPWorld = "Welcome to Harry Potter world"
         static let pleaseSignIn = "Please sign in to enter"
         static let pleaseEnterYourName = "Plase enter your name"

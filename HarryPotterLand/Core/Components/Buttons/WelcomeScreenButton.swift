@@ -14,14 +14,13 @@ struct WelcomeScreenButton: ButtonStyle {
     let performAction: (() -> Void)?
     
     func makeBody(configuration: Configuration) -> some View {
-      
         ZStack {
             Circle()
-                .fill(Color(Constants.Colors.ravenclawGrey))
+                .foregroundColor(Color(Constants.Colors.ravenclawGrey))
                 .offset(y: offset)
             
             Circle()
-                .fill(Color(Constants.Colors.hufflepuffLightBrown))
+                .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.7))
                 .offset(y: configuration.isPressed ? offset : 0)
                
                 Text(text)
@@ -36,7 +35,6 @@ struct WelcomeScreenButton: ButtonStyle {
         .shadow(radius: 6, y: 4)
     }
 }
-
 
 struct WelcomeScreenButton_Previews: PreviewProvider {
     static var previews: some View {

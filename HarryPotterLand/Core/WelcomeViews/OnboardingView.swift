@@ -42,7 +42,6 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
-            colorBackground
             //content
             switch onboardingState {
             case 0:
@@ -80,31 +79,7 @@ struct OnboardingView_Previews: PreviewProvider {
 
 // MARK: COMPONENTS
 extension OnboardingView {
-    
-    private var colorBackground: some View {
-        ZStack{
-            RadialGradient(
-                colors: [
-                    Color(
-                        Constants.Colors.hufflepuffDarkBrown
-                    ).opacity(0.7),
-                    Color(
-                        Constants.Colors.slytherinDarkSilver
-                    ).opacity(0.3)
-                ],
-                center: .topTrailing,
-                startRadius: 5,
-                endRadius: 1500
-            )
-            
-            Image(Constants.Images.hogwartsLogo)
-                .withCustomImageModifier(frameWidth: UIScreen.main.bounds.width)
-                .opacity(0.25)
-                .offset(y: -90)
-        }
-        .ignoresSafeArea()
-    }
-    
+        
     private var signInButton: some View {
         VStack {
             Text(Constants.Titles.pleaseSignIn)
