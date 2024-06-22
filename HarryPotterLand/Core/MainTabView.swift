@@ -16,72 +16,85 @@ struct MainTabView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                    NavigationStack {
-                        HomeView(homeViewModel: homeViewModel)
-                    }
-                    .tag(0)
-                    
-                    NavigationStack {
-                        FavouritesView()
-                    }
-                    
-                    .tag(1)
-                    .badge(favouritesManager.favouritesCount)
-           
-                    
-                    NavigationStack {
-                        SearchView(characters: homeViewModel.characters)
-                    }
-                    .tag(2)
+                NavigationStack {
+                    HomeView(homeViewModel: homeViewModel)
+                }
+                .tag(0)
+                .toolbarBackground(.hidden, for: .navigationBar, .tabBar)
+                
+                NavigationStack {
+                    FavouritesView()
+                }
+                .tag(1)
+                
+                NavigationStack {
+                    SearchView(characters: homeViewModel.characters)
+                }
+                .tag(2)
             }
+            
             ZStack {
                 HStack {
                     ForEach(TabbedItems.allCases, id: \.self) { item in
                         Button {
                             selectedTab = item.rawValue
-                              
                         } label: {
-                            customTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                            customTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue), badgeCount: item == .favourites ? favouritesManager.favouritesCount : 0)
                         }
                     }
                 }
                 .padding(6)
             }
             .frame(height: 70)
-            .background(.purple.opacity(0.2))
+            .background(Color(Constants.Colors.hufflepuffDarkBrown).opacity(0.2))
             .cornerRadius(35)
             .padding(.horizontal, 26)
-        }
+            .padding(.bottom, -20)
         }
     }
+}
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
-                .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
-        }
+            .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
+}
 
 extension MainTabView {
     
-    private func customTabItem(imageName: String, title: String, isActive: Bool) -> some View {
-        HStack(spacing: 10) {
-            Spacer()
-            Image(systemName:imageName)
-                .resizable()
-                .renderingMode(.template)
-                .foregroundStyle(isActive ? .black : .gray)
-                .frame(width: 20, height: 20)
-            if isActive {
-                Text(title)
-                    .font(.system(size: 14))
+    private func customTabItem(imageName: String, title: String, isActive: Bool, badgeCount: Int) -> some View {
+        ZStack(alignment: .topTrailing) {
+            HStack(spacing: 10) {
+                Spacer()
+                Image(systemName: imageName)
+                    .resizable()
+                    .renderingMode(.template)
                     .foregroundStyle(isActive ? .black : .gray)
+                    .shadow(radius: 10)
+                    .frame(width: 25, height: 25)
+                
+                if isActive {
+                    Text(title)
+                        .font(.system(size: 17))
+                        .foregroundStyle(isActive ? .white : .gray)
+                        .shadow(radius: 10)
+                }
+                Spacer()
             }
-            Spacer()
+            .frame(width: 60, height: 60)
+            .background(isActive ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
+            .cornerRadius(30)
+            
+            if badgeCount > 0 {
+                Text("\(badgeCount)")
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.red)
+                    .clipShape(Circle())
+                    .offset(x: -7, y: 6)
+            }
         }
-        .badge(favouritesManager.favouritesCount)
-        .frame(width: isActive ? 180 : 60, height: 60)
-        .background(isActive ? .purple.opacity(0.4) : .clear)
-        .cornerRadius(30)
     }
 }
