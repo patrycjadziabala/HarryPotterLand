@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBarView: View {
     
     @Binding var searchText: String
+    @State var performAction: (() -> Void)?
     
     var body: some View {
         VStack(spacing: -2) {
@@ -40,6 +41,10 @@ extension SearchBarView {
                 .onAppear {
                     UITextField.appearance().clearButtonMode = .whileEditing
                 }
+                .onChange(of: searchText) { newValue in
+                    searchText = newValue
+                    performAction?()
+                }
         }
         .padding()
         .background(
@@ -55,7 +60,7 @@ extension SearchBarView {
     
     private var buttonSection: some View {
         Button(action: {
-            
+//            performAction?()
         }, label: {
             
         })

@@ -21,9 +21,13 @@ struct SearchView: View {
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
                     .shadow(radius: 10)
-                SearchBarView(searchText: $searchViewModel.searchText)
-                
-                Text(characters.first?.name ?? "Nie ma")
+                SearchBarView(searchText: $searchViewModel.searchText) {
+                    searchViewModel.filterResults(characters: characters)
+                }
+                                
+                List {
+                    charactersSection
+                }
             }
         }
     }
@@ -31,5 +35,17 @@ struct SearchView: View {
 
 #Preview {
     SearchView(characters: [])
-        .previewLayout(.sizeThatFits)
+}
+
+extension SearchView {
+    
+    private var charactersSection: some View {
+        Section {
+            ForEach(searchViewModel.filteredCharacters, id: \.id) { character in
+                Text(character.name)
+            }
+        } header: {
+            Text(Constants.Titles.titleCharacters)
+        }
+    }
 }
