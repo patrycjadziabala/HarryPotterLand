@@ -10,15 +10,20 @@ import Foundation
 class SearchViewModel: ObservableObject {
     
     @Published var searchText: String = ""
-//    @Published var characters: [CharacterModel]
     @Published var filteredCharacters: [CharacterModel] = []
-    
-//    init(characters: [CharacterModel]) {
-//        self.characters = characters
-//    }
+    @Published var filteredMovies: [MovieModel] = []
     
     func filterResults(characters: [CharacterModel]) {
         filteredCharacters = characters.filter( {$0.name.contains(searchText)} )
+    }
+    
+    func filterResults(movies: [MovieModel]) {
+        filteredMovies = movies.filter { movie in
+            if let title = movie.originalTitle {
+                return title.contains(searchText)
+            }
+            return false
+        }
     }
 }
 

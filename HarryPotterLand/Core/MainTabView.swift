@@ -28,7 +28,7 @@ struct MainTabView: View {
                 .tag(1)
                 
                 NavigationStack {
-                    SearchView(characters: homeViewModel.characters)
+                    SearchView(characters: homeViewModel.characters, movies: homeViewModel.movies)
                 }
                 .tag(2)
             }

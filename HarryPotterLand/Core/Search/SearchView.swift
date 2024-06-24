@@ -11,6 +11,7 @@ struct SearchView: View {
     
     @StateObject var searchViewModel = SearchViewModel()
     @State var characters: [CharacterModel]
+    @State var movies: [MovieModel]
     
     var body: some View {
         ZStack {
@@ -23,10 +24,17 @@ struct SearchView: View {
                     .shadow(radius: 10)
                 SearchBarView(searchText: $searchViewModel.searchText) {
                     searchViewModel.filterResults(characters: characters)
+                    searchViewModel.filterResults(movies: movies)
                 }
-                                
-                List {
-                    charactersSection
+                if !searchViewModel.searchText.isEmpty {
+                    ZStack {
+//                        List {
+//                            charactersSection
+//                        }
+                        List {
+                            moviesSection
+                        }
+                    }
                 }
             }
         }
@@ -34,7 +42,7 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView(characters: [])
+    SearchView(characters: [], movies: [])
 }
 
 extension SearchView {
@@ -46,6 +54,18 @@ extension SearchView {
             }
         } header: {
             Text(Constants.Titles.titleCharacters)
+        }
+    }
+    
+    private var moviesSection: some View {
+        Section {
+            ForEach(searchViewModel.filteredMovies, id: \.id) { movie in
+                if let title = movie.originalTitle {
+                    Text(title)
+                }
+            }
+        } header: {
+            Text(Constants.Titles.titleMovies)
         }
     }
 }

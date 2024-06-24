@@ -15,7 +15,6 @@ struct SearchBarView: View {
     var body: some View {
         VStack(spacing: -2) {
             searchBarSection
-            buttonSection
         }
     }
 }
@@ -36,7 +35,6 @@ extension SearchBarView {
                 .foregroundStyle( .white)
                 .opacity(searchText.isEmpty ? 1 : 0)
             TextField(Constants.Titles.searchByNameOrTitle, text: $searchText)
-                .foregroundStyle(.white)
                 .autocorrectionDisabled()
                 .onAppear {
                     UITextField.appearance().clearButtonMode = .whileEditing
@@ -45,6 +43,7 @@ extension SearchBarView {
                     searchText = newValue
                     performAction?()
                 }
+                .tint(.white)
         }
         .padding()
         .background(
@@ -56,19 +55,5 @@ extension SearchBarView {
         )
         .shadow(radius: 6)
         .padding()
-    }
-    
-    private var buttonSection: some View {
-        Button(action: {
-//            performAction?()
-        }, label: {
-            
-        })
-        .buttonStyle(WelcomeScreenButton(
-            text: Constants.Titles.go,
-            height: 60,
-            width: 60,
-            performAction: {}
-        ))
     }
 }
