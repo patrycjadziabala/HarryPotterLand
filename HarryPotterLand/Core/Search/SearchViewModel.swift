@@ -25,5 +25,10 @@ class SearchViewModel: ObservableObject {
             return false
         }
     }
+    
+    func getImageUrlFromTMBD(model: DetailCollectionViewProtocol?, imageSize: Int) -> String? {
+        let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.collectionImageUrl ?? "")"
+        return url
+    }
 }
 

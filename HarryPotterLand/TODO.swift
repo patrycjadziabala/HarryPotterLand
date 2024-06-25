@@ -36,4 +36,4 @@ import Foundation
 // - Singletons
 // - Haptics and vibrations
 // - Local notifications
-// - Combine - Fetching data from api
+// - Protocols

@@ -30,7 +30,7 @@ struct CustomTitleTextModifier: ViewModifier {
             .frame(maxWidth: .infinity, alignment: alignment)
             .padding(.leading)
             .font(.custom(fontType, size: fontSize))
-//            .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
+        //            .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
     }
 }
 

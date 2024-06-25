@@ -31,6 +31,7 @@ struct MainTabView: View {
                     SearchView(characters: homeViewModel.characters, movies: homeViewModel.movies)
                 }
                 .tag(2)
+                .toolbarBackground(.hidden, for: .navigationBar, .tabBar)
             }
             
             ZStack {

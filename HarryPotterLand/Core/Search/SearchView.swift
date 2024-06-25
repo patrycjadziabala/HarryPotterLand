@@ -27,13 +27,8 @@ struct SearchView: View {
                     searchViewModel.filterResults(movies: movies)
                 }
                 if !searchViewModel.searchText.isEmpty {
-                    ZStack {
-//                        List {
-//                            charactersSection
-//                        }
-                        List {
-                            moviesSection
-                        }
+                    ScrollView {
+                        charactersSection
                     }
                 }
             }
@@ -50,22 +45,17 @@ extension SearchView {
     private var charactersSection: some View {
         Section {
             ForEach(searchViewModel.filteredCharacters, id: \.id) { character in
-                Text(character.name)
+                SerachRowView(model: character, imageUrl: character.image)
             }
         } header: {
             Text(Constants.Titles.titleCharacters)
+                .withCustomTitleTextFormatting(fontType: .titleFont)
         }
     }
     
     private var moviesSection: some View {
-        Section {
-            ForEach(searchViewModel.filteredMovies, id: \.id) { movie in
-                if let title = movie.originalTitle {
-                    Text(title)
-                }
+        ForEach(searchViewModel.filteredMovies, id: \.id) { movie in
+            SerachRowView(model: movie, imageUrl: "")
             }
-        } header: {
-            Text(Constants.Titles.titleMovies)
-        }
     }
 }
