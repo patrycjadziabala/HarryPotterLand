@@ -19,17 +19,10 @@ struct SearchView: View {
             Background()
             
             VStack {
-                Text(Constants.Titles.searchForYourFavouriteCharactersOrMovies)
-                    .withCustomTitleTextFormatting(fontSize: 40 ,fontType: .textFont)
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .shadow(radius: 10)
-                SearchBarView(searchText: $searchViewModel.searchText) {
-                    searchViewModel.filterResults(characters: characters)
-                    searchViewModel.filterResults(movies: movies)
-                }
+                searchTitle
+                searchBar
                 
-                if !searchViewModel.searchText.isEmpty {
+                if searchViewModel.searchText.isEmpty {
                     resultsHeader
                     if showCharacters {
                         charactersSection
@@ -49,40 +42,33 @@ struct SearchView: View {
 
 extension SearchView {
     
+    private var searchTitle: some View {
+        Text(Constants.Titles.searchForYourFavouriteCharactersOrMovies)
+            .withCustomTitleTextFormatting(fontSize: 40 ,fontType: .textFont)
+            .foregroundStyle(.white)
+            .multilineTextAlignment(.center)
+            .shadow(radius: 10)
+    }
+    
+    private var searchBar: some View {
+        SearchBarView(searchText: $searchViewModel.searchText) {
+            searchViewModel.filterResults(characters: characters)
+            searchViewModel.filterResults(movies: movies)
+        }
+    }
+    
     private var resultsHeader: some View {
-        
         ZStack(alignment: showCharacters ? .leading : .trailing) {
             HStack {
-                Text(Constants.Titles.titleCharacters)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                    .background(showCharacters ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
-                    .cornerRadius(30)
-                    .foregroundStyle(showCharacters ? .white : .gray)
-                    .shadow(radius: 10)
-                    .withCustomTitleTextFormatting(fontSize: showCharacters ? 32 : 25, fontType: .titleFont, alignment: .center)
+                resultsHeaderItem(text: Constants.Titles.titleCharacters, isSelected: showCharacters)
                     .offset(x: 20)
                 
-                Text(Constants.Titles.titleMovies)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                    .background(!showCharacters ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
-                
-                    .cornerRadius(30)
-                    .foregroundStyle(!showCharacters ? .white : .gray)
-                    .shadow(radius: 10)
-                    .withCustomTitleTextFormatting(fontSize: !showCharacters ? 32 : 25, fontType: .titleFont, alignment: .center)
+                resultsHeaderItem(text: Constants.Titles.titleMovies, isSelected: !showCharacters)
                     .offset(x: -20)
             }
             .padding(.horizontal)
             
-            Image(systemName: Constants.Images.arrowRightIcon)
-                .resizable()
-                .foregroundColor(.white.opacity(0.4))
-                .frame(width: 25, height: 25)
-                .shadow(
-                    color: .black.opacity(0.25),
-                    radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 0)
+            resultsHeaderArrow
                 .rotationEffect(Angle(degrees: showCharacters ? 0 : 180))
                 .padding(.horizontal, 15)
                 .offset(y: 1)
@@ -95,7 +81,27 @@ extension SearchView {
             }
         }
     }
-        
+    
+    private func resultsHeaderItem(text: String, isSelected: Bool) -> some View {
+        Text(text)
+            .padding(.horizontal)
+            .padding(.vertical, 3)
+            .background(isSelected ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
+            .cornerRadius(30)
+            .foregroundStyle(isSelected ? .white : .gray)
+            .shadow(radius: 10)
+            .withCustomTitleTextFormatting(fontSize: isSelected ? 32 : 25, fontType: .titleFont, alignment: .center)
+    }
+    
+    private var resultsHeaderArrow: some View {
+        Image(systemName: Constants.Images.arrowRightIcon)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.white.opacity(0.4))
+            .frame(width: 25, height: 25)
+            .shadow(color: .black.opacity(0.25), radius: 10, x: 0, y: 0)
+    }
+    
     private var charactersSection: some View {
         ScrollView {
             ForEach(searchViewModel.filteredCharacters, id: \.id) { character in
