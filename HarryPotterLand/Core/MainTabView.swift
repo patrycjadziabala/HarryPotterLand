@@ -47,7 +47,7 @@ struct MainTabView: View {
                 .padding(6)
             }
             .frame(height: 70)
-            .background(Color(Constants.Colors.hufflepuffDarkBrown).opacity(0.2))
+            .background(Color(Constants.Colors.hufflepuffDarkBrown).opacity(0.9))
             .cornerRadius(35)
             .padding(.horizontal, 20)
             .padding(.bottom, -20)
@@ -85,7 +85,7 @@ extension MainTabView {
             }
             .frame(width: 60, height: 60)
             .padding(.horizontal)
-            .background(isActive ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
+            .background(isActive ? Color(Constants.Colors.ravenclawGrey).opacity(0.9) : .clear)
             .cornerRadius(30)
             
             if badgeCount > 0 {

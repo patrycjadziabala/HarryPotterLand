@@ -50,33 +50,52 @@ struct SearchView: View {
 extension SearchView {
     
     private var resultsHeader: some View {
-        HStack  {
-            Spacer()
-            
-            Text(showCharacters ? Constants.Titles.titleCharacters : Constants.Titles.titleMovies)
-                .withCustomTitleTextFormatting(fontSize: 35, fontType: .titleFont, alignment: .center)
-                .foregroundColor(.white)
-                .animation(.none, value: showCharacters)
+        
+        ZStack(alignment: showCharacters ? .leading : .trailing) {
+            HStack {
+                Text(Constants.Titles.titleCharacters)
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .background(showCharacters ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
+                    .cornerRadius(30)
+                    .foregroundStyle(showCharacters ? .white : .gray)
+                    .shadow(radius: 10)
+                    .withCustomTitleTextFormatting(fontSize: showCharacters ? 32 : 25, fontType: .titleFont, alignment: .center)
+                    .offset(x: 20)
+                
+                Text(Constants.Titles.titleMovies)
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .background(!showCharacters ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
+                
+                    .cornerRadius(30)
+                    .foregroundStyle(!showCharacters ? .white : .gray)
+                    .shadow(radius: 10)
+                    .withCustomTitleTextFormatting(fontSize: !showCharacters ? 32 : 25, fontType: .titleFont, alignment: .center)
+                    .offset(x: -20)
+            }
+            .padding(.horizontal)
             
             Image(systemName: Constants.Images.arrowRightIcon)
                 .resizable()
                 .foregroundColor(.white.opacity(0.4))
-                .frame(width: 45, height: 45)
+                .frame(width: 25, height: 25)
                 .shadow(
                     color: .black.opacity(0.25),
                     radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 0)
                 .rotationEffect(Angle(degrees: showCharacters ? 0 : 180))
-                .offset(x: showCharacters ? 0 : -315)
-                .onTapGesture {
-                    withAnimation(.spring()) {
-                        showCharacters.toggle()
-                    }
-                }
+                .padding(.horizontal, 15)
+                .offset(y: 1)
         }
-        .frame(height: 100)
-        .padding(.horizontal)
+        .frame(height: 70)
+        .cornerRadius(35)
+        .onTapGesture {
+            withAnimation(.spring()) {
+                showCharacters.toggle()
+            }
+        }
     }
-    
+        
     private var charactersSection: some View {
         ScrollView {
             ForEach(searchViewModel.filteredCharacters, id: \.id) { character in
