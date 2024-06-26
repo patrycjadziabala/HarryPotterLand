@@ -22,7 +22,7 @@ struct SearchView: View {
                 searchTitle
                 searchBar
                 
-                if searchViewModel.searchText.isEmpty {
+                if !searchViewModel.searchText.isEmpty {
                     resultsHeader
                     if showCharacters {
                         charactersSection
@@ -105,7 +105,16 @@ extension SearchView {
     private var charactersSection: some View {
         ScrollView {
             ForEach(searchViewModel.filteredCharacters, id: \.id) { character in
-                SerachRowView(model: character, imageUrl: character.image)
+                NavigationLink {
+                    CharacterDetailsView(
+                        viewModel: CharacterDetailsViewModel(
+                            model: character
+                        ),
+                        character: character,
+                        movies: movies)
+                } label: {
+                    SerachRowView(model: character, imageUrl: character.image)
+                }
             }
         }
     }
@@ -113,7 +122,13 @@ extension SearchView {
     private var moviesSection: some View {
         ScrollView {
             ForEach(searchViewModel.filteredMovies, id: \.id) { movie in
-                SerachRowView(model: movie, imageUrl: "")
+                NavigationLink {
+                    MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie),
+                                     image: searchViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
+                                     movie: movie)
+                } label: {
+                    SerachRowView(model: movie, imageUrl: "")
+                }
             }
         }
     }
