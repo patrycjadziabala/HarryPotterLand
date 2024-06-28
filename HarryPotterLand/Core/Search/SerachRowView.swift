@@ -20,7 +20,7 @@ struct SerachRowView: View {
                 .shadow(radius: 6)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.white, lineWidth: 2))
+                        .stroke(.white, lineWidth: 2))
             
             Text(model.collectionViewTitle)
                 .withCustomTitleTextFormatting(fontType: .textFont)

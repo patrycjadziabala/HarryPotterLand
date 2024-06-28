@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SearchView: View {
     
+    // TODO: - inject (just remove the "=" and declare type instead)
     @StateObject var searchViewModel = SearchViewModel()
+    // TODO: - move to SearchViewModel, declare e.g. as "allCharacters"
     @State var characters: [CharacterModel]
     @State var movies: [MovieModel]
     @State var showCharacters: Bool = true
@@ -61,6 +63,7 @@ extension SearchView {
         ZStack(alignment: showCharacters ? .leading : .trailing) {
             HStack {
                 resultsHeaderItem(text: Constants.Titles.titleCharacters, isSelected: showCharacters)
+                // TODO: - consider making a struct to define some standard things like headers etc so not everything is defined as "magic numbers" - when reasonable
                     .offset(x: 20)
                 
                 resultsHeaderItem(text: Constants.Titles.titleMovies, isSelected: !showCharacters)
@@ -127,7 +130,7 @@ extension SearchView {
                                      image: searchViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
                                      movie: movie)
                 } label: {
-                    SerachRowView(model: movie, imageUrl: "")
+                    SerachRowView(model: movie, imageUrl: searchViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "")
                 }
             }
         }

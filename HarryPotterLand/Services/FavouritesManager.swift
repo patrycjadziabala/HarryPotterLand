@@ -9,6 +9,7 @@ import Foundation
 
 class FavouritesManager: ObservableObject {
     
+    // TODO: - it
     @Published var characters: [String] = [
     "Harry", "Ron", "snape"
     ]

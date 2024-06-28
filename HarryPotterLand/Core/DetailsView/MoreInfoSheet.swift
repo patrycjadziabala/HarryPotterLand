@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: - create a model (struct) for the data: houseLogo, studentStatus etc, + the newly created model for InfoGridViewRow (see a TODO in InfoGridView).
 struct MoreInfoSheet: View {
     
     var houseLogo: String

@@ -8,6 +8,7 @@
 import SwiftUI
 import CachedAsyncImage
 
+// TODO: - change name - think about the name - model?
 protocol DetailCollectionViewProtocol {
     var colletionViewId: String { get }
     var collectionViewTitle: String { get }
@@ -16,6 +17,7 @@ protocol DetailCollectionViewProtocol {
     var collectionViewCellType: CellContentType { get }
 }
 
+// TODO: - rename to cell, card?
 struct DetailCollectionView: View {
     var frameWidth: CGFloat?
     let imageUrl: String?
@@ -23,6 +25,7 @@ struct DetailCollectionView: View {
     
     var body: some View {
         
+        // TODO: - is scrollview needed here?
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
                 GeometryReader { geometry in

@@ -8,15 +8,22 @@
 import Foundation
 import SwiftUI
 
-@MainActor class HomeViewModel: ObservableObject {
+// TODO: - write unit tests
+// TODO: - review other view models for properties that should be injected
+@MainActor
+class HomeViewModel: ObservableObject {
     
+    // TODO: - think if we could remove UIImage reference from view model and remove import SwiftUI so that viewmodel doesn't know about views
     @Published var image: UIImage? = nil
+    // TODO: - inject a loader described with a protocol
     let imageLoader = ImageLoaderManager()
+    // TODO: - inject
     var apiManager: APIManagerProtocol = APIManager()
     @Published var characters: [CharacterModel] = []
     @Published var movies: [MovieModel] = []
     
     func fetchHogwartsCastleImage() async {
+        // TODO: - check if this is right thing to do
         let image = try? await imageLoader.fetchHogwartsCastleImage()
         await MainActor.run {
             self.image = image
@@ -31,6 +38,10 @@ import SwiftUI
     }
     
     func fetchMovieDetails() async throws {
+        /* TODO: - use for loop to fetch those:
+         use Constants.HPid.allIds (add the missing ones)
+         for id in ids { try await fetch data and then append }
+        */
         guard let downloadedData1: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP1),
               let downloadedData2: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP2),
               let downloadedData3: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP3),
@@ -52,8 +63,17 @@ import SwiftUI
         movies.append(contentsOf: downloadedData8)
     }
     
+    // TODO: - use the string extension if appropriate?
     func getImageUrlFromTMBD(model: MovieModel?, imageSize: Int) -> String? {
         let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"
         return url
+    }
+}
+
+// TODO: - use it across the app instead of the above
+// TODO: - move the extension to String+imageUrlString file
+extension String {
+    static func imageUrlString(from model: MovieModel, imageSize: Int) -> Self {
+        "https://image.tmdb.org/t/p/w\(imageSize)/\(model.posterPath ?? "")"
     }
 }

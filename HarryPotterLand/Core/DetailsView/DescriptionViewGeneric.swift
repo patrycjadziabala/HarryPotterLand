@@ -30,6 +30,7 @@ struct DescriptionViewGeneric<Content: View>: View {
                 case .movieDetails:
                     imageSection
                     content
+                    // TODO: - remove if not needed
 //                        .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
                 case .characterDetails:
                     content

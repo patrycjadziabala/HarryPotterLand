@@ -94,10 +94,8 @@ extension HomeView {
                         } label: {
                             DetailCollectionView(
                                 frameWidth: 150,
-                                imageUrl: homeViewModel.getImageUrlFromTMBD(
-                                    model: movie,
-                                    imageSize: 200
-                                ) ?? "",
+                                imageUrl:
+                                    String.imageUrlString(from: movie, imageSize: 200),
                                 model: movie
                             )
                         }

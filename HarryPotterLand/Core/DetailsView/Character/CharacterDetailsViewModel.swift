@@ -15,6 +15,7 @@ class CharacterDetailsViewModel: ObservableObject {
     
     init(model: CharacterModel) {
         self.model = model
+        print("view model init")
     }
     
     func buildUrlForCharacterFandom(character: CharacterModel) -> String? {

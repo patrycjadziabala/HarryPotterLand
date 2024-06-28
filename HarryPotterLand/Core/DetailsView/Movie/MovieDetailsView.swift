@@ -18,6 +18,7 @@ struct MovieDetailsView: View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 topSection
+                // TODO: - remove if not needed
 //                genreSection
                 infoGridView
             }
@@ -43,6 +44,7 @@ extension MovieDetailsView {
         }
     }
     
+    // TODO: - remove if not needed
 //    private var genreSection: some View {
 //        HStack (spacing: 25) {
 //            ForEach(movie.genres ?? [], content: { genre in
@@ -60,6 +62,7 @@ extension MovieDetailsView {
             title5: nil,
             title6: nil,
             info1: movie.collectionViewTitle,
+            // TODO: - remove if not needed
 //                .replacingOccurrences(of: "-", with: "/") ?? "",
             info2: movie.collectionViewTitle,
             info3: String(movie.collectionViewDetails),

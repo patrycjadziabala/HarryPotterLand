@@ -114,5 +114,7 @@ struct Constants {
         static let idHP6 = "767"
         static let idHP7 = "12444"
         static let idHP8 = "12445"
+        static let allIds: [String] = [HPid.idHP1, HPid.idHP2//, all the rest
+        ]
     }
 }

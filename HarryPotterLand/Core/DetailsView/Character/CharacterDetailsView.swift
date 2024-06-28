@@ -23,7 +23,10 @@ struct CharacterDetailsView: View {
                 topSection
                 moreInformationButton()
                 Text(Constants.Titles.titleMoviesCollection)
+                // TODO: - remove if not needed
 //                    .withCustomTitleTextFormatting(, fontType: <#FontType#>)
+                
+                // TODO: - try to snap to grid (center a card)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(viewModel.actorInMovies, id: \.id) { movie in
@@ -42,10 +45,11 @@ struct CharacterDetailsView: View {
                                     model: movie
                                 )
                             }
-                            
                         }
                     }
                 }
+                
+                // TODO: -  remove if not needed
                 //press and hold to see a bigger picture
                 //                    DetailCollectionView()
                 seeMoreButton
@@ -65,6 +69,7 @@ struct CharacterDetailsView: View {
     }
 }
 
+// TODO: - move the _Previews to bottom of the file
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character), character: dev.character, movies: [dev.movie])

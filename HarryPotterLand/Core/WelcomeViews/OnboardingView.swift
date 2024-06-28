@@ -147,6 +147,7 @@ extension OnboardingView {
                 .shadow(radius: 1)
                 .background(.white)
                 .cornerRadius(10)
+            // TODO: - try removing one spacer
             Spacer()
             Spacer()
         }
@@ -182,6 +183,7 @@ extension OnboardingView {
                 Text(Constants.Titles.male).tag("Male")
                 Text(Constants.Titles.female).tag("Female")
                 Text(Constants.Titles.nonbinary).tag("Non-Binary")
+                // TODO: - add 'I'd rather not tell'
             } label: {
                 Text(gender.count > 1 ? gender : "Select a gender")
                     .foregroundColor(.white)

@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+/* TODO:
+ Make it more "generic" - create a model for a row to display.
+ Sth like InfoGridRowModel - has two properties, title and info
+ Pass an array of InfoGridRowModel to InfoGridView
+ In body, use ForEach to dynamically create rows
+ */
+
 struct InfoGridView: View {
     
     let title1: String

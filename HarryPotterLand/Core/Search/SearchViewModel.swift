@@ -26,6 +26,7 @@ class SearchViewModel: ObservableObject {
         }
     }
     
+    // gdzie mozna wyniesc wyzej te funkcje
     func getImageUrlFromTMBD(model: DetailCollectionViewProtocol?, imageSize: Int) -> String? {
         let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.collectionImageUrl ?? "")"
         return url

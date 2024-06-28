@@ -14,7 +14,9 @@ struct HarryPotterLandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            // TODO: - fix double navigation bar (when entering character details there are two at the top)
+            WelcomeView()
+//            MainTabView()
                 .environmentObject(favouritesManager)
         }
     }
