@@ -52,10 +52,5 @@ class CharacterDetailsViewModel: ObservableObject {
         await MainActor.run {
             actorInMovies = filteredArray?.sorted(by: { $0.id < $1.id }) ?? [] }
     }
-    
-    func getImageUrlFromTMBD(model: Cast?, imageSize: Int) -> String? {
-        let url =  "https://image.tmdb.org/t/p/w\(imageSize)\(model?.posterPath ?? "")"
-        return url
-    }
 }
 

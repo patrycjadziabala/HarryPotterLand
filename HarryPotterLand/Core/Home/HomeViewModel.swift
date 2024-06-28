@@ -62,18 +62,5 @@ class HomeViewModel: ObservableObject {
         movies.append(contentsOf: downloadedData7)
         movies.append(contentsOf: downloadedData8)
     }
-    
-    // TODO: - use the string extension if appropriate?
-    func getImageUrlFromTMBD(model: MovieModel?, imageSize: Int) -> String? {
-        let url =  "https://image.tmdb.org/t/p/w\(imageSize)/\(model?.posterPath ?? "")"
-        return url
-    }
 }
 
-// TODO: - use it across the app instead of the above
-// TODO: - move the extension to String+imageUrlString file
-extension String {
-    static func imageUrlString(from model: MovieModel, imageSize: Int) -> Self {
-        "https://image.tmdb.org/t/p/w\(imageSize)/\(model.posterPath ?? "")"
-    }
-}

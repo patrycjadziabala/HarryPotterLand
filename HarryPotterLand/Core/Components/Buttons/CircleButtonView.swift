@@ -16,10 +16,6 @@ struct CircleButtonView: View {
             .font(.headline)
             .foregroundColor(.white.opacity(0.4))
             .frame(width: 75, height: 75)
-//            .background(
-//            Circle()
-//                .foregroundColor(.white.opacity(0.4))
-//            )
             .shadow(
                 color: .black.opacity(0.25),
                 radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 0)
@@ -31,7 +27,7 @@ struct CircleButtonView_Previews: PreviewProvider {
         Group {
             CircleButtonView(iconName: "arrowshape.right.circle.fill")
                 .padding()
-            .previewLayout(.sizeThatFits)
+                .previewLayout(.sizeThatFits)
         }
     }
 }

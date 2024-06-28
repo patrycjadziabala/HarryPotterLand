@@ -69,6 +69,7 @@ struct Constants {
         static let searchIcon = "magnifyingglass"
         static let hogwartsLogo = "HogwartsLogo"
         static let xMarkCircleIcon = "xmark.circle.fill"
+        static let xMark = "xmark"
         static let arrowRightIcon = "arrowshape.right.circle.fill"
     }
     

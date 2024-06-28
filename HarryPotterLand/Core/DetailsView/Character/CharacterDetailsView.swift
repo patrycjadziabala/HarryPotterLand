@@ -41,7 +41,7 @@ struct CharacterDetailsView: View {
                             } label: {
                                 DetailCollectionView(
                                     frameWidth: 150,
-                                    imageUrl: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 200),
+                                    imageUrl: String.buildImageUrlString(from: movie, imageSize: 200),
                                     model: movie
                                 )
                             }

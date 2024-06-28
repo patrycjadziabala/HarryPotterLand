@@ -24,13 +24,13 @@ struct WelcomeScreenButton: ButtonStyle {
             Circle()
                 .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.7))
                 .offset(y: configuration.isPressed ? offset : 0)
-               
-                Text(text)
-                    .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
-                    .offset(y: configuration.isPressed ? offset : 0)
-                    .foregroundStyle(.white)
-                    .shadow(radius: 2)
-                    .multilineTextAlignment(.center)
+            
+            Text(text)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
+                .offset(y: configuration.isPressed ? offset : 0)
+                .foregroundStyle(.white)
+                .shadow(radius: 2)
+                .multilineTextAlignment(.center)
         }
         .compositingGroup()
         .frame(width: width ?? 90, height: height ?? 90)

@@ -127,10 +127,10 @@ extension SearchView {
             ForEach(searchViewModel.filteredMovies, id: \.id) { movie in
                 NavigationLink {
                     MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie),
-                                     image: searchViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
+                                     image: String.buildImageUrlString(from: movie, imageSize: 200),
                                      movie: movie)
                 } label: {
-                    SerachRowView(model: movie, imageUrl: searchViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "")
+                    SerachRowView(model: movie, imageUrl: String.buildImageUrlString(from: movie, imageSize: 200))
                 }
             }
         }

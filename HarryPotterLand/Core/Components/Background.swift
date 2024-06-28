@@ -12,12 +12,9 @@ struct Background: View {
         ZStack {
             RadialGradient(
                 colors: [
-                    Color(
-                        Constants.Colors.hufflepuffLightBrown
-                    ).opacity(0.6),
-                    Color(
-                        Constants.Colors.ravenclawBlue
-                    )
+                    Color(Constants.Colors.hufflepuffLightBrown)
+                        .opacity(0.6),
+                    Color(Constants.Colors.ravenclawBlue)
                 ],
                 center: .topTrailing,
                 startRadius: 5,

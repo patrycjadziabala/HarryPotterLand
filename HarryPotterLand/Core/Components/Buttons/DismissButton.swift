@@ -17,7 +17,7 @@ struct DismissButton: View {
         Button {
             dismiss()
         } label: {
-            Image(systemName: "xmark")
+            Image(systemName: Constants.Images.xMark)
                 .foregroundColor(.white)
                 .font(.largeTitle)
                 .padding(20)

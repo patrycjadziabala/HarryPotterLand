@@ -89,13 +89,13 @@ extension HomeView {
                     ForEach(homeViewModel.movies, id: \.id) { movie in
                         NavigationLink {
                             MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie),
-                                             image: homeViewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? "",
+                                             image: String.buildImageUrlString(from: movie, imageSize: 200),
                                              movie: movie)
                         } label: {
                             DetailCollectionView(
                                 frameWidth: 150,
                                 imageUrl:
-                                    String.imageUrlString(from: movie, imageSize: 200),
+                                    String.buildImageUrlString(from: movie, imageSize: 200),
                                 model: movie
                             )
                         }

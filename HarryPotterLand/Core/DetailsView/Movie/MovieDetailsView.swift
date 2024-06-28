@@ -38,7 +38,7 @@ extension MovieDetailsView {
         DescriptionViewGeneric(
             viewType: .movieDetails,
             name: viewModel.model.collectionViewTitle,
-            image: viewModel.getImageUrlFromTMBD(model: movie, imageSize: 200) ?? ""
+            image: String.buildImageUrlString(from: movie, imageSize: 200)
         ) {
             Text(movie.collectionViewDetails)
         }
