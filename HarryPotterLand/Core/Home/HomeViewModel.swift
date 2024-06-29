@@ -15,12 +15,15 @@ class HomeViewModel: ObservableObject {
     
     // TODO: - think if we could remove UIImage reference from view model and remove import SwiftUI so that viewmodel doesn't know about views
     @Published var image: UIImage? = nil
-    // TODO: - inject a loader described with a protocol
-    let imageLoader = ImageLoaderManager()
-    // TODO: - inject
-    var apiManager: APIManagerProtocol = APIManager()
+    let imageLoader: ImageLoaderManager
+    var apiManager: APIManagerProtocol
     @Published var characters: [CharacterModel] = []
     @Published var movies: [MovieModel] = []
+    
+    init(imageLoader: ImageLoaderManager, apiManager: APIManagerProtocol) {
+        self.imageLoader = imageLoader
+        self.apiManager = apiManager
+    }
     
     func fetchHogwartsCastleImage() async {
         // TODO: - check if this is right thing to do

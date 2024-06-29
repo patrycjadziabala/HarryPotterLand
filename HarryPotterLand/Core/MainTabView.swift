@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     
     @EnvironmentObject var favouritesManager: FavouritesManager
-    @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
+    @StateObject var homeViewModel: HomeViewModel = HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager())
     @State var selectedTab = 0
     
     var body: some View {

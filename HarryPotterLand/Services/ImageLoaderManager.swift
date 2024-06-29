@@ -8,7 +8,10 @@
 import Foundation
 import SwiftUI
 
-// TODO: - add protocol
+protocol ImageLoaderManagerProtocol {
+    func fetchHogwartsCastleImage() async throws -> UIImage?
+}
+
 class ImageLoaderManager {
     
     func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {

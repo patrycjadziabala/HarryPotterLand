@@ -82,8 +82,7 @@ extension CharacterDetailsView {
         DescriptionViewGeneric(
             viewType: .characterDetails,
             name: character.name,
-            image: character.image
-        )
+            image: character.image)
         {
             infoGridView
         }

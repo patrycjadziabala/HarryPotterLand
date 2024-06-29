@@ -167,6 +167,7 @@
 		4624A2232BD686880014D729 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */,
 				4624A2242BD686950014D729 /* Image.swift */,
 				4624A22F2BD7D9550014D729 /* PreviewProvider.swift */,
 				463749C32C2EFEE60064D0EA /* String + imageUrlString.swift */,
@@ -286,7 +287,6 @@
 		462640742BA0985900F5F22C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4626407E2BA0FDB400F5F22C /* ViewModifiers.swift */,
 				462640722BA0977500F5F22C /* Constants.swift */,
 				4624A1522BB49C0C0014D729 /* Sounds */,
 				4626406D2BA096A800F5F22C /* Fonts */,
