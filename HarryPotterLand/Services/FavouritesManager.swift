@@ -17,7 +17,7 @@ class FavouritesManager: ObservableObject {
     "HP1", "HP5"
     ]
     @Published var favouritesCount: Int = 0
-    private var hapticsManager: HapticsManager
+    private var hapticsManager: HapticsManagerProtocol
     
 //    {
 //        didSet {
@@ -25,7 +25,7 @@ class FavouritesManager: ObservableObject {
 //        }
 //    }
     
-    init(hapticsManager: HapticsManager) {
+    init(hapticsManager: HapticsManagerProtocol) {
         self.hapticsManager = hapticsManager
 //        print(favouritesCount)
         countFavourites()

@@ -8,9 +8,13 @@
 import SwiftUI
 import UserNotifications
 
-class NotificationManager {
-    
-    static let instance = NotificationManager()
+protocol NotificationManagerProtocol {
+    func requestAuthorisation()
+    func scheduleNotification()
+    func removeNotifications()
+}
+
+class NotificationManager: NotificationManagerProtocol {
     
     func requestAuthorisation() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
@@ -49,24 +53,30 @@ class NotificationManager {
     }
 }
 
-struct NotifictaionManager: View {
-    
-    var body: some View {
-        VStack {
-            Button {
-                NotificationManager.instance.requestAuthorisation()
-            } label: {
-                Text("Request permission")
-            }
-            
-            Button {
-                NotificationManager.instance.scheduleNotification()
-            } label: {
-                Text("Schedule notification")
-            }
-        }
-        .onAppear {
-            UNUserNotificationCenter.current().setBadgeCount(0)
-        }
-    }
-}
+// sample implementation
+/*
+ struct NotifictaionManager: View {
+ 
+ var body: some View {
+ VStack {
+ Button {
+ NotificationManager.instance.requestAuthorisation()
+ } label: {
+ Text("Request permission")
+ }
+ 
+ Button {
+ NotificationManager.instance.scheduleNotification()
+ } label: {
+ Text("Schedule notification")
+ }
+ }
+ .onAppear {
+ UNUserNotificationCenter.current().setBadgeCount(0)
+ }
+ }
+ }
+ */
+
+
+

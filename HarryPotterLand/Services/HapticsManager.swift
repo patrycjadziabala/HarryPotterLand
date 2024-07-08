@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+// implement impact func when testing on physical device
 
-class HapticsManager {
-    
-    static let instance = HapticsManager()
-    
+protocol HapticsManagerProtocol {
+    func notification(type: UINotificationFeedbackGenerator.FeedbackType)
+    func impact(style: UIImpactFeedbackGenerator.FeedbackStyle)
+}
+
+class HapticsManager: HapticsManagerProtocol {
+        
     func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(type)

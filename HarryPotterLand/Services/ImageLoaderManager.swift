@@ -12,7 +12,7 @@ protocol ImageLoaderManagerProtocol {
     func fetchHogwartsCastleImage() async throws -> UIImage?
 }
 
-class ImageLoaderManager {
+class ImageLoaderManager: ImageLoaderManagerProtocol {
     
     func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {
         guard

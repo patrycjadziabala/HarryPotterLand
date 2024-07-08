@@ -16,7 +16,7 @@ struct OnboardingView: View {
      2 - Add age
      3 - Add gender
      */
-    
+    @StateObject var onboardingViewModel: OnboardingViewModel
     @State var onboardingState: Int = 0
     
     let transition: AnyTransition = .asymmetric(
@@ -73,7 +73,7 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
     }
 }
 
@@ -233,7 +233,7 @@ extension OnboardingView {
     }
     
     func signIn() {
-        NotificationManager.instance.requestAuthorisation()
+        onboardingViewModel.requestAutorisationForNotifications()
         currentUserName = name
         currentUserAge = Int(age)
         currentUserGender = gender

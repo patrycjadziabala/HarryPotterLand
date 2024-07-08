@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     
     @EnvironmentObject var favouritesManager: FavouritesManager
-    @StateObject var homeViewModel: HomeViewModel = HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager())
+    @StateObject var homeViewModel: HomeViewModel
     @State var selectedTab = 0
     
     var body: some View {
@@ -57,7 +57,12 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        MainTabView(
+            homeViewModel: HomeViewModel(
+                imageLoader: ImageLoaderManager(),
+                apiManager: APIManager()
+            )
+        )
             .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
 }

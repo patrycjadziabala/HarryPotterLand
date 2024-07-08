@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    
     @AppStorage("signed_in") var currentUserSignedIn: Bool = true
     @AppStorage("name") var currentUserName: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     
+    @StateObject var welcomeViewModel: WelcomeViewModel
     @State private var scrollViewOffset: CGFloat = 0
     @State private var currentScale: CGFloat = 0
     
@@ -25,7 +25,7 @@ struct WelcomeView: View {
                 if currentUserSignedIn {
                     signedInView
                 } else {
-                    OnboardingView()
+                    OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
                         .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
                 }
             }
@@ -35,7 +35,7 @@ struct WelcomeView: View {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager()))
     }
 }
 
@@ -90,11 +90,10 @@ extension WelcomeView {
             titleView
             Spacer()
             imageView
-            EnterButtonLongPressView(soundManager: SoundManager())
-            EnterButtonView()
+            enterButtonLongPressView()
+            enterButtonView
         }
         .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
-        
     }
     
     private var signOutButton: some View {
@@ -110,7 +109,7 @@ extension WelcomeView {
             }
     }
     
-    var titleView: some View {
+    private var titleView: some View {
         Text(Constants.Titles.titleHarryPotterLand)
             .font(Font.custom(Constants.Fonts.fontWelcomeScreen, size: 100))
             .kerning(2)
@@ -136,70 +135,70 @@ extension WelcomeView {
             )
     }
     
-    struct EnterButtonLongPressView: View {
-        
-        @State private var isPressingDown: Bool = false
-        
-        private var soundManager: SoundManager
-        
-        init(soundManager: SoundManager) {
-            self.soundManager = soundManager
-        }
-        
-        var body: some View {
-            Button("", action: {
-                
-            })
+    private func enterButtonLongPressView() -> some View {
+        Button("", action: {
+            
+        })
+        .buttonStyle(
+            WelcomeScreenButton(
+                text: Constants.Titles.pressAndHold,
+                height: nil,
+                width: nil,
+                performAction: {}
+            )
+        )
+        .simultaneousGesture(
+            LongPressGesture(minimumDuration: 0.3)
+                .onEnded { _ in
+                    playSound()
+                }
+        )
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onEnded{ _ in
+                    stopSound()
+                })
+    }
+    
+    private var enterButtonView: some View {
+        Button {
+            
+        } label: {
+            NavigationLink(
+                destination: MainTabView(
+                    homeViewModel: HomeViewModel(
+                        imageLoader: ImageLoaderManager(),
+                        apiManager: APIManager()
+                    )
+                )
+            )
+            {
+            }
             .buttonStyle(
                 WelcomeScreenButton(
-                    text: Constants.Titles.pressAndHold,
+                    text: Constants.Titles.enter,
                     height: nil,
                     width: nil,
                     performAction: {}
                 )
             )
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 0.3)
-                    .onEnded { _ in
-                        soundManager.playSound()
-                    }
-            )
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .onEnded{ _ in
-                        soundManager.stopSound()
-                    }
-            )
         }
     }
     
-    struct EnterButtonView: View {
-        
-        var body: some View {
-            Button {
-                
-            } label: {
-                NavigationLink(destination: MainTabView()) {
-                    
-                }
-                .buttonStyle(
-                    WelcomeScreenButton(
-                        text: Constants.Titles.enter,
-                        height: nil,
-                        width: nil,
-                        performAction: {}
-                    )
-                )
-            }
-        }
-    }
-    
-    func signOut() {
+    private func signOut() {
         currentUserName = nil
         currentUserAge = nil
         currentUserGender = nil
         withAnimation(.spring()) {
             currentUserSignedIn = false
         }
+    }
+    
+    // Functions
+    private func playSound() {
+        welcomeViewModel.soundManager.playSound()
+    }
+    private func stopSound() {
+        welcomeViewModel.soundManager.stopSound()
     }
 }

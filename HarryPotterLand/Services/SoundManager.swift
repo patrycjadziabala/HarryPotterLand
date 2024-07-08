@@ -8,10 +8,13 @@
 import Foundation
 import AVKit
 
-class SoundManager {
-    
-    static let instance = SoundManager()
-    
+protocol SoundManagerProtocol {
+    func playSound()
+    func stopSound()
+}
+
+class SoundManager: SoundManagerProtocol {
+        
     var player: AVAudioPlayer?
 
     func playSound() {
