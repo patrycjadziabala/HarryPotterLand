@@ -106,6 +106,10 @@ struct Constants {
         static let fontSnitch = "jlrsnitch"
     }
     
+    struct apiKey {
+        static let theMovieDB = "api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    }
+    
     struct HPid {
         static let idHP1 = "671"
         static let idHP2 = "672"
@@ -115,7 +119,6 @@ struct Constants {
         static let idHP6 = "767"
         static let idHP7 = "12444"
         static let idHP8 = "12445"
-        static let allIds: [String] = [HPid.idHP1, HPid.idHP2//, all the rest
-        ]
+        static let allIds: [String] = [HPid.idHP1, HPid.idHP2, HPid.idHP3, HPid.idHP4, HPid.idHP5, HPid.idHP6, HPid.idHP7, HPid.idHP8]
     }
 }

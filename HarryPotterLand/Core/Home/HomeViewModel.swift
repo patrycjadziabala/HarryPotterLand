@@ -6,19 +6,17 @@
 //
 
 import Foundation
-import SwiftUI
 
 // TODO: - write unit tests
-// TODO: - review other view models for properties that should be injected
 @MainActor
 class HomeViewModel: ObservableObject {
     
-    // TODO: - think if we could remove UIImage reference from view model and remove import SwiftUI so that viewmodel doesn't know about views
-    @Published var image: UIImage? = nil
-    let imageLoader: ImageLoaderManagerProtocol
-    let apiManager: APIManagerProtocol
+    @Published var imageData: Data? = nil
     @Published var characters: [CharacterModel] = []
     @Published var movies: [MovieModel] = []
+    
+    let imageLoader: ImageLoaderManagerProtocol
+    let apiManager: APIManagerProtocol
     
     init(imageLoader: ImageLoaderManagerProtocol, apiManager: APIManagerProtocol) {
         self.imageLoader = imageLoader
@@ -26,11 +24,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchHogwartsCastleImage() async {
-        // TODO: - check if this is right thing to do
         let image = try? await imageLoader.fetchHogwartsCastleImage()
-        await MainActor.run {
-            self.image = image
-        }
+        self.imageData = image?.pngData()
     }
     
     func fetchCharacters() async throws {
@@ -41,29 +36,13 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchMovieDetails() async throws {
-        /* TODO: - use for loop to fetch those:
-         use Constants.HPid.allIds (add the missing ones)
-         for id in ids { try await fetch data and then append }
-        */
-        guard let downloadedData1: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP1),
-              let downloadedData2: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP2),
-              let downloadedData3: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP3),
-              let downloadedData4: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP4),
-              let downloadedData5: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP5),
-              let downloadedData6: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP6),
-              let downloadedData7: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP7),
-              let downloadedData8: [MovieModel] = try await apiManager.fetchData(endpoint: .movie, id: Constants.HPid.idHP8)
-        else {
-            return
+        var allMovies: [MovieModel] = []
+        for id in Constants.HPid.allIds {
+            if let movie = try await apiManager.fetchData(endpoint: .movie, id: id) as [MovieModel]? {
+                allMovies.append(contentsOf: movie)
+            }
         }
-        movies.append(contentsOf: downloadedData1)
-        movies.append(contentsOf: downloadedData2)
-        movies.append(contentsOf: downloadedData3)
-        movies.append(contentsOf: downloadedData4)
-        movies.append(contentsOf: downloadedData5)
-        movies.append(contentsOf: downloadedData6)
-        movies.append(contentsOf: downloadedData7)
-        movies.append(contentsOf: downloadedData8)
+        self.movies = allMovies
     }
 }
 

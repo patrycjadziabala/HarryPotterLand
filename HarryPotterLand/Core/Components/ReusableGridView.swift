@@ -25,6 +25,7 @@ struct ReusableGridView: View {
                 }
             }
         }
+        .padding(.horizontal, 5)
     }
 }
 

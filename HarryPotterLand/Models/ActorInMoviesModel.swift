@@ -12,7 +12,6 @@ struct ActorInMoviesModel: Codable {
     let id: Int
 }
 
-// MARK: - Cast
 struct Cast: Codable, Identifiable {
     let adult: Bool
     let backdropPath: String?

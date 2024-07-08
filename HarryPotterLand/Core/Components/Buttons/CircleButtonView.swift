@@ -24,10 +24,10 @@ struct CircleButtonView: View {
 
 struct CircleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ZStack {
+            Color.black
             CircleButtonView(iconName: "arrowshape.right.circle.fill")
                 .padding()
-                .previewLayout(.sizeThatFits)
         }
     }
 }

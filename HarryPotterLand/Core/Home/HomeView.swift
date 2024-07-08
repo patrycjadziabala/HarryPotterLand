@@ -42,10 +42,14 @@ extension HomeView {
     
     private var imageSection: some View {
         VStack {
-            if let image = homeViewModel.image {
-                Image(uiImage: image)
+            if let imageData = homeViewModel.imageData,
+               let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
+                    .padding(.bottom)
+            } else {
+                Text("No Image Available")
                     .padding(.bottom)
             }
         }

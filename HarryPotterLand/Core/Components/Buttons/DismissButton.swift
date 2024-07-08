@@ -21,7 +21,7 @@ struct DismissButton: View {
                 .foregroundColor(.white)
                 .font(.largeTitle)
                 .padding(20)
-                .frame(maxWidth: .infinity, alignment: alignment)
+                .frame(width: 50, height: 50, alignment: alignment)
         }
     }
 }

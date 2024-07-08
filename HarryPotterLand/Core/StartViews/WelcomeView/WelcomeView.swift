@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @AppStorage("signed_in") var currentUserSignedIn: Bool = true
-    @AppStorage("name") var currentUserName: String?
-    @AppStorage("age") var currentUserAge: Int?
-    @AppStorage("gender") var currentUserGender: String?
     
     @StateObject var welcomeViewModel: WelcomeViewModel
     @State private var scrollViewOffset: CGFloat = 0
@@ -22,7 +18,7 @@ struct WelcomeView: View {
             ZStack {
                 colorBackground
                 
-                if currentUserSignedIn {
+                if welcomeViewModel.currentUserSignedIn {
                     signedInView
                 } else {
                     OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
@@ -70,15 +66,12 @@ extension WelcomeView {
             HStack {
                 signOutButton
                 Spacer()
-                if let userName = currentUserName,
-                   let userAge = currentUserAge,
-                   let userGender = currentUserGender,
-                   let firstCharacter = userName.first {
+                if let userInfo = welcomeViewModel.userDisplayInfo {
                     VStack(spacing: -10) {
-                        Text("\(firstCharacter)")
+                        Text(userInfo.0)
                             .font(.custom(Constants.Fonts.fontSnitch, size: 65))
                         
-                        Text("\(userGender), \(userAge)")
+                        Text(userInfo.1)
                             .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
                     }
                     .foregroundStyle(.white)
@@ -105,7 +98,7 @@ extension WelcomeView {
             .cornerRadius(10)
             .padding(.horizontal)
             .onTapGesture {
-                signOut()
+                welcomeViewModel.signOut()
             }
     }
     
@@ -150,13 +143,13 @@ extension WelcomeView {
         .simultaneousGesture(
             LongPressGesture(minimumDuration: 0.3)
                 .onEnded { _ in
-                    playSound()
+                    welcomeViewModel.playSound()
                 }
         )
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
                 .onEnded{ _ in
-                    stopSound()
+                    welcomeViewModel.stopSound()
                 })
     }
     
@@ -183,22 +176,5 @@ extension WelcomeView {
                 )
             )
         }
-    }
-    
-    private func signOut() {
-        currentUserName = nil
-        currentUserAge = nil
-        currentUserGender = nil
-        withAnimation(.spring()) {
-            currentUserSignedIn = false
-        }
-    }
-    
-    // Functions
-    private func playSound() {
-        welcomeViewModel.soundManager.playSound()
-    }
-    private func stopSound() {
-        welcomeViewModel.soundManager.stopSound()
     }
 }

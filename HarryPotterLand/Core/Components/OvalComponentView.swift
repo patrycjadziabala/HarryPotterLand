@@ -28,5 +28,9 @@ struct OvalComponentView: View {
 }
 
 #Preview {
-    OvalComponentView(text: "Action")
+    ZStack {
+        Color.black
+        OvalComponentView(text: "Action")
+    }
+    .ignoresSafeArea()
 }

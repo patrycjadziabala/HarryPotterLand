@@ -34,11 +34,10 @@ enum QueryType: String {
 
 class APIManager: APIManagerProtocol {
     
-    // TODO: - extract apikey to constants
     // URLs
-    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<id>?api_key=29d1eac12ae7da1b5df0ba13aca09837"
-    let tMDBbSearchURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType>?query=<query>&api_key=29d1eac12ae7da1b5df0ba13aca09837"
-    let personMovieCreditsUrlString = "https://api.themoviedb.org/3/person/<actorId>/movie_credits?api_key=29d1eac12ae7da1b5df0ba13aca09837"
+    let tMDBbURLString: String = "https://api.themoviedb.org/3/<endpoint>/<id>?\(Constants.apiKey.theMovieDB)"
+    let tMDBbSearchURLString: String = "https://api.themoviedb.org/3/<endpoint>/<queryType>?query=<query>&\(Constants.apiKey.theMovieDB)"
+    let personMovieCreditsUrlString: String = "https://api.themoviedb.org/3/person/<actorId>/movie_credits?\(Constants.apiKey.theMovieDB)"
     
     private func buildUrlStringForTMDB(for endpoint: Endpoint, id: String?) -> String? {
         let urlString = tMDBbURLString
