@@ -9,41 +9,18 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    //Onboarding states:
-    /*
-     0 - Welcome screen
-     1 - Add name
-     2 - Add age
-     3 - Add gender
-     */
     @StateObject var onboardingViewModel: OnboardingViewModel
-    @State var onboardingState: Int = 0
     
     let transition: AnyTransition = .asymmetric(
         insertion: .move(edge: .trailing),
         removal: .move(edge: .leading))
     
-    //onboarding inputs
-    @State var name: String = ""
-    @State var age: Double = 50
-    @State var gender: String = "Male"
-    
     @FocusState private var nameFieldInFocus: Bool
-    
-    //alert properties
-    @State var alertTitle: String = ""
-    @State var showAlert: Bool = false
-    
-    //app storage
-    @AppStorage("name") var currentUserName: String?
-    @AppStorage("age") var currentUserAge: Int?
-    @AppStorage("gender") var currentUserGender: String?
-    @AppStorage("signed_in") var currentUserSignedIn: Bool = false
     
     var body: some View {
         ZStack {
             //content
-            switch onboardingState {
+            switch onboardingViewModel.onboardingState {
             case 0:
                 welcomeScreen
                     .transition(transition)
@@ -56,17 +33,17 @@ struct OnboardingView: View {
             case 3:
                 addGenderSection
                     .transition(transition)
-            default: welcomeScreen
+            default: welcomeScreen //fallback to welcome screen
             }
-            //buttons
+            
             VStack {
                 Spacer()
                 signInButton
             }
             .padding(30)
         }
-        .alert(isPresented: $showAlert) {
-            return Alert(title: Text(alertTitle))
+        .alert(isPresented: $onboardingViewModel.showAlert) {
+            Alert(title: Text(onboardingViewModel.alertTitle))
         }
     }
 }
@@ -77,9 +54,10 @@ struct OnboardingView_Previews: PreviewProvider {
     }
 }
 
-// MARK: COMPONENTS
+// MARK: - Components
+
 extension OnboardingView {
-        
+    
     private var signInButton: some View {
         VStack {
             Text(Constants.Titles.pleaseSignIn)
@@ -92,23 +70,21 @@ extension OnboardingView {
                         .foregroundStyle(.white)
                     ,alignment: .bottom
                 )
-                .opacity(onboardingState == 0 ? 1 : 0.001)
+                .opacity(onboardingViewModel.onboardingState == 0 ? 1 : 0.001)
                 .padding()
             
-            Text(onboardingState == 0 ? Constants.Titles.signIn :
-                    onboardingState == 3 ? Constants.Titles.finish :
-                    Constants.Titles.next)
-            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-            .foregroundColor(.brown)
-            .kerning(2)
-            .shadow(radius: 1)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
-            .onTapGesture {
-                handleNextButtonPressed()
-            }
+            Text(buttonText)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                .foregroundColor(.brown)
+                .kerning(2)
+                .shadow(radius: 1)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .onTapGesture {
+                    onboardingViewModel.handleNextButtonPressed()
+                }
         }
     }
     
@@ -137,7 +113,7 @@ extension OnboardingView {
             Text(Constants.Titles.pleaseEnterYourName)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
-            TextField(Constants.Titles.yourName, text: $name)
+            TextField(Constants.Titles.yourName, text: $onboardingViewModel.name)
                 .focused($nameFieldInFocus)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
                 .kerning(2)
@@ -161,10 +137,10 @@ extension OnboardingView {
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
                 .shadow(radius: 1)
-            Text("\(String(format: "%.0f", age))")
+            Text("\(String(format: "%.0f", onboardingViewModel.age))")
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 55))
                 .foregroundStyle(.white)
-            Slider(value: $age, in: 1...100, step: 1)
+            Slider(value: $onboardingViewModel.age, in: 1...100, step: 1)
                 .tint(.white)
             Spacer()
             Spacer()
@@ -178,14 +154,13 @@ extension OnboardingView {
             Text(Constants.Titles.pleaseSelectYourGender)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
-            Picker(selection: $gender) {
-                Text("Select a gender").tag("G")
-                Text(Constants.Titles.male).tag("Male")
-                Text(Constants.Titles.female).tag("Female")
-                Text(Constants.Titles.nonbinary).tag("Non-Binary")
-                // TODO: - add 'I'd rather not tell'
+            Picker(selection: $onboardingViewModel.gender) {
+                Text(Constants.Titles.selectGender).tag("G")
+                Text(Constants.Titles.male).tag(Constants.Titles.male)
+                Text(Constants.Titles.female).tag(Constants.Titles.female)
+                Text(Constants.Titles.nonbinary).tag(Constants.Titles.nonbinary)
             } label: {
-                Text(gender.count > 1 ? gender : "Select a gender")
+                Text(selectedGenderText)
                     .foregroundColor(.white)
             }
             .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
@@ -200,50 +175,25 @@ extension OnboardingView {
         }
         .padding(30)
     }
-}
-
-//MARK: FUNCTIONS
-extension OnboardingView {
     
-    func handleNextButtonPressed() {
-        //CHECK INPUTS
-        switch onboardingState {
-        case 1:
-            guard name.count >= 3 else {
-                nameFieldInFocus = true
-                showAlert(title: Constants.Titles.alertName)
-                return
-            }
+    // Computed properties
+    
+    private var buttonText: String {
+        switch onboardingViewModel.onboardingState {
+        case 0:
+            return Constants.Titles.signIn
         case 3:
-            guard gender.count > 1 else {
-                showAlert(title: Constants.Titles.alertGender)
-                return
-            }
+            return Constants.Titles.finish
         default:
-            break
+            return Constants.Titles.next
         }
-        //GO TO NEXT SECTION
-        if onboardingState == 3 {
-            signIn()
+    }
+    
+    private var selectedGenderText: String {
+        if onboardingViewModel.gender.isEmpty {
+            return Constants.Titles.selectGender
         } else {
-            withAnimation(.spring()) {
-                onboardingState += 1
-            }
+            return onboardingViewModel.gender
         }
-    }
-    
-    func signIn() {
-        onboardingViewModel.requestAutorisationForNotifications()
-        currentUserName = name
-        currentUserAge = Int(age)
-        currentUserGender = gender
-        withAnimation(.spring()) {
-            currentUserSignedIn = true
-        }
-    }
-    
-    func showAlert(title: String) {
-        alertTitle = title
-        showAlert.toggle()
     }
 }

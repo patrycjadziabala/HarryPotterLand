@@ -31,6 +31,7 @@ struct Constants {
         static let next = "Next"
         static let alertName = "Your name must be at least 3 characters long 😬"
         static let alertGender = "Please select your gender 😬"
+       static let selectGender = "Select a gender"
         static let student = "Student"
         static let staff = "Staff"
         static let home = "Home"
