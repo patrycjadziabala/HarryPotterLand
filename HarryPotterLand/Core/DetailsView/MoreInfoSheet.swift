@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-// TODO: - create a model (struct) for the data: houseLogo, studentStatus etc, + the newly created model for InfoGridViewRow (see a TODO in InfoGridView).
 struct MoreInfoSheet: View {
     
-    var houseLogo: String
-    var studentStatus: String
-    let websiteUrlString: String?
-    let character: CharacterModel
+    let model: MoreInfoModel
     
     var body: some View {
         ZStack {
@@ -34,11 +30,7 @@ struct MoreInfoSheet: View {
 
 struct MoreInfoSheet_Previews: PreviewProvider {
     static var previews: some View {
-        MoreInfoSheet(
-            houseLogo: dev.character.houseLogo,
-            studentStatus: dev.character.hogwartsStudent.description, websiteUrlString: "",
-            character: dev.character
-        )
+        MoreInfoSheet(model: MoreInfoModel(houseLogo: dev.character.houseLogo, studentStatus: dev.character.actor, websiteUrlString: dev.character.webFandom, character: dev.character))
     }
 }
 
@@ -46,11 +38,11 @@ extension MoreInfoSheet {
     
     private var topSection: some View {
         HStack  {
-            Image(houseLogo)
+            Image(model.houseLogo)
                 .withCustomImageModifier(frameWidth: 55)
                 .padding()
             
-            Text(character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff)
+            Text(model.character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff)
                 .frame(maxWidth: .infinity)
                 .withCustomTitleTextFormatting(fontSize: 30, fontType: .titleFont, alignment: .center)
             
@@ -61,21 +53,16 @@ extension MoreInfoSheet {
     }
     
     private var middleSection: some View {
-        InfoGridView(
-            title1: Constants.Titles.actor,
-            title2: Constants.Titles.eyeColor,
-            title3: Constants.Titles.hairColor,
-            title4: Constants.Titles.ancestry,
-            title5: Constants.Titles.patronus,
-            title6: Constants.Titles.wizard,
-            info1: character.actor,
-            info2: character.eyeColour,
-            info3: character.hairColour,
-            info4: character.ancestry,
-            info5: character.patronus,
-            info6: character.wizard.description,
-            font: .title,
-            spacing: 50
+        InfoGridView(rows:
+                        [InfoGridRowModel(title: Constants.Titles.actor, info: model.character.actor),
+                         InfoGridRowModel(title: Constants.Titles.eyeColor, info: model.character.eyeColour),
+                         InfoGridRowModel(title: Constants.Titles.hairColor, info: model.character.hairColour),
+                         InfoGridRowModel(title: Constants.Titles.ancestry, info: model.character.ancestry),
+                         InfoGridRowModel(title: Constants.Titles.patronus, info: model.character.patronus),
+                         InfoGridRowModel(title: Constants.Titles.wizard, info: model.character.wizard.description),
+                        ],
+                     font: .title,
+                     spacing: 50
         )
     }
     
@@ -83,7 +70,7 @@ extension MoreInfoSheet {
         VStack (alignment: .leading, spacing: 10) {
             Text(Constants.Titles.explore)
             Spacer(minLength: 4)
-            if let websiteString = websiteUrlString,
+            if let websiteString = model.websiteUrlString,
                let url = URL(string: websiteString) {
                 Link(Constants.Titles.fandom, destination: url)
             }

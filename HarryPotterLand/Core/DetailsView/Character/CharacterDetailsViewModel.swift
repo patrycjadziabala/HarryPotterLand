@@ -10,11 +10,12 @@ import Foundation
 class CharacterDetailsViewModel: ObservableObject {
     
     let model: CharacterModel
-    var apiManager: APIManagerProtocol = APIManager()
+    var apiManager: APIManagerProtocol
     @Published var actorInMovies: [Cast] = []
     
-    init(model: CharacterModel) {
+    init(model: CharacterModel, apiManager: APIManagerProtocol) {
         self.model = model
+        self.apiManager = apiManager
     }
     
     func buildUrlForCharacterFandom(character: CharacterModel) -> String? {

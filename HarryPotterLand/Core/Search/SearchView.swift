@@ -111,10 +111,12 @@ extension SearchView {
                 NavigationLink {
                     CharacterDetailsView(
                         viewModel: CharacterDetailsViewModel(
-                            model: character
+                            model: character,
+                            apiManager: APIManager()
                         ),
                         character: character,
-                        movies: movies)
+                        movies: movies
+                    )
                 } label: {
                     SerachRowView(model: character, imageUrl: character.image)
                 }

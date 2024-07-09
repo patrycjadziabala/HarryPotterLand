@@ -9,21 +9,18 @@ import SwiftUI
 
 struct CharacterDetailsView: View {
     
-    //MARK: Properties
     @StateObject var viewModel: CharacterDetailsViewModel
     @State var showSheet: Bool = false
     @State var expand: Bool = false
     let character: CharacterModel
     let movies: [MovieModel]
     
-    //MARK: Main body
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 topSection
                 moreInformationButton()
                 Text(Constants.Titles.titleMoviesCollection)
-                // TODO: - remove if not needed
 //                    .withCustomTitleTextFormatting(, fontType: <#FontType#>)
                 
                 // TODO: - try to snap to grid (center a card)
@@ -72,7 +69,7 @@ struct CharacterDetailsView: View {
 // TODO: - move the _Previews to bottom of the file
 struct ReusableDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character), character: dev.character, movies: [dev.movie])
+        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character, apiManager: APIManager()), character: dev.character, movies: [dev.movie])
     }
 }
 
@@ -89,29 +86,21 @@ extension CharacterDetailsView {
     }
     
     private var infoGridView: some View {
-        InfoGridView(
-            title1: Constants.Titles.house,
-            title2: Constants.Titles.species,
-            title3: Constants.Titles.alive,
-            title4: Constants.Titles.dateOfBirth,
-            title5: nil,
-            title6: nil,
-            info1: character.house,
-            info2: character.species,
-            info3: character.alive.description,
-            info4: character.dateOfBirth?
-                .replacingOccurrences(of: "-", with: "/")
-                .replacingOccurrences(of: "19", with: "")
-            ?? Constants.Titles.na,
-            info5: nil,
-            info6: nil,
+        InfoGridView(rows:
+                        [InfoGridRowModel(title: Constants.Titles.house, info: character.house),
+                         InfoGridRowModel(title: Constants.Titles.species, info: character.species),
+                         InfoGridRowModel(title: Constants.Titles.alive, info: character.alive.description),
+                         InfoGridRowModel(title: Constants.Titles.dateOfBirth, info: character.dateOfBirth?
+                            .replacingOccurrences(of: "-", with: "/")
+                            .replacingOccurrences(of: "19", with: "") ?? Constants.Titles.na)
+                        ],
             font: .callout,
             spacing: 5
         )
     }
     
     private var moreInfoSheet: some View {
-        MoreInfoSheet(houseLogo: character.houseLogo, studentStatus: character.hogwartsStudent ? Constants.Titles.student : Constants.Titles.staff, websiteUrlString: viewModel.buildUrlForCharacterFandom(character: character), character: character)
+        MoreInfoSheet(model: MoreInfoModel(houseLogo: character.houseLogo, studentStatus: character.actor, websiteUrlString: character.webFandom, character: character))
             .presentationDetents([.medium, .large])
     }
     

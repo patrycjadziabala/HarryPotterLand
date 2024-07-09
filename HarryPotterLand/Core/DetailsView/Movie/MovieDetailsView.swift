@@ -12,13 +12,11 @@ struct MovieDetailsView: View {
     @StateObject var viewModel: MovieDetailsViewModel
     let image: String
     let movie: DetailCollectionViewProtocol
-    
-    //MARK: - Main body
+
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 topSection
-                // TODO: - remove if not needed
 //                genreSection
                 infoGridView
             }
@@ -44,7 +42,6 @@ extension MovieDetailsView {
         }
     }
     
-    // TODO: - remove if not needed
 //    private var genreSection: some View {
 //        HStack (spacing: 25) {
 //            ForEach(movie.genres ?? [], content: { genre in
@@ -55,22 +52,21 @@ extension MovieDetailsView {
     
     private var infoGridView: some View {
         InfoGridView(
-            title1: Constants.Titles.releaseDate,
-            title2: Constants.Titles.originCountry,
-            title3: Constants.Titles.budget,
-            title4: Constants.Titles.rating,
-            title5: nil,
-            title6: nil,
-            info1: movie.collectionViewTitle,
-            // TODO: - remove if not needed
-//                .replacingOccurrences(of: "-", with: "/") ?? "",
-            info2: movie.collectionViewTitle,
-            info3: String(movie.collectionViewDetails),
-            info4: String(movie.collectionViewTitle),
-            info5: nil,
-            info6: nil,
+            rows: [
+                InfoGridRowModel(
+                title: Constants.Titles.releaseDate,
+                info: movie.collectionViewTitle),
+                InfoGridRowModel(
+                title: Constants.Titles.originCountry,
+                info: movie.collectionViewTitle),
+                InfoGridRowModel(
+                title: Constants.Titles.budget,
+                info: String(movie.collectionViewDetails)),
+                InfoGridRowModel(
+                title: Constants.Titles.rating,
+                info: String(movie.collectionViewTitle)),
+            ],
             font: .callout,
-            spacing: 150
-        )
+            spacing: 150)
     }
 }
