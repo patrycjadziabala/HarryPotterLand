@@ -44,12 +44,12 @@ struct MovieModel: Codable {
     }
 }
 
-extension MovieModel: DetailCollectionViewProtocol {
+extension MovieModel: DetailCollectionCellProtocol {
     var collectionImageUrl: String {
         posterPath ?? ""
     }
     
-    var colletionViewId: String {
+    var collectionViewId: String {
         String(id ?? 0)
     }
     

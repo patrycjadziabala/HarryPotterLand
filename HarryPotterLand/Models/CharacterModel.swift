@@ -34,12 +34,12 @@ struct CharacterModel: Identifiable, Codable {
     }
 }
 
-extension CharacterModel: DetailCollectionViewProtocol {
+extension CharacterModel: DetailCollectionCellProtocol {
     var collectionImageUrl: String {
         image
     }
     
-    var colletionViewId: String {
+    var collectionViewId: String {
         id
     }
     

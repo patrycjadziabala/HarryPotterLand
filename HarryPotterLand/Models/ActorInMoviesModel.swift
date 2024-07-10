@@ -45,12 +45,12 @@ struct Cast: Codable, Identifiable {
     }
 }
 
-extension Cast: DetailCollectionViewProtocol {
+extension Cast: DetailCollectionCellProtocol {
     var collectionImageUrl: String {
         posterPath ?? ""
     }
     
-    var colletionViewId: String {
+    var collectionViewId: String {
         String(id)
     }
     

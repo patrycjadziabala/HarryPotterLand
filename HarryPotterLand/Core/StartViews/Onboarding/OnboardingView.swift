@@ -117,7 +117,6 @@ extension OnboardingView {
                 .shadow(radius: 1)
                 .background(.white)
                 .cornerRadius(10)
-            // TODO: - try removing one spacer
             Spacer()
             Spacer()
         }

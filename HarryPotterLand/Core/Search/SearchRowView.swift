@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchRowView: View {
     
-    let model: DetailCollectionViewProtocol
+    let model: DetailCollectionCellProtocol
     
     var body: some View {
         ZStack {

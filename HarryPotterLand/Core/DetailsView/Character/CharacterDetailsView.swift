@@ -33,7 +33,7 @@ struct CharacterDetailsView: View {
                                 image: movie.posterPath ?? "",
                                 movie: movie
                             )) {
-                                DetailCollectionView(
+                                DetailCollectionCell(
                                     frameWidth: 150,
                                     imageUrl: String.buildImageUrlString(from: movie, imageSize: 200),
                                     model: movie

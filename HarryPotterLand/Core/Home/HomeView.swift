@@ -64,7 +64,7 @@ extension HomeView {
                                 movies: homeViewModel.movies
                             )
                         } label: {
-                            DetailCollectionView(
+                            DetailCollectionCell(
                                 frameWidth: 150,
                                 imageUrl: character.image,
                                 model: character
@@ -89,7 +89,7 @@ extension HomeView {
                                              image: String.buildImageUrlString(from: movie, imageSize: 200),
                                              movie: movie)
                         } label: {
-                            DetailCollectionView(
+                            DetailCollectionCell(
                                 frameWidth: 150,
                                 imageUrl:
                                     String.buildImageUrlString(from: movie, imageSize: 200),

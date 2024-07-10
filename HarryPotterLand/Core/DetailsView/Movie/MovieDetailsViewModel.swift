@@ -9,9 +9,9 @@ import Foundation
 
 class MovieDetailsViewModel: ObservableObject {
     
-    let model: DetailCollectionViewProtocol
+    let model: DetailCollectionCellProtocol
     
-    init(model: DetailCollectionViewProtocol) {
+    init(model: DetailCollectionCellProtocol) {
         self.model = model
     }
 }

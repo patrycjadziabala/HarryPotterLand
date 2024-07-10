@@ -11,7 +11,7 @@ struct MovieDetailsView: View {
     
     @StateObject var viewModel: MovieDetailsViewModel
     let image: String
-    let movie: DetailCollectionViewProtocol
+    let movie: DetailCollectionCellProtocol
 
     var body: some View {
         ScrollView (showsIndicators: false) {
