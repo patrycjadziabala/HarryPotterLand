@@ -10,8 +10,7 @@ import SwiftUI
 struct CharacterDetailsView: View {
     
     @StateObject var viewModel: CharacterDetailsViewModel
-    @State var showSheet: Bool = false
-    @State var expand: Bool = false
+    @State private var showSheet: Bool = false
     let character: CharacterModel
     let movies: [MovieModel]
     
@@ -19,23 +18,21 @@ struct CharacterDetailsView: View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 25) {
                 topSection
-                moreInformationButton()
+                moreInformationButton
                 Text(Constants.Titles.titleMoviesCollection)
-//                    .withCustomTitleTextFormatting(, fontType: <#FontType#>)
+                //                    .withCustomTitleTextFormatting(, fontType: <#FontType#>)
                 
                 // TODO: - try to snap to grid (center a card)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(viewModel.actorInMovies, id: \.id) { movie in
-                            NavigationLink {
-                                MovieDetailsView(
-                                    viewModel: MovieDetailsViewModel(
-                                        model: movie
-                                    ),
-                                    image: movie.posterPath ?? "",
-                                    movie: movie
-                                )
-                            } label: {
+                            NavigationLink(destination: MovieDetailsView(
+                                viewModel: MovieDetailsViewModel(
+                                    model: movie
+                                ),
+                                image: movie.posterPath ?? "",
+                                movie: movie
+                            )) {
                                 DetailCollectionView(
                                     frameWidth: 150,
                                     imageUrl: String.buildImageUrlString(from: movie, imageSize: 200),
@@ -52,9 +49,9 @@ struct CharacterDetailsView: View {
                 seeMoreButton
             }
         }
-        .onAppear(perform: {
+        .onAppear {
             fetchData()
-        })
+        }
         .background(
             Color.blue
                 .opacity(0.6)
@@ -63,13 +60,6 @@ struct CharacterDetailsView: View {
         .sheet(isPresented: $showSheet) {
             moreInfoSheet
         }
-    }
-}
-
-// TODO: - move the _Previews to bottom of the file
-struct ReusableDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character, apiManager: APIManager()), character: dev.character, movies: [dev.movie])
     }
 }
 
@@ -94,8 +84,8 @@ extension CharacterDetailsView {
                             .replacingOccurrences(of: "-", with: "/")
                             .replacingOccurrences(of: "19", with: "") ?? Constants.Titles.na)
                         ],
-            font: .callout,
-            spacing: 5
+                     font: .callout,
+                     spacing: 5
         )
     }
     
@@ -106,7 +96,7 @@ extension CharacterDetailsView {
     
     //MARK: Buttons
     
-    private func moreInformationButton() -> some View {
+    private var moreInformationButton: some View {
         Button {
             showSheet.toggle()
         } label: {
@@ -128,8 +118,14 @@ extension CharacterDetailsView {
             do {
                 try await viewModel.getHarryPotterMoviesForActor()
             } catch {
-               print(error.localizedDescription)
+                print(error.localizedDescription)
             }
         }
+    }
+}
+
+struct ReusableDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        CharacterDetailsView(viewModel: CharacterDetailsViewModel(model: dev.character, apiManager: APIManager()), character: dev.character, movies: [dev.movie])
     }
 }

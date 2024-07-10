@@ -28,10 +28,6 @@ struct NoItemsView: View {
     }
 }
 
-#Preview {
-    NoItemsView()
-}
-
 extension NoItemsView {
     
     private var topSection: some View {
@@ -103,4 +99,8 @@ extension NoItemsView {
             }
         }
     }
+}
+
+#Preview {
+    NoItemsView()
 }

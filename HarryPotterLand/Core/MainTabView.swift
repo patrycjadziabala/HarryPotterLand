@@ -28,7 +28,9 @@ struct MainTabView: View {
                 .tag(1)
                 
                 NavigationStack {
-                    SearchView(characters: homeViewModel.characters, movies: homeViewModel.movies)
+                    SearchView(
+                        searchViewModel: SearchViewModel(allCharacters: homeViewModel.characters, allMovies: homeViewModel.movies)
+                    )
                 }
                 .tag(2)
                 .toolbarBackground(.hidden, for: .navigationBar, .tabBar)
@@ -41,18 +43,6 @@ struct MainTabView: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, -20)
         }
-    }
-}
-
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView(
-            homeViewModel: HomeViewModel(
-                imageLoader: ImageLoaderManager(),
-                apiManager: APIManager()
-            )
-        )
-        .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
 }
 
@@ -112,5 +102,17 @@ private func customTabItem(imageName: String, title: String, isActive: Bool, bad
                 .clipShape(Circle())
                 .offset(x: -7, y: 6)
         }
+    }
+}
+
+struct MainTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTabView(
+            homeViewModel: HomeViewModel(
+                imageLoader: ImageLoaderManager(),
+                apiManager: APIManager()
+            )
+        )
+        .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
 }

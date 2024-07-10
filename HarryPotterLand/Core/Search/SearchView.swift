@@ -9,12 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     
-    // TODO: - inject (just remove the "=" and declare type instead)
-    @StateObject var searchViewModel = SearchViewModel()
-    // TODO: - move to SearchViewModel, declare e.g. as "allCharacters"
-    @State var characters: [CharacterModel]
-    @State var movies: [MovieModel]
-    @State var showCharacters: Bool = true
+    @StateObject var searchViewModel: SearchViewModel
+    @State private var showCharacters: Bool = true
     
     var body: some View {
         ZStack {
@@ -38,10 +34,6 @@ struct SearchView: View {
     }
 }
 
-#Preview {
-    SearchView(characters: [], movies: [])
-}
-
 extension SearchView {
     
     private var searchTitle: some View {
@@ -54,8 +46,7 @@ extension SearchView {
     
     private var searchBar: some View {
         SearchBarView(searchText: $searchViewModel.searchText) {
-            searchViewModel.filterResults(characters: characters)
-            searchViewModel.filterResults(movies: movies)
+            searchViewModel.filterResults()
         }
     }
     
@@ -115,10 +106,10 @@ extension SearchView {
                             apiManager: APIManager()
                         ),
                         character: character,
-                        movies: movies
+                        movies: searchViewModel.allMovies
                     )
                 } label: {
-                    SerachRowView(model: character, imageUrl: character.image)
+                    SearchRowView(model: character)
                 }
             }
         }
@@ -132,9 +123,13 @@ extension SearchView {
                                      image: String.buildImageUrlString(from: movie, imageSize: 200),
                                      movie: movie)
                 } label: {
-                    SerachRowView(model: movie, imageUrl: String.buildImageUrlString(from: movie, imageSize: 200))
+                    SearchRowView(model: movie)
                 }
             }
         }
     }
+}
+
+#Preview {
+    SearchView(searchViewModel: SearchViewModel(allCharacters: [], allMovies: []))
 }

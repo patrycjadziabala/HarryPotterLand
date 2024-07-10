@@ -24,12 +24,6 @@ struct MovieDetailsView: View {
     }
 }
 
-struct MovieDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieDetailsView(viewModel: MovieDetailsViewModel(model: dev.movie), image: dev.movie.backdropPath ?? "", movie: dev.movie)
-    }
-}
-
 extension MovieDetailsView {
     
     private var topSection: some View {
@@ -68,5 +62,11 @@ extension MovieDetailsView {
             ],
             font: .callout,
             spacing: 150)
+    }
+}
+
+struct MovieDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        MovieDetailsView(viewModel: MovieDetailsViewModel(model: dev.movie), image: dev.movie.backdropPath ?? "", movie: dev.movie)
     }
 }

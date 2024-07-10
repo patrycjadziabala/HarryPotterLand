@@ -22,6 +22,25 @@ struct InfoGridView: View {
     }
 }
 
+extension InfoGridView {
+    
+    private var leftColumn: some View {
+        VStack (alignment: .leading, spacing: 25) {
+            ForEach(rows) { row in
+                Text(row.title)
+            }
+        }
+    }
+    
+    private var rightColumn: some View {
+        VStack (alignment: .leading, spacing: 25) {
+            ForEach(rows) { row in
+                Text(row.info)
+            }
+        }
+    }
+}
+
 struct  InfoGridView_Previews: PreviewProvider {
     static var previews: some View {
         InfoGridView(
@@ -50,24 +69,5 @@ struct  InfoGridView_Previews: PreviewProvider {
             font: .title,
             spacing: 50
         )
-    }
-}
-
-extension InfoGridView {
-    
-    private var leftColumn: some View {
-        VStack (alignment: .leading, spacing: 25) {
-            ForEach(rows) { row in
-                Text(row.title)
-            }
-        }
-    }
-    
-    private var rightColumn: some View {
-        VStack (alignment: .leading, spacing: 25) {
-            ForEach(rows) { row in
-                Text(row.info)
-            }
-        }
     }
 }

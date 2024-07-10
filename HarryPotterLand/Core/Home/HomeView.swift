@@ -30,14 +30,6 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            HomeView(homeViewModel: HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager()))
-        }
-    }
-}
-
 extension HomeView {
     
     private var imageSection: some View {
@@ -120,6 +112,14 @@ extension HomeView {
             } catch {
                 
             }
+        }
+    }
+}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            HomeView(homeViewModel: HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager()))
         }
     }
 }

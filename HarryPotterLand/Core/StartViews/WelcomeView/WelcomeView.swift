@@ -29,12 +29,6 @@ struct WelcomeView: View {
     }
 }
 
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager()))
-    }
-}
-
 extension WelcomeView {
     
     private var colorBackground: some View {
@@ -176,5 +170,11 @@ extension WelcomeView {
                 )
             )
         }
+    }
+}
+
+struct WelcomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager()))
     }
 }

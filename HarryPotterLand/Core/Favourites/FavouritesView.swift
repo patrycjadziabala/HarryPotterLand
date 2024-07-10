@@ -30,13 +30,6 @@ struct FavouritesView: View {
     }
 }
 
-struct FavouritesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavouritesView()
-            .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
-    }
-}
-
 extension FavouritesView {
     
     private var charactersSection: some View {
@@ -69,5 +62,12 @@ extension FavouritesView {
     
     func deleteMovie(indexSet: IndexSet) {
         favouritesManager.movies.remove(atOffsets: indexSet)
+    }
+}
+
+struct FavouritesView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavouritesView()
+            .environmentObject(FavouritesManager(hapticsManager: HapticsManager()))
     }
 }

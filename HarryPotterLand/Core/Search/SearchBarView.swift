@@ -10,20 +10,12 @@ import SwiftUI
 struct SearchBarView: View {
     
     @Binding var searchText: String
-    @State var performAction: (() -> Void)?
+    var performAction: (() -> Void)?
     
     var body: some View {
         VStack(spacing: -2) {
             searchBarSection
         }
-    }
-}
-
-#Preview {
-    ZStack {
-        Background()
-        
-        SearchBarView(searchText: .constant(""))
     }
 }
 
@@ -55,5 +47,13 @@ extension SearchBarView {
         )
         .shadow(radius: 6)
         .padding()
+    }
+}
+
+#Preview {
+    ZStack {
+        Background()
+        
+        SearchBarView(searchText: .constant(""))
     }
 }

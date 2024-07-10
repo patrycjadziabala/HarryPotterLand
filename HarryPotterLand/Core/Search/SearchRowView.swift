@@ -1,17 +1,15 @@
 //
-//  SerachRowView.swift
+//  SearchRowView.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 24/06/2024.
 //
 
 import SwiftUI
-import CachedAsyncImage
 
-struct SerachRowView: View {
+struct SearchRowView: View {
     
     let model: DetailCollectionViewProtocol
-    let imageUrl: String?
     
     var body: some View {
         ZStack {
@@ -31,16 +29,16 @@ struct SerachRowView: View {
     }
 }
 
-struct CoinRowView_Previews: PreviewProvider {
+struct SearchRowView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Background()
             
             VStack {
-                SerachRowView(model: dev.movie, imageUrl: "")
+                SearchRowView(model: dev.movie)
                     .previewLayout(.sizeThatFits)
                 
-                SerachRowView(model: dev.character, imageUrl: "")
+                SearchRowView(model: dev.character)
                     .previewLayout(.sizeThatFits)
             }
         }

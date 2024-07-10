@@ -31,9 +31,10 @@ import Foundation
 //TODO: Add searchbar for searching characters and dynamic filter
 
 //DONE
+// - MVVM
+// - Dependency Injection
+// - Protocols
 // - LongPressGesture
 // - @AppStorage
-// - Singletons
 // - Haptics and vibrations
 // - Local notifications
-// - Protocols

@@ -28,12 +28,6 @@ struct MoreInfoSheet: View {
     }
 }
 
-struct MoreInfoSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        MoreInfoSheet(model: MoreInfoModel(houseLogo: dev.character.houseLogo, studentStatus: dev.character.actor, websiteUrlString: dev.character.webFandom, character: dev.character))
-    }
-}
-
 extension MoreInfoSheet {
     
     private var topSection: some View {
@@ -78,5 +72,11 @@ extension MoreInfoSheet {
         .accentColor(.blue)
         .frame(maxWidth: .infinity, alignment: .leading)
         .font(.headline)
+    }
+}
+
+struct MoreInfoSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        MoreInfoSheet(model: MoreInfoModel(houseLogo: dev.character.houseLogo, studentStatus: dev.character.actor, websiteUrlString: dev.character.webFandom, character: dev.character))
     }
 }

@@ -50,16 +50,6 @@ struct DetailCollectionView: View {
     }
 }
 
-struct DetailCollectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailCollectionView(
-            frameWidth: 150,
-            imageUrl: dev.movie.posterPath,
-            model: dev.movie
-        )
-    }
-}
-
 extension DetailCollectionView {
     
     private var imageSection: some View {
@@ -110,5 +100,15 @@ extension DetailCollectionView {
     
     func setDetails(model: DetailCollectionViewProtocol) -> some View {
         return Text(model.collectionViewDetails)
+    }
+}
+
+struct DetailCollectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailCollectionView(
+            frameWidth: 150,
+            imageUrl: dev.movie.posterPath,
+            model: dev.movie
+        )
     }
 }

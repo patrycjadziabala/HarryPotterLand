@@ -21,22 +21,32 @@ class CharacterDetailsViewModel: ObservableObject {
     func buildUrlForCharacterFandom(character: CharacterModel) -> String? {
         let baseUrlString = "https://harrypotter.fandom.com/wiki/\(character.name.replacingOccurrences(of: " ", with: "_"))"
         let urlString = baseUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
-        guard let urlString = urlString else {
-            return nil
-        }
         return urlString
     }
     
     func getActorId(model: CharacterModel) async throws -> Int? {
-        guard let downloadedData: Results = try await apiManager.fetchData(url: nil, endpoint: .search, queryType: .person, query: model.actor, actorId: nil) else {
+        guard let downloadedData: Results = try await apiManager.fetchData(
+            url: nil,
+            endpoint: .search,
+            queryType: .person,
+            query: model.actor,
+            actorId: nil
+        ) else {
             return nil
         }
-        return downloadedData.results?.first?.id ?? 0
+        return downloadedData.results?.first?.id
     }
     
     func fetchActorMovieList(actorId: Int) async throws -> [Cast]? {
-        guard let downloadedData: ActorInMoviesModel = try await apiManager.fetchData(url: nil, endpoint: nil, queryType: nil, query: nil, actorId: String(actorId)) else {
+        guard let downloadedData: ActorInMoviesModel = try await apiManager.fetchData(
+            url: nil,
+            endpoint: nil,
+            queryType: nil,
+            query: nil,
+            actorId: String(
+                actorId
+            )
+        ) else {
             return nil
         }
         return downloadedData.cast
@@ -47,8 +57,7 @@ class CharacterDetailsViewModel: ObservableObject {
             return
         }
         let actorMoviesArray = try await fetchActorMovieList(actorId: actorId)
-        let filteredArray = actorMoviesArray?.filter { $0.originalTitle.contains("Potter") == true }
-        print(filteredArray?.count ?? 0)
+        let filteredArray = actorMoviesArray?.filter { $0.originalTitle.contains("Potter") }
         await MainActor.run {
             actorInMovies = filteredArray?.sorted(by: { $0.id < $1.id }) ?? [] }
     }

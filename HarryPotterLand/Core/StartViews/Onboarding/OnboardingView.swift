@@ -48,12 +48,6 @@ struct OnboardingView: View {
     }
 }
 
-struct OnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
-    }
-}
-
 // MARK: - Components
 
 extension OnboardingView {
@@ -195,5 +189,11 @@ extension OnboardingView {
         } else {
             return onboardingViewModel.gender
         }
+    }
+}
+
+struct OnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
     }
 }
