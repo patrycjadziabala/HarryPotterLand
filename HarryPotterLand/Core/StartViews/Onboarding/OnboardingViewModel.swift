@@ -19,7 +19,7 @@ class OnboardingViewModel: ObservableObject {
      3 - Add gender
      */
     @Published var onboardingState: Int = 0
-    
+
     //Onboarding inputs
     @Published var name: String = ""
     @Published var age: Double = 50
@@ -77,9 +77,9 @@ class OnboardingViewModel: ObservableObject {
         currentUserName = name
         currentUserAge = Int(age)
         currentUserGender = gender
-        withAnimation(.spring()) {
+//        withAnimation(.spring()) {
             currentUserSignedIn = true
-        }
+//        }
     }
     
     private func requestAutorisationForNotifications() {

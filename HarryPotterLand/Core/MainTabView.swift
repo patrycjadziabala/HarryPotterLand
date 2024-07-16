@@ -26,6 +26,7 @@ struct MainTabView: View {
                     FavouritesView()
                 }
                 .tag(1)
+                .toolbarBackground(.hidden, for: .navigationBar, .tabBar)
                 
                 NavigationStack {
                     SearchView(

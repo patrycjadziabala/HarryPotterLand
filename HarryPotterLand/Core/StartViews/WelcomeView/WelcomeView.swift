@@ -12,24 +12,38 @@ struct WelcomeView: View {
     @StateObject var welcomeViewModel: WelcomeViewModel
     @State private var scrollViewOffset: CGFloat = 0
     @State private var currentScale: CGFloat = 0
-    
+    @State private var showWelcomeView: Bool = true
+   
+    @AppStorage("name") var currentUserName: String?
+    @AppStorage("age") var currentUserAge: Int?
+    @AppStorage("gender") var currentUserGender: String?
+    @AppStorage("signed_in") var currentUserSignedIn: Bool = false
+   
     var body: some View {
-        NavigationView {
-            ZStack {
-                colorBackground
-                
-                if welcomeViewModel.currentUserSignedIn {
-                    signedInView
-                } else {
-                    OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
-                        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
-                }
+        Group {
+            if showWelcomeView {
+                welcomeContentView
+            } else {
+                MainTabView(homeViewModel: HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager()))
             }
         }
     }
 }
 
 extension WelcomeView {
+    
+    private var welcomeContentView: some View {
+        ZStack {
+                colorBackground
+                
+            if currentUserSignedIn {
+                    signedInView
+                } else {
+                    OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
+                        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
+                }
+            }
+    }
     
     private var colorBackground: some View {
         ZStack {
@@ -60,7 +74,7 @@ extension WelcomeView {
             HStack {
                 signOutButton
                 Spacer()
-                if let userInfo = welcomeViewModel.userDisplayInfo {
+                if let userInfo = userDisplayInfo {
                     VStack(spacing: -10) {
                         Text(userInfo.0)
                             .font(.custom(Constants.Fonts.fontSnitch, size: 65))
@@ -81,6 +95,16 @@ extension WelcomeView {
             enterButtonView
         }
         .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
+    }
+    
+    var userDisplayInfo: (String, String)? {
+        guard let userName = currentUserName,
+              let userAge = currentUserAge,
+              let userGender = currentUserGender,
+              let firstCharacter = userName.first else {
+            return nil
+        }
+        return ("\(firstCharacter)", "\(userGender), \(userAge)")
     }
     
     private var signOutButton: some View {
@@ -149,7 +173,7 @@ extension WelcomeView {
     
     private var enterButtonView: some View {
         Button {
-            
+            showWelcomeView.toggle()
         } label: {
             NavigationLink(
                 destination: MainTabView(

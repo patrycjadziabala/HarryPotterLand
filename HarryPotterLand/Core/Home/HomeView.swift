@@ -82,7 +82,6 @@ extension HomeView {
                 .withCustomTitleTextFormatting(fontSize: 25, fontType: .welcomeScreenFont)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    
                     ForEach(homeViewModel.movies, id: \.id) { movie in
                         NavigationLink {
                             MovieDetailsView(viewModel: MovieDetailsViewModel(model: movie),
