@@ -19,7 +19,6 @@ class WelcomeViewModel: ObservableObject {
     
     init(soundManager: SoundManagerProtocol) {
         self.soundManager = soundManager
-        print(currentUserSignedIn.description)
     }
     
     func signOut() {

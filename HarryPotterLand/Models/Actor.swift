@@ -1,5 +1,5 @@
 //
-//  ActorModel.swift
+//  Actor.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 09/05/2024.
@@ -8,10 +8,10 @@
 import Foundation
 
 struct Results: Codable {
-    let results: [ActorModel]?
+    let results: [Actor]?
 }
 
-struct ActorModel: Codable {
+struct Actor: Codable {
     let adult: Bool?
     let gender, id: Int?
     let knownForDepartment, name, originalName: String?

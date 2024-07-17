@@ -1,5 +1,5 @@
 //
-//  MovieModel.swift
+//  Movie.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 29/04/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieModel: Codable {
+struct Movie: Codable {
     let backdropPath: String?
     let budget: Int?
     let genres: [Genre]?
@@ -44,7 +44,7 @@ struct MovieModel: Codable {
     }
 }
 
-extension MovieModel: DetailCollectionCellProtocol {
+extension Movie: DetailCollectionCellProtocol {
     var collectionImageUrl: String {
         posterPath ?? ""
     }

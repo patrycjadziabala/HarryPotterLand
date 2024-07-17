@@ -11,8 +11,8 @@ struct CharacterDetailsView: View {
     
     @StateObject var viewModel: CharacterDetailsViewModel
     @State private var showSheet: Bool = false
-    let character: CharacterModel
-    let movies: [MovieModel]
+    let character: Character
+    let movies: [Movie]
     
     var body: some View {
         ScrollView (showsIndicators: false) {
@@ -77,10 +77,10 @@ extension CharacterDetailsView {
     
     private var infoGridView: some View {
         InfoGridView(rows:
-                        [InfoGridRowModel(title: Constants.Titles.house, info: character.house),
-                         InfoGridRowModel(title: Constants.Titles.species, info: character.species),
-                         InfoGridRowModel(title: Constants.Titles.alive, info: character.alive.description),
-                         InfoGridRowModel(title: Constants.Titles.dateOfBirth, info: character.dateOfBirth?
+                        [InfoGridRow(title: Constants.Titles.house, info: character.house),
+                         InfoGridRow(title: Constants.Titles.species, info: character.species),
+                         InfoGridRow(title: Constants.Titles.alive, info: character.alive.description),
+                         InfoGridRow(title: Constants.Titles.dateOfBirth, info: character.dateOfBirth?
                             .replacingOccurrences(of: "-", with: "/")
                             .replacingOccurrences(of: "19", with: "") ?? Constants.Titles.na)
                         ],
@@ -90,7 +90,7 @@ extension CharacterDetailsView {
     }
     
     private var moreInfoSheet: some View {
-        MoreInfoSheet(model: MoreInfoModel(houseLogo: character.houseLogo, studentStatus: character.actor, websiteUrlString: character.webFandom, character: character))
+        MoreInfoSheet(model: MoreInfo(houseLogo: character.houseLogo, studentStatus: character.actor, websiteUrlString: character.webFandom, character: character))
             .presentationDetents([.medium, .large])
     }
     

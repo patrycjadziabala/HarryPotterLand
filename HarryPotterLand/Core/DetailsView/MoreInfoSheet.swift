@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoreInfoSheet: View {
     
-    let model: MoreInfoModel
+    let model: MoreInfo
     
     var body: some View {
         ZStack {
@@ -48,12 +48,12 @@ extension MoreInfoSheet {
     
     private var middleSection: some View {
         InfoGridView(rows:
-                        [InfoGridRowModel(title: Constants.Titles.actor, info: model.character.actor),
-                         InfoGridRowModel(title: Constants.Titles.eyeColor, info: model.character.eyeColour),
-                         InfoGridRowModel(title: Constants.Titles.hairColor, info: model.character.hairColour),
-                         InfoGridRowModel(title: Constants.Titles.ancestry, info: model.character.ancestry),
-                         InfoGridRowModel(title: Constants.Titles.patronus, info: model.character.patronus),
-                         InfoGridRowModel(title: Constants.Titles.wizard, info: model.character.wizard.description),
+                        [InfoGridRow(title: Constants.Titles.actor, info: model.character.actor),
+                         InfoGridRow(title: Constants.Titles.eyeColor, info: model.character.eyeColour),
+                         InfoGridRow(title: Constants.Titles.hairColor, info: model.character.hairColour),
+                         InfoGridRow(title: Constants.Titles.ancestry, info: model.character.ancestry),
+                         InfoGridRow(title: Constants.Titles.patronus, info: model.character.patronus),
+                         InfoGridRow(title: Constants.Titles.wizard, info: model.character.wizard.description),
                         ],
                      font: .title,
                      spacing: 50
@@ -77,6 +77,6 @@ extension MoreInfoSheet {
 
 struct MoreInfoSheet_Previews: PreviewProvider {
     static var previews: some View {
-        MoreInfoSheet(model: MoreInfoModel(houseLogo: dev.character.houseLogo, studentStatus: dev.character.actor, websiteUrlString: dev.character.webFandom, character: dev.character))
+        MoreInfoSheet(model: MoreInfo(houseLogo: dev.character.houseLogo, studentStatus: dev.character.actor, websiteUrlString: dev.character.webFandom, character: dev.character))
     }
 }

@@ -9,22 +9,22 @@ import Foundation
 
 class CharacterDetailsViewModel: ObservableObject {
     
-    let model: CharacterModel
+    let model: Character
     var apiManager: APIManagerProtocol
     @Published var actorInMovies: [Cast] = []
     
-    init(model: CharacterModel, apiManager: APIManagerProtocol) {
+    init(model: Character, apiManager: APIManagerProtocol) {
         self.model = model
         self.apiManager = apiManager
     }
     
-    func buildUrlForCharacterFandom(character: CharacterModel) -> String? {
+    func buildUrlForCharacterFandom(character: Character) -> String? {
         let baseUrlString = "https://harrypotter.fandom.com/wiki/\(character.name.replacingOccurrences(of: " ", with: "_"))"
         let urlString = baseUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         return urlString
     }
     
-    func getActorId(model: CharacterModel) async throws -> Int? {
+    func getActorId(model: Character) async throws -> Int? {
         guard let downloadedData: Results = try await apiManager.fetchData(
             url: nil,
             endpoint: .search,
@@ -38,7 +38,7 @@ class CharacterDetailsViewModel: ObservableObject {
     }
     
     func fetchActorMovieList(actorId: Int) async throws -> [Cast]? {
-        guard let downloadedData: ActorInMoviesModel = try await apiManager.fetchData(
+        guard let downloadedData: ActorInMovies = try await apiManager.fetchData(
             url: nil,
             endpoint: nil,
             queryType: nil,

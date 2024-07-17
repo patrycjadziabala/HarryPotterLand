@@ -1,5 +1,5 @@
 //
-//  ActorInMoviesModel.swift
+//  ActorInMovies.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 13/05/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ActorInMoviesModel: Codable {
+struct ActorInMovies: Codable {
     let cast: [Cast]
     let id: Int
 }

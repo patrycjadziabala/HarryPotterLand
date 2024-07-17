@@ -10,7 +10,7 @@ import Foundation
 protocol APIManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, id: String?) async throws -> [T]?
     func fetchData<T: Codable>(url: String?, endpoint: Endpoint?, queryType: QueryType?, query: String?, actorId: String?) async throws -> T?
-    func fetchCharactersFromHpAPI() async throws -> [CharacterModel]?
+    func fetchCharactersFromHpAPI() async throws -> [Character]?
 }
 
 enum NetworkError: Error {
@@ -151,7 +151,7 @@ class APIManager: APIManagerProtocol {
     }
     
     // HP-API
-    func fetchCharactersFromHpAPI() async throws -> [CharacterModel]? {
+    func fetchCharactersFromHpAPI() async throws -> [Character]? {
         guard let url = URL(string: "https://hp-api.onrender.com/api/characters") else {
             throw NetworkError.invalidURL
         }
@@ -162,7 +162,7 @@ class APIManager: APIManagerProtocol {
         guard response.statusCode >= 200 && response.statusCode < 300 else {
             throw NetworkError.badStatus
         }
-        guard let decodedResponse = try? JSONDecoder().decode([CharacterModel].self, from: data) else {
+        guard let decodedResponse = try? JSONDecoder().decode([Character].self, from: data) else {
             throw NetworkError.failedToDecodeResponse
         }
         return decodedResponse

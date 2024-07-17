@@ -22,6 +22,7 @@ class OnboardingViewModel: ObservableObject {
 
     //Onboarding inputs
     @Published var name: String = ""
+    @Published var password: String = ""
     @Published var age: Double = 50
     @Published var gender: String = "Male"
     

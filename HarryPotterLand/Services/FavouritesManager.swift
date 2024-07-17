@@ -1,5 +1,5 @@
 //
-//  FavouritesViewModel.swift
+//  FavouritesManager.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 19/03/2024.

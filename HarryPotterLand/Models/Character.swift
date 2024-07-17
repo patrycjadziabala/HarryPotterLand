@@ -1,5 +1,5 @@
 //
-//  CharacterModel.swift
+//  Character.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 06/04/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterModel: Identifiable, Codable {
+struct Character: Identifiable, Codable {
     let id: String
     let name: String
     let alternate_names: [String]
@@ -19,7 +19,7 @@ struct CharacterModel: Identifiable, Codable {
     let ancestry: String
     let eyeColour: String
     let hairColour: String
-    let wand: WandModel
+    let wand: Wand
     let patronus: String
     let hogwartsStudent: Bool
     let hogwartsStaff: Bool
@@ -34,7 +34,7 @@ struct CharacterModel: Identifiable, Codable {
     }
 }
 
-extension CharacterModel: DetailCollectionCellProtocol {
+extension Character: DetailCollectionCellProtocol {
     var collectionImageUrl: String {
         image
     }
@@ -56,7 +56,7 @@ extension CharacterModel: DetailCollectionCellProtocol {
     }
 }
 
-struct WandModel: Codable {
+struct Wand: Codable {
     let wood: String
     let core: String
     let length: Double?

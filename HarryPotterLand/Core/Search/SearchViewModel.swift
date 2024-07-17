@@ -10,13 +10,13 @@ import Foundation
 class SearchViewModel: ObservableObject {
     
     @Published var searchText: String = ""
-    @Published var filteredCharacters: [CharacterModel] = []
-    @Published var filteredMovies: [MovieModel] = []
+    @Published var filteredCharacters: [Character] = []
+    @Published var filteredMovies: [Movie] = []
     
-    var allCharacters: [CharacterModel]
-    var allMovies: [MovieModel]
+    var allCharacters: [Character]
+    var allMovies: [Movie]
     
-    init(allCharacters: [CharacterModel], allMovies: [MovieModel]) {
+    init(allCharacters: [Character], allMovies: [Movie]) {
         self.allCharacters = allCharacters
         self.allMovies = allMovies
     }

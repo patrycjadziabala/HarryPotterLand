@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InfoGridView: View {
     
-    let rows: [InfoGridRowModel]
+    let rows: [InfoGridRow]
     let font: Font
     let spacing: CGFloat?
     
@@ -45,24 +45,24 @@ struct  InfoGridView_Previews: PreviewProvider {
     static var previews: some View {
         InfoGridView(
             rows: [
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.actor,
                     info: dev.character.actor
                 ),
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.eyeColor,
                     info: dev.character.eyeColour
                 ),
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.hairColor,
                     info: dev.character.hairColour),
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.ancestry,
                     info: dev.character.ancestry),
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.patronus,
                     info: dev.character.patronus),
-                InfoGridRowModel(
+                InfoGridRow(
                     title: Constants.Titles.wizard,
                     info: dev.character.wizard.description)
             ],

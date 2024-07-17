@@ -13,12 +13,12 @@ struct WelcomeView: View {
     @State private var scrollViewOffset: CGFloat = 0
     @State private var currentScale: CGFloat = 0
     @State private var showWelcomeView: Bool = true
-   
+    
     @AppStorage("name") var currentUserName: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
-   
+    
     var body: some View {
         Group {
             if showWelcomeView {
@@ -34,15 +34,15 @@ extension WelcomeView {
     
     private var welcomeContentView: some View {
         ZStack {
-                colorBackground
-                
+            colorBackground
+            
             if currentUserSignedIn {
-                    signedInView
-                } else {
-                    OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
-                        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
-                }
+                signedInView
+            } else {
+                OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
+                    .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             }
+        }
     }
     
     private var colorBackground: some View {

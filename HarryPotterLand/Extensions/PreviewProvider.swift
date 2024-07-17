@@ -20,7 +20,7 @@ class DeveloperPreview {
     static let instance = DeveloperPreview()
     private init() { }
         
-    let character = CharacterModel(
+    let character = Character(
         id: "123",
         name: "Harry Potter",
         alternate_names: ["The Boy Who Lived",
@@ -35,7 +35,7 @@ class DeveloperPreview {
         ancestry: "half-blood",
         eyeColour: "green",
         hairColour: "black",
-        wand: WandModel(wood: "holly", core: "phoenix tail feather", length: 11),
+        wand: Wand(wood: "holly", core: "phoenix tail feather", length: 11),
         patronus: "stag",
         hogwartsStudent: true,
         hogwartsStaff: false,
@@ -44,7 +44,7 @@ class DeveloperPreview {
         image: "https://ik.imagekit.io/hpapi/harry.jpg"
     )
     
-    let movie = MovieModel(
+    let movie = Movie(
         backdropPath: "/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
         budget: 165000000,
         genres: [],

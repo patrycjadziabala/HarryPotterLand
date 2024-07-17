@@ -12,8 +12,8 @@ import Foundation
 class HomeViewModel: ObservableObject {
     
     @Published var imageData: Data? = nil
-    @Published var characters: [CharacterModel] = []
-    @Published var movies: [MovieModel] = []
+    @Published var characters: [Character] = []
+    @Published var movies: [Movie] = []
     
     let imageLoader: ImageLoaderManagerProtocol
     let apiManager: APIManagerProtocol
@@ -29,16 +29,16 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchCharacters() async throws {
-        guard let downloadedData: [CharacterModel] = try await apiManager.fetchCharactersFromHpAPI() else {
+        guard let downloadedData: [Character] = try await apiManager.fetchCharactersFromHpAPI() else {
             return
         }
         characters = downloadedData
     }
     
     func fetchMovieDetails() async throws {
-        var allMovies: [MovieModel] = []
+        var allMovies: [Movie] = []
         for id in Constants.HPid.allIds {
-            if let movie = try await apiManager.fetchData(endpoint: .movie, id: id) as [MovieModel]? {
+            if let movie = try await apiManager.fetchData(endpoint: .movie, id: id) as [Movie]? {
                 allMovies.append(contentsOf: movie)
             }
         }

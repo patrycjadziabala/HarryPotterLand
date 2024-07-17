@@ -47,16 +47,16 @@ extension MovieDetailsView {
     private var infoGridView: some View {
         InfoGridView(
             rows: [
-                InfoGridRowModel(
+                InfoGridRow(
                 title: Constants.Titles.releaseDate,
                 info: movie.collectionViewTitle),
-                InfoGridRowModel(
+                InfoGridRow(
                 title: Constants.Titles.originCountry,
                 info: movie.collectionViewTitle),
-                InfoGridRowModel(
+                InfoGridRow(
                 title: Constants.Titles.budget,
                 info: String(movie.collectionViewDetails)),
-                InfoGridRowModel(
+                InfoGridRow(
                 title: Constants.Titles.rating,
                 info: String(movie.collectionViewTitle)),
             ],
