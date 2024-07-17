@@ -23,7 +23,7 @@ struct RegistrationView: View {
     
     var body: some View {
         ZStack {
-            //content
+            //content based on registration state
             switch registrationViewModel.registrationState {
             case 0:
                 welcomeScreen
@@ -116,7 +116,7 @@ extension RegistrationView {
                 .foregroundColor(.white)
             TextField(Constants.Titles.yourLogin, text: $registrationViewModel.login)
                 .autocorrectionDisabled(true)
-                .focused($firstPasswordFieldInFocus)
+//                .focused($fieldInFocus)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
                 .kerning(2)
                 .frame(height: 55)
@@ -139,98 +139,51 @@ extension RegistrationView {
                     .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                     .foregroundColor(.white)
                 
-                ZStack (alignment: .trailing) {
-                    if showFirstPassword {
-                        TextField(Constants.Titles.yourPassword, text: $registrationViewModel.password)
-                            .autocorrectionDisabled(true)
-                            .keyboardType(.asciiCapable)
-                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                            .kerning(2)
-                            .frame(height: 55)
-                            .padding(.horizontal)
-                            .foregroundStyle(.brown)
-                            .shadow(radius: 1)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .focused($firstPasswordFieldInFocus)
-                            .transition(.opacity)
-                    } else {
-                        SecureField(Constants.Titles.yourPassword, text: $registrationViewModel.password)
-                            .autocorrectionDisabled(true)
-                            .keyboardType(.asciiCapable)
-                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                            .kerning(2)
-                            .frame(height: 55)
-                            .padding(.horizontal)
-                            .foregroundStyle(.brown)
-                            .shadow(radius: 1)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .textContentType(.password)
-                            .focused($firstPasswordFieldInFocus)
-                            .transition(.opacity)
-                    }
-                    
-                    Button(action: {
-                            showFirstPassword.toggle()
-                            if showFirstPassword {
-                                firstPasswordFieldInFocus = true
-                            }
-                    }, label: {
-                        Image(systemName: !showFirstPassword ? "eye.slash.fill" : "eye.fill")
-                            .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
-                            .padding()
-                    })
-                }
+                passwordField(
+                    showPassword: $showFirstPassword,
+                    isFocused: $firstPasswordFieldInFocus,
+                    password: $registrationViewModel.password,
+                    placeholder: Constants.Titles.yourPassword
+                )
                 
-                ZStack (alignment: .trailing) {
-                    if showSecondPassword {
-                        TextField(Constants.Titles.confirmPassword, text: $registrationViewModel.confirmPassword)
-                            .autocorrectionDisabled(true)
-                            .keyboardType(.asciiCapable)
-                            .focused($secondPasswordFieldInFocus)
-                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                            .kerning(2)
-                            .frame(height: 55)
-                            .padding(.horizontal)
-                            .foregroundStyle(.brown)
-                            .shadow(radius: 1)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
-                            .animation(.smooth(duration: 2), value: registrationViewModel.password)
-                    } else {
-                        SecureField(Constants.Titles.confirmPassword, text: $registrationViewModel.confirmPassword)
-                            .autocorrectionDisabled(true)
-                            .keyboardType(.asciiCapable)
-                            .focused($secondPasswordFieldInFocus)
-                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                            .kerning(2)
-                            .frame(height: 55)
-                            .padding(.horizontal)
-                            .foregroundStyle(.brown)
-                            .shadow(radius: 1)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
-                            .animation(.smooth(duration: 2), value: registrationViewModel.password)
-                    }
-                    Button(action: {
-                            showSecondPassword.toggle()
-                            if showSecondPassword {
-                                secondPasswordFieldInFocus = true
-                            }
-                    }, label: {
-                        Image(systemName: !showSecondPassword ? "eye.slash.fill" : "eye.fill")
-                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
-                            .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
-                            .padding()
-                    })
-                    }
+                passwordField(
+                    showPassword: $showSecondPassword,
+                    isFocused: $secondPasswordFieldInFocus,
+                    password: $registrationViewModel.confirmPassword,
+                    placeholder: Constants.Titles.confirmPassword
+                )
+                .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
+                .animation(.easeIn, value: registrationViewModel.password)
+        
                 Spacer()
                 Spacer()
             }
             .padding(30)
+        }
+    }
+    
+    private func passwordField(showPassword: Binding<Bool>, isFocused: FocusState<Bool>.Binding, password: Binding<String>, placeholder: String) -> some View {
+        
+        ZStack (alignment: .trailing) {
+            if showPassword.wrappedValue {
+                TextField(placeholder, text: password)
+                    .customTextFieldStyle(isFocused: isFocused)
+            } else {
+                SecureField(placeholder, text: password)
+                    .customTextFieldStyle(isFocused: isFocused)
+
+            }
+            
+            Button(action: {
+                showPassword.wrappedValue.toggle()
+                if showPassword.wrappedValue {
+                    isFocused.wrappedValue = true
+                    }
+            }, label: {
+                Image(systemName: !showFirstPassword ? "eye.slash.fill" : "eye.fill")
+                    .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
+                    .padding()
+            })
         }
     }
     
