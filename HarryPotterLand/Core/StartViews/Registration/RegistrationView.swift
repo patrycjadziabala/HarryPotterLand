@@ -9,28 +9,32 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @StateObject var onboardingViewModel: OnboardingViewModel
+    @StateObject var onboardingViewModel: RegistationViewModel
     
     let transition: AnyTransition = .asymmetric(
         insertion: .move(edge: .trailing),
         removal: .move(edge: .leading))
     
-    @FocusState private var nameFieldInFocus: Bool
+    @FocusState private var loginFieldInFocus: Bool
+    @FocusState private var passwordFieldInFocus: Bool
     
     var body: some View {
         ZStack {
             //content
-            switch onboardingViewModel.onboardingState {
+            switch onboardingViewModel.registrationState {
             case 0:
                 welcomeScreen
                     .transition(transition)
             case 1:
-                addNameSection
+                addLoginSection
                     .transition(transition)
             case 2:
-                addAgeSection
+                addPasswordSection
                     .transition(transition)
             case 3:
+                addAgeSection
+                    .transition(transition)
+            case 4:
                 addGenderSection
                     .transition(transition)
             default: welcomeScreen //fallback to welcome screen
@@ -64,7 +68,7 @@ extension OnboardingView {
                         .foregroundStyle(.white)
                     ,alignment: .bottom
                 )
-                .opacity(onboardingViewModel.onboardingState == 0 ? 1 : 0.001)
+                .opacity(onboardingViewModel.registrationState == 0 ? 1 : 0.001)
                 .padding()
             
             Text(buttonText)
@@ -101,14 +105,14 @@ extension OnboardingView {
         }
     }
     
-    private var addNameSection: some View {
+    private var addLoginSection: some View {
         VStack (spacing: 20) {
             Spacer()
-            Text(Constants.Titles.pleaseEnterYourName)
+            Text(Constants.Titles.pleaseEnterYourLogin)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
-            TextField(Constants.Titles.yourName, text: $onboardingViewModel.name)
-                .focused($nameFieldInFocus)
+            TextField(Constants.Titles.yourLogin, text: $onboardingViewModel.login)
+                .focused($loginFieldInFocus)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
                 .kerning(2)
                 .frame(height: 55)
@@ -117,6 +121,43 @@ extension OnboardingView {
                 .shadow(radius: 1)
                 .background(.white)
                 .cornerRadius(10)
+            Spacer()
+            Spacer()
+        }
+        .padding(30)
+    }
+    
+    private var addPasswordSection: some View {
+        VStack (spacing: 20) {
+            Spacer()
+            Text(Constants.Titles.pleaseEnterYourPassword)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
+                .foregroundColor(.white)
+            
+            TextField(Constants.Titles.yourPassword, text: $onboardingViewModel.password)
+                .focused($loginFieldInFocus)
+                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                .kerning(2)
+                .frame(height: 55)
+                .padding(.horizontal)
+                .foregroundStyle(.brown)
+                .shadow(radius: 1)
+                .background(.white)
+                .cornerRadius(10)
+            
+            if onboardingViewModel.validatePasswordFirstTextfield() {
+                TextField(Constants.Titles.confirmPassword, text: $onboardingViewModel.confirmPassword)
+//                    .opacity($onboardingViewModel.validatePasswordFirstTextfield : 1 ? 0)
+                    .focused($loginFieldInFocus)
+                    .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                    .kerning(2)
+                    .frame(height: 55)
+                    .padding(.horizontal)
+                    .foregroundStyle(.brown)
+                    .shadow(radius: 1)
+                    .background(.white)
+                    .cornerRadius(10)
+            }
             Spacer()
             Spacer()
         }
@@ -172,7 +213,7 @@ extension OnboardingView {
     // Computed properties
     
     private var buttonText: String {
-        switch onboardingViewModel.onboardingState {
+        switch onboardingViewModel.registrationState {
         case 0:
             return Constants.Titles.signIn
         case 3:
@@ -193,6 +234,6 @@ extension OnboardingView {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
+        OnboardingView(onboardingViewModel: RegistationViewModel(notificationManager: NotificationManager()))
     }
 }

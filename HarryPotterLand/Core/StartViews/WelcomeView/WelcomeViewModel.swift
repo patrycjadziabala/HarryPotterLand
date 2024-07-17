@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 class WelcomeViewModel: ObservableObject {
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
-    @AppStorage("name") var currentUserName: String?
+    @AppStorage("name") var currentUserLogin: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     
@@ -22,7 +22,7 @@ class WelcomeViewModel: ObservableObject {
     }
     
     func signOut() {
-        currentUserName = nil
+        currentUserLogin = nil
         currentUserAge = nil
         currentUserGender = nil
         withAnimation(.spring()) {

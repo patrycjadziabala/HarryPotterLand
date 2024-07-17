@@ -9,7 +9,7 @@ import Foundation
 
 class PersistenceManager: ObservableObject {
     
-    var name: String = ""
+    var login: String = ""
     var password: String = ""
     var age: Int = 0
     var gender: String = ""
@@ -27,7 +27,7 @@ class PersistenceManager: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let newUser = User(name: name, password: password, age: age, gender: gender)
+        let newUser = User(login: login, password: password, age: age, gender: gender)
         
         do {
             let jsonData = try JSONEncoder().encode(newUser)

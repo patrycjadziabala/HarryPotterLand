@@ -14,7 +14,7 @@ struct WelcomeView: View {
     @State private var currentScale: CGFloat = 0
     @State private var showWelcomeView: Bool = true
     
-    @AppStorage("name") var currentUserName: String?
+    @AppStorage("name") var currentUserLogin: String?
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
@@ -39,7 +39,7 @@ extension WelcomeView {
             if currentUserSignedIn {
                 signedInView
             } else {
-                OnboardingView(onboardingViewModel: OnboardingViewModel(notificationManager: NotificationManager()))
+                OnboardingView(onboardingViewModel: RegistationViewModel(notificationManager: NotificationManager()))
                     .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             }
         }
@@ -98,10 +98,10 @@ extension WelcomeView {
     }
     
     var userDisplayInfo: (String, String)? {
-        guard let userName = currentUserName,
+        guard let userLogin = currentUserLogin,
               let userAge = currentUserAge,
               let userGender = currentUserGender,
-              let firstCharacter = userName.first else {
+              let firstCharacter = userLogin.first else {
             return nil
         }
         return ("\(firstCharacter)", "\(userGender), \(userAge)")
