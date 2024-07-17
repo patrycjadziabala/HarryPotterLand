@@ -19,8 +19,8 @@ import Foundation
 //TODO: Widgets
 //TODO: Push notifications
 //TODO: Count number of favourites and amend badge number in MainTabView
-//TODO: Fix Picker in OnboardingView (use Menu instead?)
-//TODO: Onboarding - change to popover rather than full screen
+//TODO: Fix Picker in RegistrationView (use Menu instead?)
+//TODO: Registration - change to popover rather than full screen
 //TODO: Use ViewThatFits for one line text 
 //TODO: Choosing theme colors with choose your house
 //TODO: Drag gesture -> Drag an item on Welcome Screen to sign in

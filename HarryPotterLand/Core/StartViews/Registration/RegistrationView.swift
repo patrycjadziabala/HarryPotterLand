@@ -1,5 +1,5 @@
 //
-//  OnboardingView.swift
+//  RegistrationView.swift
 //  HarryPotterLand
 //
 //  Created by Patka on 19/03/2024.
@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct OnboardingView: View {
+struct RegistrationView: View {
     
-    @StateObject var onboardingViewModel: RegistationViewModel
+    @StateObject var registrationViewModel: RegistationViewModel
     
     let transition: AnyTransition = .asymmetric(
         insertion: .move(edge: .trailing),
         removal: .move(edge: .leading))
     
-    @FocusState private var loginFieldInFocus: Bool
-    @FocusState private var passwordFieldInFocus: Bool
+    @FocusState private var firstPasswordFieldInFocus: Bool
+    @FocusState private var secondPasswordFieldInFocus: Bool
+    
+    @State var showFirstPassword: Bool = false
+    @State var showSecondPassword: Bool = false
     
     var body: some View {
         ZStack {
             //content
-            switch onboardingViewModel.registrationState {
+            switch registrationViewModel.registrationState {
             case 0:
                 welcomeScreen
                     .transition(transition)
@@ -46,15 +49,15 @@ struct OnboardingView: View {
             }
             .padding(30)
         }
-        .alert(isPresented: $onboardingViewModel.showAlert) {
-            Alert(title: Text(onboardingViewModel.alertTitle))
+        .alert(isPresented: $registrationViewModel.showAlert) {
+            Alert(title: Text(registrationViewModel.alertTitle))
         }
     }
 }
 
 // MARK: - Components
 
-extension OnboardingView {
+extension RegistrationView {
     
     private var signInButton: some View {
         VStack {
@@ -68,7 +71,7 @@ extension OnboardingView {
                         .foregroundStyle(.white)
                     ,alignment: .bottom
                 )
-                .opacity(onboardingViewModel.registrationState == 0 ? 1 : 0.001)
+                .opacity(registrationViewModel.registrationState == 0 ? 1 : 0.001)
                 .padding()
             
             Text(buttonText)
@@ -81,7 +84,7 @@ extension OnboardingView {
                 .background(Color.white)
                 .cornerRadius(10)
                 .onTapGesture {
-                    onboardingViewModel.handleNextButtonPressed()
+                    registrationViewModel.handleNextButtonPressed()
                 }
         }
     }
@@ -111,8 +114,9 @@ extension OnboardingView {
             Text(Constants.Titles.pleaseEnterYourLogin)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
-            TextField(Constants.Titles.yourLogin, text: $onboardingViewModel.login)
-                .focused($loginFieldInFocus)
+            TextField(Constants.Titles.yourLogin, text: $registrationViewModel.login)
+                .autocorrectionDisabled(true)
+                .focused($firstPasswordFieldInFocus)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
                 .kerning(2)
                 .frame(height: 55)
@@ -128,40 +132,106 @@ extension OnboardingView {
     }
     
     private var addPasswordSection: some View {
-        VStack (spacing: 20) {
-            Spacer()
-            Text(Constants.Titles.pleaseEnterYourPassword)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                .foregroundColor(.white)
-            
-            TextField(Constants.Titles.yourPassword, text: $onboardingViewModel.password)
-                .focused($loginFieldInFocus)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                .kerning(2)
-                .frame(height: 55)
-                .padding(.horizontal)
-                .foregroundStyle(.brown)
-                .shadow(radius: 1)
-                .background(.white)
-                .cornerRadius(10)
-            
-            if onboardingViewModel.validatePasswordFirstTextfield() {
-                TextField(Constants.Titles.confirmPassword, text: $onboardingViewModel.confirmPassword)
-//                    .opacity($onboardingViewModel.validatePasswordFirstTextfield : 1 ? 0)
-                    .focused($loginFieldInFocus)
-                    .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                    .kerning(2)
-                    .frame(height: 55)
-                    .padding(.horizontal)
-                    .foregroundStyle(.brown)
-                    .shadow(radius: 1)
-                    .background(.white)
-                    .cornerRadius(10)
+        ZStack (alignment: .trailing) {
+            VStack (spacing: 20) {
+                Spacer()
+                Text(Constants.Titles.pleaseEnterYourPassword)
+                    .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
+                    .foregroundColor(.white)
+                
+                ZStack (alignment: .trailing) {
+                    if showFirstPassword {
+                        TextField(Constants.Titles.yourPassword, text: $registrationViewModel.password)
+                            .autocorrectionDisabled(true)
+                            .keyboardType(.asciiCapable)
+                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                            .kerning(2)
+                            .frame(height: 55)
+                            .padding(.horizontal)
+                            .foregroundStyle(.brown)
+                            .shadow(radius: 1)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .focused($firstPasswordFieldInFocus)
+                            .transition(.opacity)
+                    } else {
+                        SecureField(Constants.Titles.yourPassword, text: $registrationViewModel.password)
+                            .autocorrectionDisabled(true)
+                            .keyboardType(.asciiCapable)
+                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                            .kerning(2)
+                            .frame(height: 55)
+                            .padding(.horizontal)
+                            .foregroundStyle(.brown)
+                            .shadow(radius: 1)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .textContentType(.password)
+                            .focused($firstPasswordFieldInFocus)
+                            .transition(.opacity)
+                    }
+                    
+                    Button(action: {
+                            showFirstPassword.toggle()
+                            if showFirstPassword {
+                                firstPasswordFieldInFocus = true
+                            }
+                    }, label: {
+                        Image(systemName: !showFirstPassword ? "eye.slash.fill" : "eye.fill")
+                            .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
+                            .padding()
+                    })
+                }
+                
+                ZStack (alignment: .trailing) {
+                    if showSecondPassword {
+                        TextField(Constants.Titles.confirmPassword, text: $registrationViewModel.confirmPassword)
+                            .autocorrectionDisabled(true)
+                            .keyboardType(.asciiCapable)
+                            .focused($secondPasswordFieldInFocus)
+                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                            .kerning(2)
+                            .frame(height: 55)
+                            .padding(.horizontal)
+                            .foregroundStyle(.brown)
+                            .shadow(radius: 1)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
+                            .animation(.smooth(duration: 2), value: registrationViewModel.password)
+                    } else {
+                        SecureField(Constants.Titles.confirmPassword, text: $registrationViewModel.confirmPassword)
+                            .autocorrectionDisabled(true)
+                            .keyboardType(.asciiCapable)
+                            .focused($secondPasswordFieldInFocus)
+                            .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+                            .kerning(2)
+                            .frame(height: 55)
+                            .padding(.horizontal)
+                            .foregroundStyle(.brown)
+                            .shadow(radius: 1)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
+                            .animation(.smooth(duration: 2), value: registrationViewModel.password)
+                    }
+                    Button(action: {
+                            showSecondPassword.toggle()
+                            if showSecondPassword {
+                                secondPasswordFieldInFocus = true
+                            }
+                    }, label: {
+                        Image(systemName: !showSecondPassword ? "eye.slash.fill" : "eye.fill")
+                            .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
+                            .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
+                            .padding()
+                    })
+                    }
+                Spacer()
+                Spacer()
             }
-            Spacer()
-            Spacer()
+            .padding(30)
         }
-        .padding(30)
     }
     
     private var addAgeSection: some View {
@@ -171,10 +241,10 @@ extension OnboardingView {
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
                 .shadow(radius: 1)
-            Text("\(String(format: "%.0f", onboardingViewModel.age))")
+            Text("\(String(format: "%.0f", registrationViewModel.age))")
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 55))
                 .foregroundStyle(.white)
-            Slider(value: $onboardingViewModel.age, in: 1...100, step: 1)
+            Slider(value: $registrationViewModel.age, in: 1...100, step: 1)
                 .tint(.white)
             Spacer()
             Spacer()
@@ -188,7 +258,7 @@ extension OnboardingView {
             Text(Constants.Titles.pleaseSelectYourGender)
                 .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
                 .foregroundColor(.white)
-            Picker(selection: $onboardingViewModel.gender) {
+            Picker(selection: $registrationViewModel.gender) {
                 Text(Constants.Titles.selectGender).tag("G")
                 Text(Constants.Titles.male).tag(Constants.Titles.male)
                 Text(Constants.Titles.female).tag(Constants.Titles.female)
@@ -213,7 +283,7 @@ extension OnboardingView {
     // Computed properties
     
     private var buttonText: String {
-        switch onboardingViewModel.registrationState {
+        switch registrationViewModel.registrationState {
         case 0:
             return Constants.Titles.signIn
         case 3:
@@ -224,16 +294,16 @@ extension OnboardingView {
     }
     
     private var selectedGenderText: String {
-        if onboardingViewModel.gender.isEmpty {
+        if registrationViewModel.gender.isEmpty {
             return Constants.Titles.selectGender
         } else {
-            return onboardingViewModel.gender
+            return registrationViewModel.gender
         }
     }
 }
 
-struct OnboardingView_Previews: PreviewProvider {
+struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingViewModel: RegistationViewModel(notificationManager: NotificationManager()))
+        RegistrationView(registrationViewModel: RegistationViewModel(notificationManager: NotificationManager()))
     }
 }

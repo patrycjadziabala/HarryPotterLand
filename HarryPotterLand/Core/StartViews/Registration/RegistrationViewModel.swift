@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 class RegistationViewModel: ObservableObject {
     
-    //Onboarding states:
+    //Registration states:
     /*
      0 - Welcome screen
      1 - Add login
@@ -21,7 +21,7 @@ class RegistationViewModel: ObservableObject {
      */
     @Published var registrationState: Int = 0
 
-    //Onboarding inputs
+    //Registration inputs
     @Published var login: String = ""
     @Published var password: String = ""
     var confirmPassword: String = ""

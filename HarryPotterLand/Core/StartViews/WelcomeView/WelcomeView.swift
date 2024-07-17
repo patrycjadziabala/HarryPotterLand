@@ -39,7 +39,7 @@ extension WelcomeView {
             if currentUserSignedIn {
                 signedInView
             } else {
-                OnboardingView(onboardingViewModel: RegistationViewModel(notificationManager: NotificationManager()))
+                RegistrationView(registrationViewModel: RegistationViewModel(notificationManager: NotificationManager()))
                     .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
             }
         }
