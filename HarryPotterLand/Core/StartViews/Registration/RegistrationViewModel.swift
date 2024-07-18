@@ -20,11 +20,11 @@ class RegistationViewModel: ObservableObject {
      4 - Add gender
      */
     @Published var registrationState: Int = 0
-
+    
     //Registration inputs
     @Published var login: String = ""
     @Published var password: String = ""
-    var confirmPassword: String = ""
+   @Published var confirmPassword: String = ""
     @Published var age: Double = 50
     @Published var gender: String = "Male"
     
@@ -67,44 +67,52 @@ class RegistationViewModel: ObservableObject {
             withAnimation(.spring()) {
                 registrationState += 1
                 print(registrationState.description)
-
+                
             }
         }
     }
-   // MARK: - Validation functions
+    // MARK: - Validation functions
     
     private func validateLogin() -> Bool {
-           guard login.count >= 3 else {
-               showAlert(title: Constants.Titles.alertLogin)
-               return false
-           }
-           return true
-       }
+        guard login.count >= 3 else {
+            showAlert(title: Constants.Titles.alertLogin)
+            return false
+        }
+        return true
+    }
     
     private func validatePassword() -> Bool {
-            guard password.count >= 3 else {
-                showAlert(title: Constants.Titles.alertPasswordLength)
-                return false
-            }
-            guard containsSpecialCharacter(password: password) else {
-                showAlert(title: Constants.Titles.alertPasswordSpecialCharacters)
-                return false
-            }
+        guard password.count >= 3 else {
+            showAlert(title: Constants.Titles.alertPasswordLength)
+            return false
+        }
+        guard containsSpecialCharacter(password: password) else {
+            showAlert(title: Constants.Titles.alertPasswordSpecialCharacters)
+            return false
+        }
         guard password == confirmPassword else {
             showAlert(title: Constants.Titles.alertPasswordsDontMatch)
             return false
         }
-            return true
-        }
+        return true
+    }
     
     private func containsSpecialCharacter(password: String) -> Bool {
-           let specialCharacterRegex = ".*[!@#$%^&*(),.?\":{}|<>].*"
-           let predicate = NSPredicate(format: "SELF MATCHES %@", specialCharacterRegex)
-           return predicate.evaluate(with: password)
-       }
+        let specialCharacterRegex = ".*[!@#$%^&*(),.?\":{}|<>].*"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", specialCharacterRegex)
+        return predicate.evaluate(with: password)
+    }
     
     func validatePasswordFirstTextfield() -> Bool {
         return password.count >= 3
+    }
+    
+    func validatePasswordCharacterCount() -> Bool {
+    password.count >= 1
+    }
+    
+    func validateConfirmPasswordCharacterCount() -> Bool {
+    confirmPassword.count >= 1
     }
     
     private func validateGender() -> Bool {
@@ -122,11 +130,11 @@ class RegistationViewModel: ObservableObject {
         currentUserPassword = password
         currentUserAge = Int(age)
         currentUserGender = gender
-//        withAnimation(.spring()) {
-            currentUserSignedIn = true
-//        }
+        //        withAnimation(.spring()) {
+        currentUserSignedIn = true
+        //        }
     }
-   //MARK: - Notifications
+    //MARK: - Notifications
     
     private func showAlert(title: String) {
         alertTitle = title

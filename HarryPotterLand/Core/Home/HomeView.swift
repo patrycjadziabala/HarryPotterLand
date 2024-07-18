@@ -79,7 +79,7 @@ extension HomeView {
     private var moviesSection: some View {
         VStack {
             Text(Constants.Titles.titleMoviesCollection)
-                .withCustomTitleTextFormatting(fontSize: 25, fontType: .welcomeScreenFont)
+                .withCustomTitleTextFormatting( fontType: .welcomeScreenFont, fontSize: 25)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(homeViewModel.movies, id: \.id) { movie in

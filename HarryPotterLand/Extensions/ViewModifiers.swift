@@ -20,17 +20,16 @@ enum FontType: String {
 }
 
 struct CustomTitleTextModifier: ViewModifier {
-    
-    let fontSize: CGFloat
     let fontType: String
+    let fontSize: CGFloat
     let alignment: Alignment
+    let foregroundColor: Color
     
     func body(content: Content) -> some View {
         content
-            .frame(maxWidth: .infinity, alignment: alignment)
-            .padding(.leading)
             .font(.custom(fontType, size: fontSize))
-        //            .font(.system(size: CGFloat(fontSize), weight: .semibold, design: .serif))
+            .frame(maxWidth: .infinity, alignment: alignment)
+            .foregroundStyle(foregroundColor)
     }
 }
 
@@ -38,12 +37,13 @@ struct CustomTitleTextModifier: ViewModifier {
 
 extension View {
     func withCustomTitleTextFormatting(
-        fontSize: CGFloat = 28,
         fontType: FontType,
-        alignment: Alignment = .leading
+        fontSize: CGFloat = 28,
+        alignment: Alignment = .center,
+        foregroundColor: Color = .white
     ) -> some View {
         let font = getFont(fontType: fontType)
-        return modifier(CustomTitleTextModifier(fontSize: fontSize, fontType: font, alignment: alignment))
+        return modifier(CustomTitleTextModifier(fontType: font, fontSize: fontSize, alignment: alignment, foregroundColor: foregroundColor))
     }
     
     func getFont(fontType: FontType) -> String {

@@ -45,7 +45,7 @@ struct RegistrationView: View {
             
             VStack {
                 Spacer()
-                signInButton
+                nextButton
             }
             .padding(30)
         }
@@ -59,11 +59,10 @@ struct RegistrationView: View {
 
 extension RegistrationView {
     
-    private var signInButton: some View {
+    private var nextButton: some View {
         VStack {
             Text(Constants.Titles.pleaseSignIn)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                .foregroundColor(.white)
+                .withCustomTitleTextFormatting(fontType: .textFont, fontSize: 35)
                 .overlay(
                     Capsule(style: .continuous)
                         .frame(height: 3)
@@ -75,12 +74,10 @@ extension RegistrationView {
                 .padding()
             
             Text(buttonText)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
-                .foregroundColor(.brown)
+                .withCustomTitleTextFormatting(fontType: .textFont, fontSize: 25, foregroundColor: .brown)
                 .kerning(2)
                 .shadow(radius: 1)
                 .frame(height: 55)
-                .frame(maxWidth: .infinity)
                 .background(Color.white)
                 .cornerRadius(10)
                 .onTapGesture {
@@ -93,7 +90,10 @@ extension RegistrationView {
         VStack(spacing: 40) {
             Spacer()
             Text(Constants.Titles.welcomeToHPWorld)
-                .font(.custom(Constants.Fonts.fontWelcomeScreen, size: 73))
+                .withCustomTitleTextFormatting(
+                    fontType: .welcomeScreenFont,
+                    fontSize: 73
+                )
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .shadow(radius: 4)
@@ -112,16 +112,21 @@ extension RegistrationView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseEnterYourLogin)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                .foregroundColor(.white)
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 35
+                )
             TextField(Constants.Titles.yourLogin, text: $registrationViewModel.login)
                 .autocorrectionDisabled(true)
-//                .focused($fieldInFocus)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 25))
+            //                .focused($fieldInFocus)
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 25,
+                    foregroundColor: .brown
+                )
                 .kerning(2)
                 .frame(height: 55)
                 .padding(.horizontal)
-                .foregroundStyle(.brown)
                 .shadow(radius: 1)
                 .background(.white)
                 .cornerRadius(10)
@@ -136,25 +141,29 @@ extension RegistrationView {
             VStack (spacing: 20) {
                 Spacer()
                 Text(Constants.Titles.pleaseEnterYourPassword)
-                    .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                    .foregroundColor(.white)
+                    .withCustomTitleTextFormatting(
+                        fontType: .titleFont,
+                        fontSize: 35
+                    )
                 
                 passwordField(
                     showPassword: $showFirstPassword,
                     isFocused: $firstPasswordFieldInFocus,
                     password: $registrationViewModel.password,
-                    placeholder: Constants.Titles.yourPassword
+                    placeholder: Constants.Titles.yourPassword,
+                    opacity: registrationViewModel.validatePasswordCharacterCount()
                 )
                 
                 passwordField(
                     showPassword: $showSecondPassword,
                     isFocused: $secondPasswordFieldInFocus,
                     password: $registrationViewModel.confirmPassword,
-                    placeholder: Constants.Titles.confirmPassword
+                    placeholder: Constants.Titles.confirmPassword,
+                    opacity: registrationViewModel.validateConfirmPasswordCharacterCount()
                 )
                 .opacity(registrationViewModel.validatePasswordFirstTextfield() ? 1 : 0)
                 .animation(.easeIn, value: registrationViewModel.password)
-        
+                
                 Spacer()
                 Spacer()
             }
@@ -162,7 +171,7 @@ extension RegistrationView {
         }
     }
     
-    private func passwordField(showPassword: Binding<Bool>, isFocused: FocusState<Bool>.Binding, password: Binding<String>, placeholder: String) -> some View {
+    private func passwordField(showPassword: Binding<Bool>, isFocused: FocusState<Bool>.Binding, password: Binding<String>, placeholder: String, opacity: Bool) -> some View {
         
         ZStack (alignment: .trailing) {
             if showPassword.wrappedValue {
@@ -171,18 +180,20 @@ extension RegistrationView {
             } else {
                 SecureField(placeholder, text: password)
                     .customTextFieldStyle(isFocused: isFocused)
-
+                
             }
             
             Button(action: {
                 showPassword.wrappedValue.toggle()
                 if showPassword.wrappedValue {
                     isFocused.wrappedValue = true
-                    }
+                }
             }, label: {
-                Image(systemName: !showFirstPassword ? "eye.slash.fill" : "eye.fill")
+                let eyeIcon = showPassword.wrappedValue ? Constants.Images.eyeIcon : Constants.Images.eyeCrossedIcon
+                Image(systemName: eyeIcon)
                     .foregroundColor(Color(Constants.Colors.hufflepuffLightBrown).opacity(0.8))
                     .padding()
+                    .opacity(opacity ? 1 : 0)
             })
         }
     }
@@ -191,12 +202,16 @@ extension RegistrationView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseEnterYourAge)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                .foregroundColor(.white)
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 35
+                )
                 .shadow(radius: 1)
             Text("\(String(format: "%.0f", registrationViewModel.age))")
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 55))
-                .foregroundStyle(.white)
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 55
+                )
             Slider(value: $registrationViewModel.age, in: 1...100, step: 1)
                 .tint(.white)
             Spacer()
@@ -209,8 +224,10 @@ extension RegistrationView {
         VStack (spacing: 20) {
             Spacer()
             Text(Constants.Titles.pleaseSelectYourGender)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
-                .foregroundColor(.white)
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 35
+                )
             Picker(selection: $registrationViewModel.gender) {
                 Text(Constants.Titles.selectGender).tag("G")
                 Text(Constants.Titles.male).tag(Constants.Titles.male)
@@ -218,9 +235,11 @@ extension RegistrationView {
                 Text(Constants.Titles.nonbinary).tag(Constants.Titles.nonbinary)
             } label: {
                 Text(selectedGenderText)
-                    .foregroundColor(.white)
+                    .withCustomTitleTextFormatting(
+                        fontType: .titleFont,
+                        fontSize: 35
+                    )
             }
-            .font(.custom(Constants.Fonts.fontDumbledor, size: 35))
             .frame(height: 55)
             .frame(maxWidth: .infinity)
             .background(Color.white)

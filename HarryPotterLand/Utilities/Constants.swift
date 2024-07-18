@@ -78,6 +78,8 @@ struct Constants {
         static let xMarkCircleIcon = "xmark.circle.fill"
         static let xMark = "xmark"
         static let arrowRightIcon = "arrowshape.right.circle.fill"
+        static let eyeCrossedIcon = "eye.slash.fill"
+        static let eyeIcon = "eye.fill"
     }
     
     struct Colors {
