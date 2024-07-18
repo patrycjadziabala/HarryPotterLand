@@ -22,7 +22,6 @@ struct SearchRowView: View {
             
             Text(model.collectionViewTitle)
                 .withCustomTitleTextFormatting(fontType: .textFont)
-                .foregroundStyle(.white)
         }
         .padding()
         .frame(height: 100)

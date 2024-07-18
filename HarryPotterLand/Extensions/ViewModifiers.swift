@@ -17,6 +17,7 @@ enum FontType: String {
     case welcomeScreenFont
     case titleFont
     case textFont
+    case snitchFont
 }
 
 struct CustomTitleTextModifier: ViewModifier {
@@ -54,6 +55,8 @@ extension View {
             return Constants.Fonts.fontDumbledor
         case .textFont:
             return Constants.Fonts.fontText
+        case .snitchFont:
+            return Constants.Fonts.fontSnitch
         }
     }
 }

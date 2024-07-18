@@ -40,7 +40,6 @@ struct RegistrationView: View {
             case .addGender:
                 addGenderSection
                     .transition(transition)
-            default: welcomeScreen //fallback to welcome screen
             }
             
             VStack {

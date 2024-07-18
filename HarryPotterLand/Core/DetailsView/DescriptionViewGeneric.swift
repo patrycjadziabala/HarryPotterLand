@@ -30,11 +30,8 @@ struct DescriptionViewGeneric<Content: View>: View {
                 case .movieDetails:
                     imageSection
                     content
-                    // TODO: - remove if not needed
-//                        .withCustomTitleTextFormatting(fontSize: 15, alignment: .center)
                 case .characterDetails:
                     content
-//                        .withCustomTitleTextFormatting(fontSize: 15)
                     imageSection
                 }
             }
@@ -46,7 +43,10 @@ extension DescriptionViewGeneric {
     
     private var nameSection: some View {
         Text(name)
-            .font(Font.custom(Constants.Fonts.fontWelcomeScreen, size: viewType == .characterDetails ? 70 : 50 ))
+            .withCustomTitleTextFormatting(
+                fontType: .welcomeScreenFont,
+                fontSize: viewType == .characterDetails ? 70 : 50
+            )
             .frame(maxWidth: .infinity)
             .frame(alignment: .center)
     }

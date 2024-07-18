@@ -109,10 +109,12 @@ extension WelcomeView {
     
     private var signOutButton: some View {
         Text(Constants.Titles.signOut)
-            .foregroundColor(.white)
-            .font(.headline)
+            .withCustomTitleTextFormatting(
+                fontType: .titleFont,
+                fontSize: 25
+            )
             .frame(width: 100, height: 45)
-            .background(Color.black)
+            .background(Color.black).opacity(0.7)
             .cornerRadius(10)
             .padding(.horizontal)
             .onTapGesture {
@@ -122,10 +124,13 @@ extension WelcomeView {
     
     private var titleView: some View {
         Text(Constants.Titles.titleHarryPotterLand)
-            .font(Font.custom(Constants.Fonts.fontWelcomeScreen, size: 100))
+            .withCustomTitleTextFormatting(
+                fontType: .welcomeScreenFont,
+                fontSize: 100
+            )
             .kerning(2)
             .multilineTextAlignment(.center)
-            .shadow(radius: 5)
+            .shadow(radius: 2)
     }
     
     private var imageView: some View {

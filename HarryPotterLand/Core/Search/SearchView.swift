@@ -39,7 +39,6 @@ extension SearchView {
     private var searchTitle: some View {
         Text(Constants.Titles.searchForYourFavouriteCharactersOrMovies)
             .withCustomTitleTextFormatting(fontType: .textFont, fontSize: 40)
-            .foregroundStyle(.white)
             .multilineTextAlignment(.center)
             .shadow(radius: 10)
     }
@@ -82,9 +81,8 @@ extension SearchView {
             .padding(.vertical, 3)
             .background(isSelected ? Color(Constants.Colors.ravenclawGrey).opacity(0.7) : .clear)
             .cornerRadius(30)
-            .foregroundStyle(isSelected ? .white : .gray)
             .shadow(radius: 10)
-            .withCustomTitleTextFormatting(fontType: .titleFont, fontSize: isSelected ? 32 : 25, alignment: .center)
+            .withCustomTitleTextFormatting(fontType: .titleFont, fontSize: isSelected ? 32 : 25, alignment: .center, foregroundColor: isSelected ? .white : .gray)
     }
     
     private var resultsHeaderArrow: some View {

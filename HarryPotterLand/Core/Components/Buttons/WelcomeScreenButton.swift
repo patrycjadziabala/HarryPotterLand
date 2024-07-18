@@ -26,9 +26,11 @@ struct WelcomeScreenButton: ButtonStyle {
                 .offset(y: configuration.isPressed ? offset : 0)
             
             Text(text)
-                .font(.custom(Constants.Fonts.fontDumbledor, size: 20))
+                .withCustomTitleTextFormatting(
+                    fontType: .titleFont,
+                    fontSize: 20
+                )
                 .offset(y: configuration.isPressed ? offset : 0)
-                .foregroundStyle(.white)
                 .shadow(radius: 2)
                 .multilineTextAlignment(.center)
         }

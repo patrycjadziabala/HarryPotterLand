@@ -101,7 +101,6 @@ extension HomeView {
         }
     }
     
-    
     private func fetchData() {
         Task {
             do {
