@@ -25,19 +25,19 @@ struct RegistrationView: View {
         ZStack {
             //content based on registration state
             switch registrationViewModel.registrationState {
-            case 0:
+            case .welcomeScreen:
                 welcomeScreen
                     .transition(transition)
-            case 1:
+            case .addLogin:
                 addLoginSection
                     .transition(transition)
-            case 2:
+            case .addPassword:
                 addPasswordSection
                     .transition(transition)
-            case 3:
+            case .addAge:
                 addAgeSection
                     .transition(transition)
-            case 4:
+            case .addGender:
                 addGenderSection
                     .transition(transition)
             default: welcomeScreen //fallback to welcome screen
@@ -70,7 +70,7 @@ extension RegistrationView {
                         .foregroundStyle(.white)
                     ,alignment: .bottom
                 )
-                .opacity(registrationViewModel.registrationState == 0 ? 1 : 0.001)
+                .opacity(registrationViewModel.registrationState.rawValue == 0 ? 1 : 0.001)
                 .padding()
             
             Text(buttonText)
@@ -256,9 +256,9 @@ extension RegistrationView {
     
     private var buttonText: String {
         switch registrationViewModel.registrationState {
-        case 0:
+        case .welcomeScreen:
             return Constants.Titles.signIn
-        case 3:
+        case .addGender:
             return Constants.Titles.finish
         default:
             return Constants.Titles.next

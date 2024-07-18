@@ -19,12 +19,21 @@ class RegistationViewModel: ObservableObject {
      3 - Add age
      4 - Add gender
      */
-    @Published var registrationState: Int = 0
+    
+    enum RegistrationState: Int {
+        case welcomeScreen
+        case addLogin
+        case addPassword
+        case addAge
+        case addGender
+    }
+    
+    @Published var registrationState: RegistrationState = .welcomeScreen
     
     //Registration inputs
     @Published var login: String = ""
     @Published var password: String = ""
-   @Published var confirmPassword: String = ""
+    @Published var confirmPassword: String = ""
     @Published var age: Double = 50
     @Published var gender: String = "Male"
     
@@ -48,28 +57,18 @@ class RegistationViewModel: ObservableObject {
     func handleNextButtonPressed() {
         //CHECK INPUTS
         switch registrationState {
-        case 1:
-            if !validateLogin() {
-                return
-            }
-        case 2:
-            if !validatePassword() { return }
-        case 3:
-            if !validateGender() { return }
+        case .addLogin:
+            guard validateLogin() else { return }
+        case .addPassword:
+            guard validatePassword() else { return }
+        case .addGender:
+            guard validateGender() else { return }
         default:
             break
         }
+        
         //GO TO NEXT SECTION
-        if registrationState == 4 {
-            signIn()
-        } else {
-            print(registrationState.description)
-            withAnimation(.spring()) {
-                registrationState += 1
-                print(registrationState.description)
-                
-            }
-        }
+        proceedToNextStateOrSignIn()
     }
     // MARK: - Validation functions
     
@@ -108,11 +107,11 @@ class RegistationViewModel: ObservableObject {
     }
     
     func validatePasswordCharacterCount() -> Bool {
-    password.count >= 1
+        password.count >= 1
     }
     
     func validateConfirmPasswordCharacterCount() -> Bool {
-    confirmPassword.count >= 1
+        confirmPassword.count >= 1
     }
     
     private func validateGender() -> Bool {
@@ -122,6 +121,17 @@ class RegistationViewModel: ObservableObject {
         }
         return true
     }
+    // MARK: - Helper Methods
+    
+    private func proceedToNextStateOrSignIn() {
+        if registrationState == .addGender {
+            signIn()
+        } else {
+            withAnimation(.spring()) {
+                registrationState = RegistrationState(rawValue: registrationState.rawValue + 1) ?? .welcomeScreen
+            }
+        }
+    }
     // MARK: - Sign in
     
     private func signIn() {
@@ -130,9 +140,9 @@ class RegistationViewModel: ObservableObject {
         currentUserPassword = password
         currentUserAge = Int(age)
         currentUserGender = gender
-        //        withAnimation(.spring()) {
-        currentUserSignedIn = true
-        //        }
+        withAnimation(.spring()) {
+            currentUserSignedIn = true
+        }
     }
     //MARK: - Notifications
     
