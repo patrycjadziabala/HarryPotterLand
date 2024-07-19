@@ -11,24 +11,21 @@ import SwiftUI
 @MainActor
 class WelcomeViewModel: ObservableObject {
 
+    @Published var userManager: UserManagerProtocol
     let persistenceManager: PersistenceManagerProtocol
     var soundManager: SoundManagerProtocol
     @Published var allUsers: [User] = []
     
-    init(soundManager: SoundManagerProtocol, persistenceManager: PersistenceManagerProtocol) {
+    init(soundManager: SoundManagerProtocol, persistenceManager: PersistenceManagerProtocol, userManager: UserManagerProtocol) {
         self.soundManager = soundManager
         self.persistenceManager = persistenceManager
+        self.userManager = userManager
         fetchUsers()
     }
     
-//    func signOut() {
-//        currentUserLogin = nil
-//        currentUserAge = nil
-//        currentUserGender = nil
-//        withAnimation(.spring()) {
-//            currentUserSignedIn = false
-//        }
-//    }
+    func signOut() {
+        userManager.loggedInUser = nil
+    }
     
     private func fetchUsers() {
         persistenceManager.fetchUsers { [weak self] result in

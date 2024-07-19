@@ -32,7 +32,7 @@ class PersistenceManager: ObservableObject, PersistenceManagerProtocol {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let newUser = User(login: login, password: password, age: age, gender: gender, userSignedIn: false)
+        let newUser = User(login: login, password: password, age: age, gender: gender)
         
         do {
             let jsonData = try JSONEncoder().encode(newUser)

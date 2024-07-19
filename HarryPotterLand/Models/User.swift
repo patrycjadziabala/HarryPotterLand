@@ -13,5 +13,4 @@ struct User: Codable, Identifiable {
     var password: String
     var age: Double
     var gender: String
-    var userSignedIn: Bool
 }

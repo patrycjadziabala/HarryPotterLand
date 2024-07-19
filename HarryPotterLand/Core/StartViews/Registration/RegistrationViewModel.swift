@@ -137,8 +137,7 @@ class RegistationViewModel: ObservableObject {
             login: login,
             password: password,
             age: age,
-            gender: gender,
-            userSignedIn: true
+            gender: gender
         )
         
         userManager.loggedInUser = currentUser

@@ -15,7 +15,7 @@ struct HarryPotterLandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager(), persistenceManager: PersistenceManager()))
+            WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager(), persistenceManager: PersistenceManager(), userManager: userManager))
      
 //            MainTabView(homeViewModel: HomeViewModel(imageLoader: ImageLoaderManager(), apiManager: APIManager()))
                 .environmentObject(favouritesManager)

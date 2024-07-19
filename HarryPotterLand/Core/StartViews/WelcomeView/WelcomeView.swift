@@ -31,12 +31,11 @@ extension WelcomeView {
         ZStack {
             colorBackground
             
-            if userManager.loggedInUser?.userSignedIn ?? false {
-                signedInView
-            } else {
+            if userManager.loggedInUser == nil {
                 RegistrationView(registrationViewModel: RegistationViewModel(notificationManager: NotificationManager(), persistenceManager: PersistenceManager(), userManager: userManager))
                     .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom)))
-                //            }
+            } else {
+                signedInView
             }
         }
     }
@@ -112,9 +111,9 @@ extension WelcomeView {
                 .background(Color.black).opacity(0.7)
                 .cornerRadius(10)
                 .padding(.horizontal)
-            //            .onTapGesture {
-            //                welcomeViewModel.signOut()
-            //            }
+                .onTapGesture {
+                    welcomeViewModel.signOut()
+                }
         }
         
         private var titleView: some View {
@@ -199,7 +198,7 @@ extension WelcomeView {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager(), persistenceManager: PersistenceManager()))
+        WelcomeView(welcomeViewModel: WelcomeViewModel(soundManager: SoundManager(), persistenceManager: PersistenceManager(), userManager: UserManager()))
             .environmentObject(UserManager())
     }
 }
