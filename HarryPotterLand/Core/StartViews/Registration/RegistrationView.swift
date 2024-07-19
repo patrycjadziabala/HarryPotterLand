@@ -275,6 +275,6 @@ extension RegistrationView {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(registrationViewModel: RegistationViewModel(notificationManager: NotificationManager()))
+        RegistrationView(registrationViewModel: RegistationViewModel(notificationManager: NotificationManager(), persistenceManager: PersistenceManager(), userManager: UserManager()))
     }
 }

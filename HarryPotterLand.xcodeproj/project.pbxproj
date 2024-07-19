@@ -60,6 +60,8 @@
 		4655F3B02C29A8650040ACFA /* SearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4655F3AF2C29A8650040ACFA /* SearchRowView.swift */; };
 		4655F3B22C2B17550040ACFA /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4655F3B12C2B17550040ACFA /* CircleButtonView.swift */; };
 		4686F4B62C48111900549623 /* View+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686F4B52C48111900549623 /* View+TextField.swift */; };
+		4686F4BA2C4AE5FB00549623 /* RegistrationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686F4B92C4AE5FB00549623 /* RegistrationState.swift */; };
+		4686F4BC2C4AE74F00549623 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686F4BB2C4AE74F00549623 /* UserManager.swift */; };
 		46AB0F562C47C36800E22103 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB0F552C47C36800E22103 /* PersistenceManager.swift */; };
 		46AB0F582C47C3D400E22103 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB0F572C47C3D400E22103 /* User.swift */; };
 		46FE7C482BA89CF100100FD1 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE7C472BA89CF100100FD1 /* FavouritesView.swift */; };
@@ -126,6 +128,8 @@
 		4655F3AF2C29A8650040ACFA /* SearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRowView.swift; sourceTree = "<group>"; };
 		4655F3B12C2B17550040ACFA /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		4686F4B52C48111900549623 /* View+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TextField.swift"; sourceTree = "<group>"; };
+		4686F4B92C4AE5FB00549623 /* RegistrationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationState.swift; sourceTree = "<group>"; };
+		4686F4BB2C4AE74F00549623 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		46AB0F552C47C36800E22103 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		46AB0F572C47C3D400E22103 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		46FE7C472BA89CF100100FD1 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				46374A0E2C3D4CE90064D0EA /* InfoGridRow.swift */,
 				46374A102C3D54FC0064D0EA /* MoreInfo.swift */,
 				46AB0F572C47C3D400E22103 /* User.swift */,
+				4686F4B92C4AE5FB00549623 /* RegistrationState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				46AB0F552C47C36800E22103 /* PersistenceManager.swift */,
+				4686F4BB2C4AE74F00549623 /* UserManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				4626406C2BA095E700F5F22C /* WelcomeView.swift in Sources */,
 				46374A0D2C3C00320064D0EA /* RegistrationViewModel.swift in Sources */,
 				4655F3B22C2B17550040ACFA /* CircleButtonView.swift in Sources */,
+				4686F4BA2C4AE5FB00549623 /* RegistrationState.swift in Sources */,
 				462640762BA0C14F00F5F22C /* HomeView.swift in Sources */,
 				4624A2392BD97B790014D729 /* DescriptionViewGeneric.swift in Sources */,
 				4655F3AA2C25B5E50040ACFA /* Background.swift in Sources */,
@@ -544,6 +551,7 @@
 				4624A1582BC0213A0014D729 /* NotificationManager.swift in Sources */,
 				4624A24E2BED1BDC0014D729 /* Actor.swift in Sources */,
 				4624A2502BF21EB30014D729 /* ActorInMovies.swift in Sources */,
+				4686F4BC2C4AE74F00549623 /* UserManager.swift in Sources */,
 				4655F3B02C29A8650040ACFA /* SearchRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

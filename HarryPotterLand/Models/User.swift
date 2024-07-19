@@ -9,8 +9,9 @@ import Foundation
 
 struct User: Codable, Identifiable {
     var id: UUID = UUID()
-    let login: String
-    let password: String
-    let age: Int
-    let gender: String
+    var login: String
+    var password: String
+    var age: Double
+    var gender: String
+    var userSignedIn: Bool
 }

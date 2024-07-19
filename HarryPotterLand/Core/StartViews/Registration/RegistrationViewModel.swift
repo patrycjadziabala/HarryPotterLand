@@ -19,15 +19,6 @@ class RegistationViewModel: ObservableObject {
      3 - Add age
      4 - Add gender
      */
-    
-    enum RegistrationState: Int {
-        case welcomeScreen
-        case addLogin
-        case addPassword
-        case addAge
-        case addGender
-    }
-    
     @Published var registrationState: RegistrationState = .welcomeScreen
     
     //Registration inputs
@@ -41,17 +32,14 @@ class RegistationViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var showAlert: Bool = false
     
-    //App storage
-    @AppStorage("name") var currentUserLogin: String?
-    @AppStorage("password") var currentUserPassword: String?
-    @AppStorage("age") var currentUserAge: Int?
-    @AppStorage("gender") var currentUserGender: String?
-    @AppStorage("signed_in") var currentUserSignedIn: Bool = false
-    
     let notificationManager: NotificationManagerProtocol
+    let persistenceManager: PersistenceManagerProtocol
+    @Published var userManager: UserManagerProtocol
     
-    init(notificationManager: NotificationManagerProtocol) {
+    init(notificationManager: NotificationManagerProtocol, persistenceManager: PersistenceManagerProtocol, userManager: UserManagerProtocol) {
         self.notificationManager = notificationManager
+        self.persistenceManager = persistenceManager
+        self.userManager = userManager
     }
     
     func handleNextButtonPressed() {
@@ -125,24 +113,39 @@ class RegistationViewModel: ObservableObject {
     
     private func proceedToNextStateOrSignIn() {
         if registrationState == .addGender {
-            signIn()
+            registerUser()
         } else {
             withAnimation(.spring()) {
                 registrationState = RegistrationState(rawValue: registrationState.rawValue + 1) ?? .welcomeScreen
             }
         }
     }
-    // MARK: - Sign in
+    // MARK: - Registration methods
+    
+    private func registerUser() {
+        requestAutorisationForNotifications()
+        persistenceManager.registerUser(login: login, password: password, age: age, gender: gender)
+        withAnimation(.spring()) {
+            signIn()
+        }
+    }
     
     private func signIn() {
         requestAutorisationForNotifications()
-        currentUserLogin = login
-        currentUserPassword = password
-        currentUserAge = Int(age)
-        currentUserGender = gender
-        withAnimation(.spring()) {
-            currentUserSignedIn = true
-        }
+        let currentUser = User(
+            id: UUID(),
+            login: login,
+            password: password,
+            age: age,
+            gender: gender,
+            userSignedIn: true
+        )
+        
+        userManager.loggedInUser = currentUser
+        
+        //            withAnimation(.spring()) {
+        //                currentUserSignedIn = true
+        //            }
     }
     //MARK: - Notifications
     
